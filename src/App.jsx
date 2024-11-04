@@ -7,11 +7,10 @@ import Home from "./components/sections/Home";
 import About from "./components/sections/About";
 import Project from "./components/sections/Project";
 import Contact from "./components/sections/Contact";
-import LoadingScreen from "./components/LoadingScreen";
+import LoadingScreen from "./components/sections/LoadingScreen";
 
 const Container = styled.main`
   overflow-x: hidden;
-  background: var(--bg-beige-color);
 `;
 
 const App = () => {

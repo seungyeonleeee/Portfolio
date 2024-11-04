@@ -6,13 +6,24 @@ import { wrapper, Inner } from "../../util";
 
 const Container = styled.section`
   ${wrapper}
+  position: relative;
   padding: 100px 0;
   background: linear-gradient(
     to bottom,
     var(--bg-light-color) 70%,
     var(--bg-beige-color)
   );
-  border-radius: 40px 40px 0 0;
+  &::before {
+    content: "";
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    border-radius: 40px 40px 0 0;
+    background: var(--bg-light-color);
+  }
 `;
 const ProjectInner = styled(Inner)`
   flex-direction: column;
