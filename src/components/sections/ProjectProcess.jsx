@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ViewMoreButton from "../ViewMoreButton";
 import { SectionTitle, ImgBoxLarge, ImgBoxSmall } from "../../util";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Container = styled.div`
   h2 {
@@ -29,13 +29,18 @@ const Accordion = styled.div`
       flex-direction: column;
       align-items: center;
       border-top: 1px solid var(--bg-light-gray);
+      position: relative;
       .title {
         width: 100%;
-        height: 100px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0 30px;
+        position: absolute;
+        top: 38px;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
         .title-inner {
           display: flex;
           align-items: center;
@@ -60,8 +65,9 @@ const Accordion = styled.div`
         }
       }
       .content {
-        width: 100%;
-        padding: 0 30px 30px;
+        overflow: hidden;
+        padding: 0;
+        margin-top: 100px;
         p {
           font: 400 16px/1.3 "Pretendard";
           color: var(--bg-dark-gray);
@@ -146,10 +152,13 @@ const ProjectProcess = () => {
         <Accordion>
           <ul>
             {accordionItems.map((item, index) => (
-              <li
+              <motion.li
                 key={index}
                 onClick={() => onClickMenu(index)}
                 className={activeIndex === index ? "active" : null}
+                animate={{
+                  height: activeIndex === index ? "auto" : 100,
+                }}
               >
                 <div className="title">
                   <div className="title-inner">
@@ -172,23 +181,18 @@ const ProjectProcess = () => {
                     </svg>
                   </div>
                 </div>
-                <AnimatePresence>
-                  {activeIndex === index && (
-                    <motion.div
-                      className="content"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{
-                        duration: 0.3,
-                        ease: [0.04, 0.62, 0.23, 0.98],
-                      }}
-                    >
-                      <p>{item.content}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </li>
+                <motion.div
+                  className="content"
+                  animate={{
+                    scaleY: activeIndex === index ? 1 : 0,
+                    transformOrigin: "top",
+                  }}
+                  transition={{ type: "linear" }}
+                  style={{ padding: "0 30px 30px" }}
+                >
+                  <p>{item.content}</p>
+                </motion.div>
+              </motion.li>
             ))}
           </ul>
           <ViewMoreButton text="Read More" />
