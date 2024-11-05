@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { wrapper, Inner } from "../../util";
+import { wrapper, Inner } from "../../styledComponents";
 
 const Container = styled.section`
   ${wrapper}

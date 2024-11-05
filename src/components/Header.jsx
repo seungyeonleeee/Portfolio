@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Inner } from "../util";
+import { Inner } from "../styledComponents";
 
 const Container = styled.header`
   width: 100%;

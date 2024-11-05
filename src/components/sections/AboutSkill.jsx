@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { wrapper, ImgBoxSmall } from "../../util";
 import "swiper/swiper-bundle.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { Autoplay, Pagination } from "swiper/modules";
+import { wrapper, ImgBoxSmall } from "../../styledComponents";
 
 const Container = styled.div`
   ${wrapper}

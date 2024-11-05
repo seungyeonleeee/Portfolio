@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { wrapper, ImgBoxLarge, SectionTitle } from "../../util";
+import { wrapper, ImgBoxLarge, SectionTitle } from "../../styledComponents";
 
 const Container = styled.div`
   ${wrapper}
@@ -14,6 +14,20 @@ const TextBox = styled.ul`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    .intro-name {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 10px;
+      span {
+        font-size: 44px;
+        font-weight: 500;
+      }
+      h2 {
+        margin-bottom: 0;
+      }
+    }
+
     h5 {
       font: 400 18px/1 "Poppins-Regular";
       font-size: 18px;
@@ -21,7 +35,7 @@ const TextBox = styled.ul`
     }
     p {
       line-height: 1.5;
-      &.education {
+      &.intro-education {
         color: var(--bg-dark-gray);
       }
     }
@@ -34,9 +48,10 @@ const AboutIntro = () => {
       <ImgBoxLarge />
       <TextBox>
         <li>
-          <SectionTitle>
-            이 승연 <span> SeungYeon Lee</span>
-          </SectionTitle>
+          <div className="intro-name">
+            <span>이 승연</span>
+            <SectionTitle>SeungYeon Lee</SectionTitle>
+          </div>
           <h5>1998.01.10</h5>
         </li>
         <li>
@@ -51,11 +66,11 @@ const AboutIntro = () => {
         <li>
           <h5>Education</h5>
           <div>
-            <p className="education">
+            <p className="intro-education">
               2024.06 ~ 2024.12 K-Digital Training (KDT) 기업연계 프론트엔드
               개발 수료
             </p>
-            <p className="education">
+            <p className="intro-education">
               2023.12 ~ 2024.04 (디지털디자인) UI/UX 웹디자인 & 웹퍼블리셔 수료
             </p>
           </div>

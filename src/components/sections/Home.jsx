@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { delay, motion } from "framer-motion";
-import { wrapper, Inner } from "../../util";
+import { wrapper, Inner } from "../../styledComponents";
 
 // Animation
 const shadow = keyframes`

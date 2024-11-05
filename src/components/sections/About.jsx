@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import AboutIntro from "./AboutIntro";
 import AboutSkill from "./AboutSkill";
-import { wrapper, Inner } from "../../util";
+import { wrapper, Inner } from "../../styledComponents";
 
 const Container = styled.section`
   ${wrapper}

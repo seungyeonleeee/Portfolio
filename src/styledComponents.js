@@ -31,10 +31,8 @@ export const ImgBoxSmall = styled.div`
   background-color: var(--bg-light-gray);
 `;
 export const SectionTitle = styled.h2`
+  font-family: "Poppins-Medium";
   font-size: 44px;
   font-weight: 500;
   margin-bottom: 20px;
-  span {
-    font-family: "Poppins-Medium";
-  }
 `;

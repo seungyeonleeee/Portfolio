@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ViewMoreButton from "../ViewMoreButton";
-import { SectionTitle } from "../../util";
+import { SectionTitle } from "../../styledComponents";
 
 const Container = styled.div`
   width: 100%;
