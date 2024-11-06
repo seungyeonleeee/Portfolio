@@ -11,6 +11,7 @@ const Button = styled.button`
   border: 1px solid var(--bg-accent-color);
   border-radius: 54px;
   color: var(--bg-accent-color);
+  background: var(--bg-light-color);
   transition: all 0.3s;
   svg {
     width: 12px;

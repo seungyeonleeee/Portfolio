@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { Autoplay, Pagination } from "swiper/modules";
 import { wrapper, ImgBoxSmall } from "../../styledComponents";
+import { skills } from "../../utlis";
 
 const Container = styled.div`
   ${wrapper}
@@ -67,71 +68,6 @@ const Skill = styled.div`
 `;
 
 const AboutSkill = () => {
-  const skills = [
-    {
-      icon: "figma",
-      title: "Figma",
-      img: "",
-      description:
-        "Figma를 활용해 효율적인 UI/UX 디자인을 구현하며, 팀원들과의 실시간 협업을 통해 디자인 의도를 명확히 전달할 수 있습니다.",
-    },
-    {
-      icon: "html5",
-      title: "HTML5",
-      img: "",
-      description:
-        "HTML5를 활용해 구조적이고 의미 있는 웹 페이지를 구현할 수 있습니다. 웹 표준을 준수하여 SEO 최적화와 접근성 높은 마크업을 작성하는 데 주력하고 있습니다.",
-    },
-    {
-      icon: "css3",
-      title: "CSS3",
-      img: "",
-      description:
-        "CSS3를 활용해 반응형 웹 디자인과 시각적으로 매력적인 레이아웃을 구현할 수 있습니다.",
-    },
-    {
-      icon: "scss",
-      title: "SCSS",
-      img: "",
-      description:
-        "SCSS를 활용해 반응형 웹 디자인과 시각적으로 매력적인 레이아웃을 구현할 수 있습니다.",
-    },
-    {
-      icon: "js",
-      title: "Javascript",
-      img: "",
-      description:
-        "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
-    },
-    {
-      icon: "react",
-      title: "React.js",
-      img: "",
-      description:
-        "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
-    },
-    {
-      icon: "ts",
-      title: "Typescript",
-      img: "",
-      description:
-        "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
-    },
-    {
-      icon: "node-js",
-      title: "Node.js",
-      img: "",
-      description:
-        "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
-    },
-    {
-      icon: "node-js",
-      title: "Node.js",
-      img: "",
-      description:
-        "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
-    },
-  ];
   return (
     <Container>
       <span>My Skills</span>

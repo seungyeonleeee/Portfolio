@@ -4,7 +4,9 @@ import ViewMoreButton from "../ViewMoreButton";
 import { SectionTitle } from "../../styledComponents";
 
 const Container = styled.div`
+  position: relative;
   width: 100%;
+  z-index: 1;
 `;
 const ListMenu = styled.div`
   display: flex;

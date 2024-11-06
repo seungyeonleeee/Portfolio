@@ -16,6 +16,7 @@ const ProcessWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 80px;
+  position: relative;
 `;
 
 const ProjectProcess = () => {

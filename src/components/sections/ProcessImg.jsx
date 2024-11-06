@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import styled, { css } from "styled-components";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { accordionItems } from "../../utls";
+import React from "react";
+import styled from "styled-components";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { accordionItems } from "../../utlis";
 import { ImgBoxLarge, ImgBoxSmall } from "../../styledComponents";
 
+// Styled
 const Container = styled.div`
   width: 597px;
   height: 550px;
   position: relative;
-  & > div {
+  div {
     position: absolute;
-    background-size: cover;
-    background-position: top center;
-    background-repeat: no-repeat;
-    transition: background-image 0.5s;
+    background: url(/images/${(props) => props.$bgimg || ""}) center/cover
+      no-repeat;
+    transition: background 0.5s;
     &.img-box-small {
       width: 220px;
       height: 160px;
@@ -30,71 +30,51 @@ const ImgBox = styled(ImgBoxLarge)`
   transform: translate(-50%, -50%);
   border: 3px solid var(--bg-dark-gray);
 `;
-const ParallaxImgBox01 = styled(motion.div)`
-  top: 50%;
+const ParallaxImgBoxLeft = styled(motion.div)`
+  top: 20%;
   left: 0;
 `;
-const ParallaxImgBox02 = styled(motion.div)`
-  top: 5%;
+const ParallaxImgBoxRight = styled(motion.div)`
+  top: 0;
   right: 0;
 `;
 
 const ProcessImg = ({ currentIndex }) => {
-  const { scrollY } = useScroll();
+  const { scrollYProgress } = useScroll({
+    offset: ["start end", "end start"],
+  });
 
-  const backgroundY = useTransform(scrollY, [1800, 3500], [-200, 200]);
+  const leftImgY = useTransform(scrollYProgress, [0, 0.5, 1], [400, 250, -400]);
+  const rightImgY = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [800, 300, -800]
+  );
 
-  const foregroundY = useTransform(scrollY, [1800, 3500], [-200, 400]);
-
-  useEffect(() => {
-    const unsubscribe = scrollY.on("change", (latest) => {
-      if (latest >= 1800 && latest <= 3500) {
-        console.log("Parallax active:", latest);
-      }
-    });
-
-    return () => unsubscribe();
-  }, [scrollY]);
+  const springLeftY = useSpring(leftImgY, {
+    stiffness: 200,
+    damping: 30,
+    mass: 1,
+  });
+  const springRightY = useSpring(rightImgY, {
+    stiffness: 200,
+    damping: 30,
+    mass: 1,
+  });
 
   return (
-    <Container>
-      <ImgBox
-        style={{
-          backgroundImage: `url(/images/${
-            accordionItems[currentIndex]?.mainImg || ""
-          })`,
-        }}
-      />
-      <ParallaxImgBox01
+    <Container $bgimg={accordionItems[currentIndex]?.mainImg}>
+      <ImgBox />
+      <ParallaxImgBoxLeft
         className="img-box-small"
         style={{
-          backgroundImage: `url(/images/${
-            accordionItems[currentIndex]?.subImg01 || ""
-          })`,
-          y: backgroundY,
-        }}
-        animate={{
-          y: backgroundY,
-        }}
-        transition={{
-          duration: 0.5,
-          type: "spring",
+          y: springLeftY,
         }}
       />
-      <ParallaxImgBox02
+      <ParallaxImgBoxRight
         className="img-box-small"
         style={{
-          backgroundImage: `url(/images/${
-            accordionItems[currentIndex]?.subImg02 || ""
-          })`,
-          y: foregroundY,
-        }}
-        animate={{
-          y: foregroundY,
-        }}
-        transition={{
-          duration: 0.5,
-          type: "spring",
+          y: springRightY,
         }}
       />
     </Container>

@@ -25,6 +25,11 @@ const Container = styled.section`
     background: var(--bg-light-color);
   }
 `;
+const LineElement = styled.div`
+  position: absolute;
+  top: -40px;
+  right: 0;
+`;
 const ProjectInner = styled(Inner)`
   flex-direction: column;
   gap: 100px;
@@ -33,6 +38,22 @@ const ProjectInner = styled(Inner)`
 const Project = () => {
   return (
     <Container>
+      <LineElement>
+        <svg
+          width="640"
+          height="1791"
+          viewBox="0 0 640 1791"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M640.33 1789.5C488.83 1474 2.00053 1382 2 1169C1.99946 953.951 253.5 977.5 373.5 825.046M373.5 825.046C400 769.5 322.992 629.628 276.5 684C217.5 753 323 830.701 373.5 825.046ZM373.5 825.046C457.933 815.591 575.809 765.06 640.33 697.701M321.5 -0.407471C427.155 44.3115 565.848 138.727 640.33 290.5"
+            stroke="#FF481F"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+        </svg>
+      </LineElement>
       <ProjectInner>
         <ProjectProcess />
         <ProjectList />

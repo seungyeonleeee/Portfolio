@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Animation
 const overlay = keyframes`
@@ -63,10 +63,10 @@ const AnimationElement = styled.article`
 
 // Variant
 const maskVariants = {
-  start: {
+  hidden: {
     x: -1920,
   },
-  end: {
+  visible: {
     x: 0,
     transition: {
       delay: 1.5,
@@ -74,7 +74,7 @@ const maskVariants = {
       ease: "easeOut",
     },
   },
-  disappear: {
+  exit: {
     x: 1920,
     transition: {
       duration: 2.5,
@@ -84,11 +84,11 @@ const maskVariants = {
 };
 
 const LoadingScreen = () => {
-  const [animationState, setAnimationState] = useState("end");
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setAnimationState("disappear");
+      setIsVisible(false);
     }, 3500);
     return () => clearTimeout(timer);
   }, []);
@@ -102,16 +102,21 @@ const LoadingScreen = () => {
           fill="none"
         >
           <mask id="reveal-mask">
-            <motion.rect
-              x="0"
-              y="0"
-              width="1920"
-              height="450"
-              fill="#fff"
-              initial="start"
-              animate={animationState}
-              variants={maskVariants}
-            />
+            <AnimatePresence>
+              {isVisible && (
+                <motion.rect
+                  x="0"
+                  y="0"
+                  width="1920"
+                  height="450"
+                  fill="#fff"
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={maskVariants}
+                />
+              )}
+            </AnimatePresence>
           </mask>
           <g mask="url(#reveal-mask)">
             <path
