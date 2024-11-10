@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { delay, motion, AnimatePresence } from "framer-motion";
 import { wrapper, Inner } from "../../styledComponents";
 import { useEffect, useState } from "react";
+import { titles } from "../../utlis";
 
 // Animation
 const shadow = keyframes`
@@ -16,16 +17,16 @@ const shadow = keyframes`
 // rgba(240, 239, 238, 0.8)
 // Style
 const Container = styled.section`
-  position: relative;
   height: 100vh;
   ${wrapper}
 `;
 const AnimationWrapper = styled.div`
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  ${wrapper}
 `;
 const Background = styled(motion.div)`
   position: absolute;
@@ -60,11 +61,13 @@ const HomeInner = styled(Inner)`
   z-index: 1;
 `;
 const MainElement = styled(motion.div)`
-  width: 25%;
-  min-width: 300px;
-  svg {
-    width: 100%;
-    height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    font: 300 300px/1 "Poppins-Light";
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: absolute;
   }
 `;
 const LineElement = styled.div`
@@ -82,8 +85,8 @@ const TextGroup = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  &.titleGroup {
-    position: absolute;
+  position: absolute;
+  &.main-title {
     top: 20%;
     left: 10%;
     h1 {
@@ -97,34 +100,66 @@ const TextGroup = styled(motion.div)`
       font-size: 22px;
     }
   }
+  &.sub-title {
+    text-align: center;
+    h2 {
+      font: 300 50px/1 "Poppins-Light";
+      &::first-letter {
+        color: var(--bg-accent-color);
+      }
+    }
+    p {
+      font-size: 18px;
+      color: var(--bg-dark-gray);
+      white-space: pre-wrap;
+    }
+    &[data-index="0"] {
+      top: 20%;
+      left: 50%;
+    }
+    &[data-index="1"] {
+      top: 65%;
+      left: 10%;
+    }
+    &[data-index="2"] {
+      top: 65%;
+      right: 10%;
+    }
+  }
 `;
 
 // Variants
+const WrapperVariants = {
+  start: { opacity: 0 },
+  end: { opacity: 1 },
+  exit: { opacity: 0 },
+};
 const lineVariants = {
-  start: {
+  invisible: {
     x: -706,
   },
-  end: {
+  visible: {
     x: 0,
     transition: {
-      // delay: 0.5,
       duration: 1.5,
       ease: "easeOut",
     },
   },
 };
 const FadeInVariants = {
-  start: (coord) => ({
+  start: (custom) => ({
     opacity: 0,
-    x: coord?.x || 0,
-    y: coord?.y || 0,
+    x: custom?.coord?.x || 0,
+    y: custom?.coord?.y || 0,
+    translateX: custom?.index === 0 ? "-50%" : "0%",
   }),
-  end: (sec) => ({
+  end: (custom) => ({
     opacity: 1,
     x: 0,
     y: 0,
+    translateX: custom?.index === 0 ? "-50%" : "0%",
     transition: {
-      delay: sec?.delay || 0,
+      delay: custom?.delay || 0.3,
       duration: 1,
       ease: "easeOut",
     },
@@ -177,6 +212,44 @@ const circleVariants = {
   },
 };
 
+// 새로운 애니메이션 variants 추가
+const firstCVariants = {
+  initial: { rotate: 0, translateX: "0%" },
+  animate: {
+    rotate: -30,
+    translateX: "-33%",
+    transition: { delay: 2.2, duration: 0.8, type: "tween" },
+  },
+};
+
+const secondCVariants = {
+  initial: { opacity: 1, rotate: 0, translateX: "0%" },
+  animate: {
+    rotate: 150,
+    translateX: "33%",
+    transition: { delay: 2.2, duration: 0.8, type: "tween" },
+  },
+};
+
+// 새로운 variants 추가
+const noiseVariants = {
+  initial: {
+    opacity: 0,
+    filter: "blur(10px)",
+    scale: 0.9,
+  },
+  animate: {
+    opacity: [0, 0.2, 0.4, 0.8, 1],
+    filter: ["blur(10px)", "blur(8px)", "blur(4px)", "blur(2px)", "blur(0px)"],
+    scale: [0.9, 0.92, 0.95, 0.98, 1],
+    transition: {
+      duration: 1.2,
+      times: [0, 0.2, 0.4, 0.7, 1],
+      ease: "easeOut",
+    },
+  },
+};
+
 const Home = () => {
   const [showShadow, setShowShadow] = useState(false);
 
@@ -190,7 +263,7 @@ const Home = () => {
 
   return (
     <Container>
-      <AnimationWrapper>
+      {/* <AnimationWrapper>
         <Background variants={backgroundVariants} initial="start" animate="end">
           {[1, 2, 3].map((circle, index) => (
             <Circle
@@ -205,68 +278,108 @@ const Home = () => {
             />
           ))}
         </Background>
-      </AnimationWrapper>
-      {/* <AnimationWrapper>
-        <LineElement>
-          <motion.svg
-            viewBox="0 0 706 507"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <mask id="reveal-mask">
-              <motion.rect
-                x="0"
-                y="0"
-                width="706"
-                height="507"
-                fill="#fff"
-                variants={lineVariants}
-                initial={"start"}
-                animate={"end"}
-              />
-            </mask>
-            <g mask="url(#reveal-mask)">
-              <path
-                d="M-139.892 -82C-117.669 -46.0125 -60.5082 31.3225 -9.645 52.7621C53.934 79.5616 63.0535 72.3843 98.938 94.1865C128.148 111.933 138.53 134.133 141.276 141.237C145.414 156.061 148.422 189.024 118.513 185.948C98.9775 183.939 99.6709 158.671 111.864 148.185C123.006 138.604 146.282 150.112 167.095 156.673C205.011 168.627 222.663 175.896 242.157 194.16C259.23 210.155 279.456 232.599 292.719 300.49C311.186 395.022 337.827 463.946 420.327 488.5C588.327 538.5 629.403 426 703.403 449.5"
-                stroke="#FF481F"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
-            </g>
-          </motion.svg>
-        </LineElement>
-        <HomeInner>
-          <MainElement
-            custom={{ x: 0, y: 20, delay: 0.3 }}
-            initial="start"
-            animate="end"
-            variants={FadeInVariants}
-          >
-            <svg
-              width="332"
-              height="306"
-              viewBox="0 0 332 306"
+      </AnimationWrapper> */}
+      <AnimatePresence>
+        <AnimationWrapper
+          variants={WrapperVariants}
+          initial="start"
+          animate="end"
+          exit="exit"
+        >
+          <LineElement>
+            <motion.svg
+              viewBox="0 0 706 507"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                d="M150.95 60.4H177.2V272.5C177.2 288.95 173 296.3 161.1 300.5C149.2 304.7 128.9 305.05 98.45 305.05C97.05 297.7 92.5 287.2 88.65 279.85C113.15 280.9 135.55 280.55 142.2 280.2C148.85 279.85 150.95 278.1 150.95 272.15V60.4ZM54.7 1.94998H254.9V25.75H54.7V1.94998ZM246.5 1.94998H253.15L258.75 0.549979L276.95 13.5C250.35 40.45 209.05 67.4 170.9 83.5C167.4 78.25 160.4 70.9 155.85 66.7C189.8 52.7 227.95 27.15 246.5 6.84998V1.94998ZM107.2 101.7H225.5V123.4H107.2V101.7ZM11.3 77.2H89.7V101.35H11.3V77.2ZM100.2 157.35H231.1V179.05H100.2V157.35ZM80.25 214.75H251.4V236.8H80.25V214.75ZM304.25 74.4L324.9 91.55C305.65 113.95 280.1 140.55 260.85 157.7L244.05 143C262.95 125.85 289.2 96.1 304.25 74.4ZM248.6 66.35C260.5 146.15 285.7 218.25 331.2 252.55C324.9 257.8 315.8 267.6 311.25 274.95C263.3 234.35 238.1 158.75 224.45 70.2L248.6 66.35ZM80.25 77.2H85.5L90.4 76.15L106.85 82.45C93.2 170.65 60.65 238.2 20.4 274.6C16.2 269 6.4 259.2 0.45 255.35C39.65 222.1 69.05 160.15 80.25 83.15V77.2Z"
-                fill="black"
-              />
-            </svg>
+              <mask id="reveal-mask">
+                <motion.rect
+                  x="0"
+                  y="0"
+                  width="706"
+                  height="507"
+                  fill="#fff"
+                  variants={lineVariants}
+                  initial="invisible"
+                  animate="visible"
+                />
+              </mask>
+              <g mask="url(#reveal-mask)">
+                <path
+                  d="M-139.892 -82C-117.669 -46.0125 -60.5082 31.3225 -9.645 52.7621C53.934 79.5616 63.0535 72.3843 98.938 94.1865C128.148 111.933 138.53 134.133 141.276 141.237C145.414 156.061 148.422 189.024 118.513 185.948C98.9775 183.939 99.6709 158.671 111.864 148.185C123.006 138.604 146.282 150.112 167.095 156.673C205.011 168.627 222.663 175.896 242.157 194.16C259.23 210.155 279.456 232.599 292.719 300.49C311.186 395.022 337.827 463.946 420.327 488.5C588.327 538.5 629.403 426 703.403 449.5"
+                  stroke="#FF481F"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+              </g>
+            </motion.svg>
+          </LineElement>
+          <HomeInner>
+            <MainElement
+              custom={{ x: 0, y: 20, delay: 0.3 }}
+              initial="start"
+              animate="end"
+              variants={FadeInVariants}
+            >
+              <motion.span
+                variants={noiseVariants}
+                initial="initial"
+                animate="animate"
+              >
+                承
+              </motion.span>
+            </MainElement>
+            <TextGroup
+              className="main-title"
+              custom={{ x: -20, y: 0, delay: 1 }}
+              initial="start"
+              animate="end"
+              variants={FadeInVariants}
+            >
+              <motion.h1
+                variants={noiseVariants}
+                initial="initial"
+                animate="animate"
+              >
+                <span>이을</span> 승
+              </motion.h1>
+              <p>서로의 이야기를 이어 공감을 쌓아갑니다.</p>
+            </TextGroup>
+          </HomeInner>
+        </AnimationWrapper>
+      </AnimatePresence>
+      {/* <AnimationWrapper>
+        <HomeInner>
+          <MainElement>
+            <motion.span
+              variants={firstCVariants}
+              initial="initial"
+              animate="animate"
+            >
+              C
+            </motion.span>
+            <motion.span
+              variants={secondCVariants}
+              initial="initial"
+              animate="animate"
+            >
+              C
+            </motion.span>
           </MainElement>
-          <TextGroup
-            className="titleGroup"
-            custom={{ x: -20, y: 0, delay: 0.7 }}
-            initial="start"
-            animate="end"
-            variants={FadeInVariants}
-          >
-            <h1>
-              <span>이을</span> 승
-            </h1>
-            <p>서로의 이야기를 이어 공감을 쌓아갑니다.</p>
-          </TextGroup>
+          {titles.map((title, index) => (
+            <TextGroup
+              key={index}
+              className="sub-title"
+              data-index={index}
+              custom={{ coord: { x: 20, y: 0 }, index, delay: index * 0.5 }}
+              initial="start"
+              animate="end"
+              variants={FadeInVariants}
+            >
+              <h2>{title.keyword}</h2>
+              <p>{title.description}</p>
+            </TextGroup>
+          ))}
         </HomeInner>
       </AnimationWrapper> */}
     </Container>

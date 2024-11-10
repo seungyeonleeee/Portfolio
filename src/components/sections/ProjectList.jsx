@@ -91,7 +91,7 @@ const ProjectList = () => {
       </ListMenu>
       <ProjectWrapper>
         <ul>
-          <li>
+          <li key={1}>
             <div className="img-box"></div>
             <div className="badge-group">
               <span>Anime.js</span>
@@ -103,7 +103,7 @@ const ProjectList = () => {
               전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.
             </p>
           </li>
-          <li>
+          <li key={2}>
             <div className="img-box"></div>
             <div className="badge-group">
               <span>Anime.js</span>
@@ -115,7 +115,7 @@ const ProjectList = () => {
               전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.
             </p>
           </li>
-          <li>
+          <li key={3}>
             <div className="img-box"></div>
             <div className="badge-group">
               <span>Anime.js</span>

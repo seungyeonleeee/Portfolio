@@ -1,3 +1,22 @@
+// Home Title
+export const titles = [
+  {
+    keyword: "Connection",
+    description:
+      "대화 속에서 사람들과의 연결을 소중히 여기며, \n그 안에서 함께 성장하고 발전할 수 있는 가능성을 발견합니다.",
+  },
+  {
+    keyword: "Communication",
+    description:
+      "열린 의사소통을 통해 다양한 아이디어를 연결하고, \n창의적인 해결책을 찾아가는 과정을 소중히 여깁니다.",
+  },
+  {
+    keyword: "Collaboration",
+    description:
+      "열린 의사소통을 통해 다양한 아이디어를 연결하고, \n그 안에서 창의적인 해결책을 찾아가는 과정을 소중히 여깁니다.",
+  },
+];
+
 // About Skill
 export const skills = [
   {
