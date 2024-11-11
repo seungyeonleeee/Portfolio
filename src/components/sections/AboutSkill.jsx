@@ -10,7 +10,7 @@ import { skills } from "../../utlis";
 const Container = styled.div`
   ${wrapper}
   flex-direction: column;
-  gap: 50px;
+  gap: 80px;
   background: var(--bg-beige-color);
   span {
     font: 400 16px/1 "Poppins-Regular";
@@ -21,7 +21,7 @@ const Container = styled.div`
 const SkillList = styled.div`
   width: 100%;
   .swiper {
-    height: 630px;
+    height: 500px;
   }
   .swiper-pagination {
     bottom: 0px;
@@ -36,14 +36,14 @@ const SkillList = styled.div`
   }
 `;
 const StyledSwiperSlide = styled(SwiperSlide)`
-  height: 600px;
+  height: 450px;
   display: flex;
   &:nth-child(even) {
     align-items: flex-end;
   }
 `;
 const Skill = styled.div`
-  height: 500px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -94,7 +94,7 @@ const AboutSkill = () => {
                   />
                 </div>
                 <h3>{skill.title}</h3>
-                <ImgBoxSmall />
+                {/* <ImgBoxSmall /> */}
                 <p>{skill.description}</p>
               </Skill>
             </StyledSwiperSlide>

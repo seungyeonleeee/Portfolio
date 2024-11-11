@@ -7,17 +7,6 @@ import HomeIntroAnimation from "./HomeIntroAnimation";
 import HomeFinalAnimation from "./HomeFinalAnimation";
 import HomeBackAnimation from "./HomeBackAnimation";
 
-// Animation
-const shadow = keyframes`
-  0% {
-    box-shadow: 0px 0px 0px transparent;
-  }
-  100% {
-   box-shadow: 30px -10px 100px rgba(240, 239, 238, 0.8);
-  }
-`;
-// rgba(240, 239, 238, 0.8)
-
 // Styled
 const Container = styled.section`
   height: 100vh;

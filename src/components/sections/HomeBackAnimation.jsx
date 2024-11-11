@@ -38,10 +38,9 @@ const backgroundVariants = {
   animate: {
     opacity: 1,
     transition: {
-      delay: 3.6,
       duration: 1.2,
       when: "beforeChildren",
-      staggerChildren: 1,
+      staggerChildren: 0.8,
       delayChildren: 0.5,
     },
   },
@@ -52,16 +51,14 @@ const circleVariants = {
     scale: 0,
     x: "-50%",
     y: "-50%",
-    boxShadow: "0px 0px 0px rgba(240, 239, 238, 0)",
   },
   visible: (index) => ({
     opacity: 1,
     scale: 1,
     x: "-50%",
     y: "-50%",
-    boxShadow: "0px 0px 0px rgba(240, 239, 238, 0)",
     transition: {
-      delay: 3.8 + index * 0.8,
+      delay: index * 0.5 + 2.6,
       duration: 1.2,
     },
   }),
@@ -70,17 +67,24 @@ const circleVariants = {
     scale: 1,
     x: "-50%",
     y: "-50%",
-    boxShadow: "30px -10px 100px rgba(240, 239, 238, 0.8)",
+    boxShadow: [
+      "0px 0px 0px rgba(240, 239, 238, 0)",
+      "30px -10px 50px rgba(240, 239, 238, 0.8)",
+      "10px 30px 50px rgba(240, 239, 238, 0.8)",
+      "-30px 10px 50px rgba(240, 239, 238, 0.8)",
+      "-10px -30px 50px rgba(240, 239, 238, 0.8)",
+      "30px -10px 50px rgba(240, 239, 238, 0.8)",
+    ],
     transition: {
-      duration: 1.5,
+      delay: index * 0.8,
+      duration: 10,
       ease: "easeInOut",
       boxShadow: {
-        // delay: 3.6,
-        duration: 1.5,
+        duration: 8,
         ease: "easeInOut",
         repeat: Infinity,
         repeatType: "reverse",
-        repeatDelay: 7,
+        // repeatDelay: 5,
       },
     },
   }),
@@ -92,22 +96,10 @@ const HomeBackAnimation = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowShadow(true);
-    }, 2000); // Circle이 나타난 후 2초 뒤에 그림자 효과 시작
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, []);
-
-  // transition={{
-  //   duration: 1,
-  //   delay: index * 0.8 + 1,
-  //   boxShadow: {
-  //     delay: index * 0.8 + 3.6,
-  //     duration: 1.5,
-  //     ease: "easeInOut",
-  //     repeat: Infinity,
-  //     repeatType: "reverse",
-  //   },
-  // }}
 
   return (
     <AnimationWrapper>
@@ -122,7 +114,7 @@ const HomeBackAnimation = () => {
             variants={circleVariants}
             initial="start"
             animate={showShadow ? "shadow" : "visible"}
-            index={index}
+            custom={index}
           />
         ))}
       </Background>

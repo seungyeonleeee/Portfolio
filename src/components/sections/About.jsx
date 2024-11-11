@@ -1,15 +1,47 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import AboutIntro from "./AboutIntro";
 import AboutSkill from "./AboutSkill";
 import { wrapper, Inner } from "../../styledComponents";
 
+// Animation
+const background = keyframes`
+  0% {
+    border-radius: 40px 40px 0 0;
+   
+  }
+  100% {
+    border-radius: 0 0 0 0;
+  }
+`;
+const borderRadius = keyframes`
+  0% {
+    height: 0;  
+  }
+  100% {
+    height: 80px;
+  }
+`;
+
+// Styled
 const Container = styled.section`
   ${wrapper}
   position: relative;
   padding: 100px 0 140px;
   background-color: var(--bg-beige-color);
   border-radius: 40px 40px 0 0;
+  animation: ${background} 0.5s 12s linear both;
+  &::before {
+    content: "";
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    border-radius: 40px 40px 0 0;
+    background: var(--bg-beige-color);
+    animation: ${borderRadius} 0.5s 12s linear both;
+  }
 `;
 const AboutInner = styled(Inner)`
   position: relative;

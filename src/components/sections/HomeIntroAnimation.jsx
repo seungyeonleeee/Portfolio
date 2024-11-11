@@ -28,8 +28,8 @@ const LineElement = styled.div`
 // Variants
 const WrapperVariants = {
   start: { opacity: 0 },
-  end: { opacity: 1, transition: { duration: 5 } },
-  exit: { opacity: 0, filter: "blur(10px)", transition: { duration: 0.5 } },
+  end: { opacity: 1, transition: { duration: 6 } },
+  exit: { opacity: 0, filter: "blur(10px)", transition: { duration: 1.2 } },
 };
 const lineVariants = {
   invisible: {
@@ -66,15 +66,21 @@ const FadeInVariants = {
 const noiseVariants = {
   initial: {
     opacity: 0,
-    filter: "blur(10px)",
+    filter: "blur(30px)",
     scale: 0.9,
   },
   animate: {
     opacity: [0, 0.2, 0.4, 0.8, 1],
-    filter: ["blur(10px)", "blur(8px)", "blur(4px)", "blur(2px)", "blur(0px)"],
+    filter: [
+      "blur(30px)",
+      "blur(20px)",
+      "blur(10px)",
+      "blur(5px)",
+      "blur(0px)",
+    ],
     scale: [0.9, 0.92, 0.95, 0.98, 1],
     transition: {
-      duration: 1.2,
+      duration: 1.6,
       times: [0, 0.2, 0.4, 0.7, 1],
       ease: "easeOut",
     },
@@ -138,7 +144,7 @@ const HomeIntroAnimation = ({ setIsIntroEnd }) => {
         </MainElement>
         <TextGroup
           className="main-title"
-          custom={{ coord: { x: -30, y: 0 }, delay: 1 }}
+          custom={{ coord: { x: -30, y: 0 }, delay: 1.8 }}
           initial="start"
           animate="end"
           variants={FadeInVariants}

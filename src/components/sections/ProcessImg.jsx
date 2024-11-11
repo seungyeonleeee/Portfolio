@@ -53,11 +53,11 @@ const ProcessImg = ({ currentIndex }) => {
 
   const springLeftY = useSpring(leftImgY, {
     stiffness: 100,
-    damping: 30,
+    damping: 50,
     mass: 1,
   });
   const springRightY = useSpring(rightImgY, {
-    stiffness: 150,
+    stiffness: 130,
     damping: 30,
     mass: 1,
   });

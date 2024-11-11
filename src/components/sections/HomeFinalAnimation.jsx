@@ -17,11 +17,11 @@ const HomeInner = styled(Inner)`
 
 // Variants
 const WrapperVariants = {
-  start: { opacity: 0, filter: "blur(10px)" },
+  start: { opacity: 0, filter: "blur(20px)" },
   end: {
     opacity: 1,
     filter: "blur(0px)",
-    transition: { delay: 2, duration: 1 },
+    transition: { duration: 1.6 },
   },
 };
 const FadeInVariants = {
@@ -48,7 +48,7 @@ const firstCVariants = {
   animate: {
     rotate: -30,
     translateX: "-33%",
-    transition: { delay: 2.4, duration: 1, type: "tween" },
+    transition: { delay: 3.6, duration: 0.8, type: "tween" },
   },
 };
 const secondCVariants = {
@@ -57,7 +57,7 @@ const secondCVariants = {
     opacity: 1,
     rotate: 150,
     translateX: "33%",
-    transition: { delay: 2.4, duration: 1, type: "tween" },
+    transition: { delay: 3.6, duration: 0.8, type: "tween" },
   },
 };
 
@@ -73,7 +73,7 @@ const HomeFinalAnimation = () => {
         <MainElement
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1.2 }}
         >
           <motion.span
             variants={firstCVariants}
@@ -95,7 +95,7 @@ const HomeFinalAnimation = () => {
             key={index}
             className="sub-title"
             data-index={index}
-            custom={{ coord: { x: 20, y: 0 }, index, delay: index * 0.5 + 0.8 }}
+            custom={{ coord: { x: 20, y: 0 }, index, delay: index * 0.5 + 1 }}
             initial="start"
             animate="end"
             variants={FadeInVariants}
