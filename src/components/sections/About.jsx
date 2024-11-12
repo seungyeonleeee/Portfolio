@@ -5,21 +5,12 @@ import AboutSkill from "./AboutSkill";
 import { wrapper, Inner } from "../../styledComponents";
 
 // Animation
-const background = keyframes`
-  0% {
-    border-radius: 40px 40px 0 0;
-   
-  }
-  100% {
-    border-radius: 0 0 0 0;
-  }
-`;
 const borderRadius = keyframes`
   0% {
-    height: 0;  
+    transform: translateY(100%);
   }
   100% {
-    height: 80px;
+    transform: translateY(-50%);
   }
 `;
 
@@ -30,14 +21,13 @@ const Container = styled.section`
   padding: 100px 0 140px;
   background-color: var(--bg-beige-color);
   border-radius: 40px 40px 0 0;
-  animation: ${background} 0.5s 12s linear both;
   &::before {
     content: "";
     width: 100%;
+    height: 100px;
     position: absolute;
     top: 0;
     left: 0;
-    transform: translateY(-100%);
     border-radius: 40px 40px 0 0;
     background: var(--bg-beige-color);
     animation: ${borderRadius} 0.5s 12s linear both;

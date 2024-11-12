@@ -11,7 +11,7 @@ import LoadingScreen from "./components/sections/LoadingScreen";
 
 const Container = styled.main`
   position: relative;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 `;
 
 const App = () => {

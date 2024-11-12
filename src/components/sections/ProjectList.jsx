@@ -2,10 +2,20 @@ import React from "react";
 import styled from "styled-components";
 import ViewMoreButton from "../ViewMoreButton";
 import { SectionTitle } from "../../styledComponents";
+import { projectTabMenu, projectLists } from "../../utlis";
 
+const Wrapper = styled.div`
+  height: 100vh;
+`;
 const Container = styled.div`
-  position: relative;
+  position: sticky;
+  top: 0;
   width: 100%;
+  height: auto;
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   z-index: 1;
 `;
 const ListMenu = styled.div`
@@ -28,22 +38,21 @@ const ListMenu = styled.div`
   }
 `;
 const ProjectWrapper = styled.div`
-  height: 780px;
+  height: 610px;
   position: relative;
   /* overflow: hidden; */
   z-index: 2;
   ul {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     display: flex;
-    align-items: center;
     gap: 30px;
     li {
-      width: 600px;
+      width: 430px;
       .img-box {
-        width: 600px;
-        height: 600px;
+        width: 430px;
+        height: 430px;
         border-radius: 20px;
         box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
         background-color: var(--bg-light-gray);
@@ -54,10 +63,11 @@ const ProjectWrapper = styled.div`
         gap: 10px;
         margin: 40px 0 20px;
         span {
-          padding: 5px 20px;
+          padding: 6px 20px;
           border: 1px solid var(--bg-light-gray);
           border-radius: 20px;
           color: var(--bg-dark-gray);
+          background-color: var(--bg-beige-color);
           font: 400 14px/1 "Poppins-Regular";
           cursor: default;
         }
@@ -78,58 +88,37 @@ const ProjectWrapper = styled.div`
 
 const ProjectList = () => {
   return (
-    <Container>
-      <SectionTitle>Featured Projects</SectionTitle>
-      <ListMenu>
-        <ul>
-          <li className="active">Javascript</li>
-          <li>React</li>
-          <li>Typescript</li>
-          <li>Node.js</li>
-        </ul>
-        <ViewMoreButton text={"See All Projects"} />
-      </ListMenu>
-      <ProjectWrapper>
-        <ul>
-          <li key={1}>
-            <div className="img-box"></div>
-            <div className="badge-group">
-              <span>Anime.js</span>
-              <span>Fullpage</span>
-            </div>
-            <h3>Hyndai E&C</h3>
-            <p>
-              현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지
-              전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.
-            </p>
-          </li>
-          <li key={2}>
-            <div className="img-box"></div>
-            <div className="badge-group">
-              <span>Anime.js</span>
-              <span>Fullpage</span>
-            </div>
-            <h3>Hyndai E&C</h3>
-            <p>
-              현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지
-              전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.
-            </p>
-          </li>
-          <li key={3}>
-            <div className="img-box"></div>
-            <div className="badge-group">
-              <span>Anime.js</span>
-              <span>Fullpage</span>
-            </div>
-            <h3>Hyndai E&C</h3>
-            <p>
-              현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지
-              전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.
-            </p>
-          </li>
-        </ul>
-      </ProjectWrapper>
-    </Container>
+    <Wrapper>
+      <Container>
+        <SectionTitle>Featured Projects</SectionTitle>
+        <ListMenu>
+          <ul>
+            {projectTabMenu.map((memu, index) => (
+              <li key={index} className={memu === "Javascript" ? "active" : ""}>
+                {memu}
+              </li>
+            ))}
+          </ul>
+          <ViewMoreButton text={"See All Projects"} />
+        </ListMenu>
+        <ProjectWrapper>
+          <ul>
+            {projectLists.map((list, index) => (
+              <li key={index}>
+                <div className="img-box"></div>
+                <div className="badge-group">
+                  {list.badges.map((badge, index) => (
+                    <span key={index}>{badge}</span>
+                  ))}
+                </div>
+                <h3>{list.title}</h3>
+                <p>{list.description}</p>
+              </li>
+            ))}
+          </ul>
+        </ProjectWrapper>
+      </Container>
+    </Wrapper>
   );
 };
 

@@ -22,63 +22,54 @@ export const skills = [
   {
     icon: "figma",
     title: "Figma",
-    img: "",
     description:
       "Figma를 활용해 효율적인 UI/UX 디자인을 구현하며, 팀원들과의 실시간 협업을 통해 디자인 의도를 명확히 전달할 수 있습니다.",
   },
   {
     icon: "html5",
     title: "HTML5",
-    img: "",
     description:
       "HTML5를 활용해 구조적이고 의미 있는 웹 페이지를 구현할 수 있습니다. 웹 표준을 준수하여 SEO 최적화와 접근성 높은 마크업을 작성하는 데 주력하고 있습니다.",
   },
   {
     icon: "css3",
     title: "CSS3",
-    img: "",
     description:
       "CSS3를 활용해 반응형 웹 디자인과 시각적으로 매력적인 레이아웃을 구현할 수 있습니다.",
   },
   {
     icon: "scss",
     title: "SCSS",
-    img: "",
     description:
       "SCSS를 활용해 반응형 웹 디자인과 시각적으로 매력적인 레이아웃을 구현할 수 있습니다.",
   },
   {
     icon: "js",
     title: "Javascript",
-    img: "",
     description:
       "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
   },
   {
     icon: "react",
     title: "React.js",
-    img: "",
     description:
       "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
   },
   {
     icon: "ts",
     title: "Typescript",
-    img: "",
     description:
       "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
   },
   {
     icon: "node-js",
     title: "Node.js",
-    img: "",
     description:
       "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
   },
   {
     icon: "node-js",
     title: "Node.js",
-    img: "",
     description:
       "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
   },
@@ -109,5 +100,63 @@ export const accordionItems = [
     mainImg: "process_development01.jpg",
     subImg01: "process_development02.jpg",
     subImg02: "process_development03.jpg",
+  },
+];
+// Project List
+export const projectTabMenu = ["Javascript", "React", "Typescript", "Node.js"];
+export const projectLists = [
+  {
+    title: "Hyndai E&C",
+    description:
+      "현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지 전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.",
+    badges: ["Anime.js", "Fullpage"],
+  },
+  {
+    title: "INNISFREE",
+    description:
+      "브랜드의 자연 친화적인 이미지를 돋보이게 하는 부드러운 슬라이드와 인터랙션을 구현했습니다.",
+    badges: ["Slick"],
+  },
+  {
+    title: "To Do List ",
+    description:
+      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
+    badges: ["Vite", "Styled-components"],
+  },
+  {
+    title: "Hyndai E&C",
+    description:
+      "현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지 전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.",
+    badges: ["Anime.js", "Fullpage"],
+  },
+  {
+    title: "INNISFREE",
+    description:
+      "브랜드의 자연 친화적인 이미지를 돋보이게 하는 부드러운 슬라이드와 인터랙션을 구현했습니다.",
+    badges: ["Slick"],
+  },
+  {
+    title: "To Do List ",
+    description:
+      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
+    badges: ["Vite", "Styled-components"],
+  },
+  {
+    title: "Hyndai E&C",
+    description:
+      "현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지 전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.",
+    badges: ["Anime.js", "Fullpage"],
+  },
+  {
+    title: "INNISFREE",
+    description:
+      "브랜드의 자연 친화적인 이미지를 돋보이게 하는 부드러운 슬라이드와 인터랙션을 구현했습니다.",
+    badges: ["Slick"],
+  },
+  {
+    title: "To Do List ",
+    description:
+      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
+    badges: ["Vite", "Styled-components"],
   },
 ];

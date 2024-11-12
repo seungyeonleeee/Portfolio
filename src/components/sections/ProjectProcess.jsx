@@ -6,9 +6,13 @@ import ProcessImg from "./ProcessImg";
 import { SectionTitle } from "../../styledComponents";
 
 const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
   h2 {
     text-align: center;
-    margin-bottom: 50px;
   }
 `;
 const ProcessWrapper = styled.div`

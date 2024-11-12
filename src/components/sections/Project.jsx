@@ -7,7 +7,8 @@ import { wrapper, Inner } from "../../styledComponents";
 const Container = styled.section`
   ${wrapper}
   position: relative;
-  padding: 100px 0;
+  /* height: 200vh; */
+  overflow: visible;
   background: linear-gradient(
     to bottom,
     var(--bg-light-color) 70%,
@@ -31,8 +32,9 @@ const LineElement = styled.div`
   right: 0;
 `;
 const ProjectInner = styled(Inner)`
+  position: relative;
   flex-direction: column;
-  gap: 100px;
+  /* height: 200vh; */
 `;
 
 const Project = () => {
