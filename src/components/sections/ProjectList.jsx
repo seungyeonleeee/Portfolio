@@ -1,24 +1,33 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import ViewMoreButton from "../ViewMoreButton";
-import { SectionTitle } from "../../styledComponents";
+import { Inner, SectionTitle } from "../../styledComponents";
 import { projectTabMenu, projectLists } from "../../utlis";
 
 const Wrapper = styled.div`
-  height: 100vh;
-`;
-const Container = styled.div`
-  position: sticky;
-  top: 0;
   width: 100%;
-  height: auto;
-  /* min-height: 100vh; */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  z-index: 1;
+  height: 200vh;
 `;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  position: sticky;
+  top: 10%;
+`;
+
+const ListInner = styled(Inner)`
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+
 const ListMenu = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,17 +46,26 @@ const ListMenu = styled.div`
     }
   }
 `;
+
 const ProjectWrapper = styled.div`
-  height: 610px;
-  position: relative;
-  /* overflow: hidden; */
-  z-index: 2;
+  position: absolute;
+  top: 18%;
+  left: 0;
+  width: 100%;
+  height: 800px;
+  overflow-x: hidden;
+`;
+
+const Projects = styled.div`
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1330px / 2);
   ul {
-    position: relative;
-    top: 0;
-    left: 0;
     display: flex;
     gap: 30px;
+    /* transform: ${({ translateX }) => `translateX(${translateX}px)`}; */
+    transition: transform 0.2s ease-out;
     li {
       width: 430px;
       .img-box {
@@ -87,36 +105,79 @@ const ProjectWrapper = styled.div`
 `;
 
 const ProjectList = () => {
+  const [translateX, setTranslateX] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const containerRef = useRef(null);
+
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => setIsInView(entry.isIntersecting),
+  //     { threshold: 0.1 }
+  //   );
+
+  //   if (containerRef.current) {
+  //     observer.observe(containerRef.current);
+  //   }
+
+  //   return () => {
+  //     if (containerRef.current) {
+  //       observer.unobserve(containerRef.current);
+  //     }
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isInView) {
+        const scrollY = window.scrollY;
+        const offset = (scrollY - containerRef.current.offsetTop) * -0.5;
+        setTranslateX(offset);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isInView]);
+
   return (
     <Wrapper>
-      <Container>
-        <SectionTitle>Featured Projects</SectionTitle>
-        <ListMenu>
-          <ul>
-            {projectTabMenu.map((memu, index) => (
-              <li key={index} className={memu === "Javascript" ? "active" : ""}>
-                {memu}
-              </li>
-            ))}
-          </ul>
-          <ViewMoreButton text={"See All Projects"} />
-        </ListMenu>
-        <ProjectWrapper>
-          <ul>
-            {projectLists.map((list, index) => (
-              <li key={index}>
-                <div className="img-box"></div>
-                <div className="badge-group">
-                  {list.badges.map((badge, index) => (
-                    <span key={index}>{badge}</span>
-                  ))}
-                </div>
-                <h3>{list.title}</h3>
-                <p>{list.description}</p>
-              </li>
-            ))}
-          </ul>
-        </ProjectWrapper>
+      <Container ref={containerRef}>
+        <ListInner>
+          <SectionTitle>Featured Projects</SectionTitle>
+          <ListMenu>
+            <ul>
+              {projectTabMenu.map((menu, index) => (
+                <li
+                  key={index}
+                  className={menu === "Javascript" ? "active" : ""}
+                >
+                  {menu}
+                </li>
+              ))}
+            </ul>
+            <ViewMoreButton text={"See All Projects"} />
+          </ListMenu>
+          <ProjectWrapper>
+            {/* <Projects translateX={translateX}>
+              <ul>
+                {projectLists.map((list, index) => (
+                  <li key={index}>
+                    <div className="img-box"></div>
+                    <div className="badge-group">
+                      {list.badges.map((badge, index) => (
+                        <span key={index}>{badge}</span>
+                      ))}
+                    </div>
+                    <h3>{list.title}</h3>
+                    <p>{list.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </Projects> */}
+          </ProjectWrapper>
+        </ListInner>
       </Container>
     </Wrapper>
   );

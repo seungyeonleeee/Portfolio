@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import Header from "./components/Header";
@@ -16,12 +16,33 @@ const Container = styled.main`
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isContactVisible, setIsContactVisible] = useState(false);
+  const contactRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 6000);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsContactVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (contactRef.current) {
+      observer.observe(contactRef.current);
+    }
+
+    return () => {
+      if (contactRef.current) {
+        observer.unobserve(contactRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -32,18 +53,7 @@ const App = () => {
       <Home />
       <About />
       <Project />
-      <Contact />
-      {/* {isLoading ? (
-        <LoadingScreen />
-      ) : (
-        <>
-          <Header />
-          <Home />
-          <About />
-          <Project />
-          <Contact />
-        </>
-      )} */}
+      <Contact ref={contactRef} isVisible={isContactVisible} />
     </Container>
   );
 };

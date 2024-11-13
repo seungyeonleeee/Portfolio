@@ -6,12 +6,11 @@ import { wrapper, Inner } from "../../styledComponents";
 
 const Container = styled.section`
   ${wrapper}
+  flex-direction: column;
   position: relative;
-  /* height: 200vh; */
-  overflow: visible;
   background: linear-gradient(
     to bottom,
-    var(--bg-light-color) 70%,
+    var(--bg-light-color) 20%,
     var(--bg-beige-color)
   );
   &::before {
@@ -30,11 +29,6 @@ const LineElement = styled.div`
   position: absolute;
   top: -40px;
   right: 0;
-`;
-const ProjectInner = styled(Inner)`
-  position: relative;
-  flex-direction: column;
-  /* height: 200vh; */
 `;
 
 const Project = () => {
@@ -56,10 +50,8 @@ const Project = () => {
           />
         </svg>
       </LineElement>
-      <ProjectInner>
-        <ProjectProcess />
-        <ProjectList />
-      </ProjectInner>
+      <ProjectProcess />
+      <ProjectList />
     </Container>
   );
 };

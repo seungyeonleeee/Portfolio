@@ -3,17 +3,18 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import ProcessMenu from "./ProcessMenu";
 import ProcessImg from "./ProcessImg";
-import { SectionTitle } from "../../styledComponents";
+import { SectionTitle, Inner } from "../../styledComponents";
 
-const Container = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 50px;
+const Container = styled(Inner)`
+  width: 100%;
+  padding: 100px 0;
   h2 {
     text-align: center;
   }
+`;
+const ProcessInner = styled(Inner)`
+  flex-direction: column;
+  gap: 50px;
 `;
 const ProcessWrapper = styled.div`
   display: flex;
@@ -35,11 +36,13 @@ const ProjectProcess = () => {
 
   return (
     <Container>
-      <SectionTitle>Process Work</SectionTitle>
-      <ProcessWrapper>
-        <ProcessMenu activeIndex={activeIndex} onClickMenu={onClickMenu} />
-        <ProcessImg currentIndex={currentIndex} />
-      </ProcessWrapper>
+      <ProcessInner>
+        <SectionTitle>Process Work</SectionTitle>
+        <ProcessWrapper>
+          <ProcessMenu activeIndex={activeIndex} onClickMenu={onClickMenu} />
+          <ProcessImg currentIndex={currentIndex} />
+        </ProcessWrapper>
+      </ProcessInner>
     </Container>
   );
 };
