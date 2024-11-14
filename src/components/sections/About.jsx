@@ -6,12 +6,12 @@ import AboutSkill from "./AboutSkill";
 import { wrapper, Inner } from "../../styledComponents";
 
 // Animation
-const borderRadius = keyframes`
+const upper = keyframes`
   0% {
     transform: translateY(100%);
   }
   100% {
-    transform: translateY(-70%);
+    transform: translateY(-40px);
   }
 `;
 
@@ -25,13 +25,13 @@ const Container = styled.section`
   &::before {
     content: "";
     width: 100%;
-    height: 100px;
+    height: 80px;
     position: absolute;
     top: 0;
     left: 0;
     border-radius: 40px 40px 0 0;
     background: var(--bg-beige-color);
-    animation: ${borderRadius} 0.8s 12s linear both;
+    animation: ${upper} 0.8s 11s linear both;
   }
 `;
 const AboutInner = styled(Inner)`
@@ -56,15 +56,15 @@ const pathVariants = {
   hidden: { strokeDashoffset: -3000 },
   visible: {
     strokeDashoffset: 0,
-    transition: { duration: 2.4, ease: "easeOut" },
+    transition: { duration: 2.6, ease: "easeOut" },
   },
 };
 
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
-    // once: true,
-    amount: 0.3,
+    once: true,
+    amount: 0.25,
   });
 
   return (

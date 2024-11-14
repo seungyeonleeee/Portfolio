@@ -44,7 +44,7 @@ const ContactInner = styled(Inner)`
 
 // Animation Variants
 const pathVariants = {
-  hidden: { strokeDasharray: 1200, strokeDashoffset: 1200 },
+  hidden: { strokeDashoffset: 1200 },
   visible: {
     strokeDashoffset: 0,
     transition: { duration: 1.8, ease: "easeOut" },
@@ -53,7 +53,7 @@ const pathVariants = {
 
 const Contact = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { threshold: 0.1 });
+  const isInView = useInView(ref, { amount: 0.4 });
 
   return (
     <Container ref={ref}>

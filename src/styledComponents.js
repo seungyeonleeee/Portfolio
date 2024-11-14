@@ -31,6 +31,7 @@ export const ImgBoxLarge = styled(motion.div)`
   border-radius: 20px;
   overflow: hidden;
   position: relative;
+  transform-origin: left bottom;
   img {
     width: 100%;
     height: 100%;
@@ -106,15 +107,15 @@ export const TextGroup = styled(motion.div)`
       white-space: pre-wrap;
     }
     &[data-index="0"] {
-      top: 20%;
+      top: 15%;
       left: 50%;
     }
     &[data-index="1"] {
-      top: 65%;
+      top: 70%;
       left: 10%;
     }
     &[data-index="2"] {
-      top: 65%;
+      top: 70%;
       right: 10%;
     }
   }

@@ -11,8 +11,6 @@ import HomeBackAnimation from "./HomeBackAnimation";
 const Container = styled.section`
   height: 100vh;
   position: relative;
-  /* top: 0;
-  left: 0; */
   ${wrapper}
 `;
 

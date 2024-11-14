@@ -61,7 +61,7 @@ const AnimationElement = styled.article`
   }
 `;
 
-// Variant
+// Animation Variants
 const maskVariants = {
   hidden: {
     x: -1920,

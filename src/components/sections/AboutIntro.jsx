@@ -44,6 +44,23 @@ const TextBox = styled(motion.ul)`
 `;
 
 // Animation Variants
+const imgVariants = {
+  start: {
+    opacity: 0,
+    y: 40,
+    rotate: 30,
+  },
+  end: {
+    opacity: 1,
+    y: 20,
+    rotate: -10,
+    transition: {
+      duration: 1,
+      ease: "easeInOut",
+    },
+  },
+  type: "tween",
+};
 const textVariants = {
   hidden: { opacity: 0, y: 20, filter: "blur(2px)" },
   visible: {
@@ -57,7 +74,11 @@ const textVariants = {
 const AboutIntro = ({ isInView }) => {
   return (
     <Container>
-      <ImgBoxLarge>
+      <ImgBoxLarge
+        initial="start"
+        animate={isInView ? "end" : "start"}
+        variants={imgVariants}
+      >
         <img src="/images/profile.jpg" alt="profile" />
       </ImgBoxLarge>
       <TextBox

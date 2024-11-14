@@ -28,20 +28,14 @@ const LineElement = styled.div`
 // Variants
 const WrapperVariants = {
   start: { opacity: 0 },
-  end: { opacity: 1, transition: { duration: 6 } },
+  end: { opacity: 1, transition: { duration: 4.8 } },
   exit: { opacity: 0, filter: "blur(10px)", transition: { duration: 1.2 } },
 };
-const lineVariants = {
-  invisible: {
-    x: -706,
-  },
+const pathVariants = {
+  hidden: { strokeDashoffset: 1500 },
   visible: {
-    x: 0,
-    transition: {
-      delay: 0.8,
-      duration: 1.8,
-      ease: "easeOut",
-    },
+    strokeDashoffset: 0,
+    transition: { duration: 4, ease: "easeInOut" },
   },
 };
 const FadeInVariants = {
@@ -105,7 +99,18 @@ const HomeIntroAnimation = ({ setIsIntroEnd }) => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <mask id="reveal-mask">
+          <motion.path
+            d="M-139.892 -82C-117.669 -46.0125 -60.5082 31.3225 -9.645 52.7621C53.934 79.5616 63.0535 72.3843 98.938 94.1865C128.148 111.933 138.53 134.133 141.276 141.237C145.414 156.061 148.422 189.024 118.513 185.948C98.9775 183.939 99.6709 158.671 111.864 148.185C123.006 138.604 146.282 150.112 167.095 156.673C205.011 168.627 222.663 175.896 242.157 194.16C259.23 210.155 279.456 232.599 292.719 300.49C311.186 395.022 337.827 463.946 420.327 488.5C588.327 538.5 629.403 426 703.403 449.5"
+            stroke="#FF481F"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeDasharray="1500"
+            strokeDashoffset="1500"
+            initial="hidden"
+            animate="visible"
+            variants={pathVariants}
+          />
+          {/* <mask id="reveal-mask">
             <motion.rect
               x="0"
               y="0"
@@ -116,15 +121,7 @@ const HomeIntroAnimation = ({ setIsIntroEnd }) => {
               initial="invisible"
               animate="visible"
             />
-          </mask>
-          <g mask="url(#reveal-mask)">
-            <path
-              d="M-139.892 -82C-117.669 -46.0125 -60.5082 31.3225 -9.645 52.7621C53.934 79.5616 63.0535 72.3843 98.938 94.1865C128.148 111.933 138.53 134.133 141.276 141.237C145.414 156.061 148.422 189.024 118.513 185.948C98.9775 183.939 99.6709 158.671 111.864 148.185C123.006 138.604 146.282 150.112 167.095 156.673C205.011 168.627 222.663 175.896 242.157 194.16C259.23 210.155 279.456 232.599 292.719 300.49C311.186 395.022 337.827 463.946 420.327 488.5C588.327 538.5 629.403 426 703.403 449.5"
-              stroke="#FF481F"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-          </g>
+          </mask> */}
         </motion.svg>
       </LineElement>
       <HomeInner>
