@@ -25,12 +25,30 @@ export const AnimationWrapper = styled(motion.div)`
 `;
 
 // Components
-export const ImgBoxLarge = styled.div`
+export const ImgBoxLarge = styled(motion.div)`
   width: 420px;
   height: 550px;
   border-radius: 20px;
   overflow: hidden;
-  background-color: var(--bg-light-gray);
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      -230deg,
+      transparent 80%,
+      rgba(143, 140, 133, 0.5)
+    );
+  }
 `;
 export const ImgBoxSmall = styled.div`
   width: 220px;

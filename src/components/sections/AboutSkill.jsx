@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import "swiper/swiper-bundle.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { Autoplay, Pagination } from "swiper/modules";
-import { wrapper, ImgBoxSmall } from "../../styledComponents";
+import { wrapper } from "../../styledComponents";
 import { skills } from "../../utlis";
 
 const Container = styled.div`
@@ -67,6 +68,8 @@ const Skill = styled.div`
   }
 `;
 
+// Animation Variants
+
 const AboutSkill = () => {
   return (
     <Container>
@@ -94,7 +97,6 @@ const AboutSkill = () => {
                   />
                 </div>
                 <h3>{skill.title}</h3>
-                {/* <ImgBoxSmall /> */}
                 <p>{skill.description}</p>
               </Skill>
             </StyledSwiperSlide>

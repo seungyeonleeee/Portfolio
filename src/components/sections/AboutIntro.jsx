@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import { wrapper, ImgBoxLarge, SectionTitle } from "../../styledComponents";
 
 const Container = styled.div`
   ${wrapper}
   gap: 100px;
 `;
-const TextBox = styled.ul`
+const TextBox = styled(motion.ul)`
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -42,11 +43,28 @@ const TextBox = styled.ul`
   }
 `;
 
-const AboutIntro = () => {
+// Animation Variants
+const textVariants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(2px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 1, ease: "easeOut" },
+  },
+};
+
+const AboutIntro = ({ isInView }) => {
   return (
     <Container>
-      <ImgBoxLarge />
-      <TextBox>
+      <ImgBoxLarge>
+        <img src="/images/profile.jpg" alt="profile" />
+      </ImgBoxLarge>
+      <TextBox
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={textVariants}
+      >
         <li>
           <div className="intro-name">
             <span>이 승연</span>
