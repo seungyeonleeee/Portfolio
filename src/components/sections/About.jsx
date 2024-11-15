@@ -19,7 +19,7 @@ const upper = keyframes`
 const Container = styled.section`
   ${wrapper}
   position: relative;
-  padding: 100px 0 140px;
+  padding: 140px 0;
   background-color: var(--bg-beige-color);
   border-radius: 40px 40px 0 0;
   &::before {
@@ -31,7 +31,7 @@ const Container = styled.section`
     left: 0;
     border-radius: 40px 40px 0 0;
     background: var(--bg-beige-color);
-    animation: ${upper} 0.8s 11s linear both;
+    animation: ${upper} 0.8s 10s linear both;
   }
 `;
 const AboutInner = styled(Inner)`
@@ -68,7 +68,7 @@ const About = () => {
   });
 
   return (
-    <Container ref={ref}>
+    <Container ref={ref} id="about">
       <LineElement>
         <svg
           width="976"
@@ -92,7 +92,7 @@ const About = () => {
       </LineElement>
       <AboutInner>
         <AboutIntro isInView={isInView} />
-        <AboutSkill />
+        <AboutSkill isInView={isInView} />
       </AboutInner>
     </Container>
   );

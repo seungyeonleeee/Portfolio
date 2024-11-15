@@ -79,6 +79,7 @@ export const TextGroup = styled(motion.div)`
   flex-direction: column;
   gap: 30px;
   position: absolute;
+  z-index: 1;
   &.main-title {
     top: 20%;
     left: 10%;

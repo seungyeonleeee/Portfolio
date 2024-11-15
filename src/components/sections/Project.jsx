@@ -33,7 +33,7 @@ const LineElement = styled.div`
 
 const Project = () => {
   return (
-    <Container>
+    <Container id="project">
       <LineElement>
         <svg
           width="640"

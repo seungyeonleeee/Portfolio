@@ -28,11 +28,17 @@ const App = () => {
     <Container>
       <GlobalStyles />
       {/* <LoadingScreen /> */}
-      <Header />
-      <Home />
-      <About />
-      <Project />
-      <Contact />
+      {isLoading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <Header />
+          <Home />
+          <About />
+          <Project />
+          <Contact />
+        </>
+      )}
     </Container>
   );
 };

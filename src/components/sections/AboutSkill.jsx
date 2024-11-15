@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
 import "swiper/swiper-bundle.css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,6 +8,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { wrapper } from "../../styledComponents";
 import { skills } from "../../utlis";
 
+// Styled
 const Container = styled.div`
   ${wrapper}
   flex-direction: column;
@@ -68,8 +69,6 @@ const Skill = styled.div`
   }
 `;
 
-// Animation Variants
-
 const AboutSkill = () => {
   return (
     <Container>
@@ -77,10 +76,10 @@ const AboutSkill = () => {
       <SkillList>
         <Swiper
           slidesPerView={4}
-          // autoplay={{
-          //   delay: 3000,
-          //   disableOnInteraction: true,
-          // }}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: true,
+          }}
           pagination={{
             clickable: true,
             // dynamicBullets: true,

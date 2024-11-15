@@ -12,13 +12,14 @@ const Container = styled.section`
   height: 100vh;
   position: relative;
   ${wrapper}
+  cursor: default;
 `;
 
 const Home = () => {
   const [isIntroEnd, setIsIntroEnd] = useState(false);
 
   return (
-    <Container>
+    <Container id="home">
       <HomeBackAnimation />
       <AnimatePresence mode="wait">
         {!isIntroEnd ? (

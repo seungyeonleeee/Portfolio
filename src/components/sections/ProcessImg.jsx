@@ -44,8 +44,12 @@ const ProcessImg = ({ currentIndex }) => {
     offset: ["start end", "end start"],
   });
 
-  const leftImgY = useTransform(scrollYProgress, [0, 0.5, 1], [400, 200, -400]);
-  const rightImgY = useTransform(scrollYProgress, [0, 0.5, 1], [800, 50, -800]);
+  const leftImgY = useTransform(scrollYProgress, [0, 0.5, 1], [400, 250, -400]);
+  const rightImgY = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [800, 250, -800]
+  );
 
   const springLeftY = useSpring(leftImgY, {
     stiffness: 100,
@@ -54,7 +58,7 @@ const ProcessImg = ({ currentIndex }) => {
   });
   const springRightY = useSpring(rightImgY, {
     stiffness: 130,
-    damping: 30,
+    damping: 40,
     mass: 1,
   });
 

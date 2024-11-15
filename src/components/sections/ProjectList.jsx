@@ -6,17 +6,19 @@ import { projectTabMenu, projectLists } from "../../utlis";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 200vh;
+  height: 100vh;
 `;
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1;
-  position: sticky;
+  /* position: sticky; */
+  position: relative;
   top: 10%;
 `;
 
@@ -24,6 +26,7 @@ const ListInner = styled(Inner)`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  gap: 10px;
 `;
 
 const ListMenu = styled.div`
@@ -31,7 +34,6 @@ const ListMenu = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20px 0 50px;
   ul {
     display: flex;
     align-items: center;
@@ -49,7 +51,7 @@ const ListMenu = styled.div`
 
 const ProjectWrapper = styled.div`
   position: absolute;
-  top: 18%;
+  top: 23%;
   left: 0;
   width: 100%;
   height: 800px;
@@ -72,7 +74,7 @@ const Projects = styled.div`
         width: 430px;
         height: 430px;
         border-radius: 20px;
-        box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
         background-color: var(--bg-light-gray);
       }
       .badge-group {
@@ -160,7 +162,7 @@ const ProjectList = () => {
             <ViewMoreButton text={"See All Projects"} />
           </ListMenu>
           <ProjectWrapper>
-            {/* <Projects translateX={translateX}>
+            <Projects $translateX={translateX}>
               <ul>
                 {projectLists.map((list, index) => (
                   <li key={index}>
@@ -175,7 +177,7 @@ const ProjectList = () => {
                   </li>
                 ))}
               </ul>
-            </Projects> */}
+            </Projects>
           </ProjectWrapper>
         </ListInner>
       </Container>

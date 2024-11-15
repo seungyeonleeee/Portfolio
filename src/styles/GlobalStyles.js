@@ -56,7 +56,10 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   /* common */
-  body{
+  html {
+  scroll-behavior: smooth;
+}
+  body {
     font: 400 16px/1 "Pretendard";
     letter-spacing: -1px;
     color: var(--bg-dark-color);

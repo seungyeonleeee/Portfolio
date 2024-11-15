@@ -1,6 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { motion, useInView } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { wrapper, Inner } from "../../styledComponents";
 
 // Styled
@@ -36,8 +39,15 @@ const ContactInner = styled(Inner)`
   ul {
     margin-top: 50px;
     li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font: normal 18px/1 "Poppins-Regular";
       margin: 5px 0;
+      svg {
+        width: 25px;
+        height: 25px;
+      }
     }
   }
 `;
@@ -56,7 +66,7 @@ const Contact = () => {
   const isInView = useInView(ref, { amount: 0.4 });
 
   return (
-    <Container ref={ref}>
+    <Container ref={ref} id="contact">
       <Title>
         <motion.svg
           viewBox="0 0 1628 155"
@@ -138,8 +148,14 @@ const Contact = () => {
       </Title>
       <ContactInner>
         <ul>
-          <li>syyy0.02@gmail.com</li>
-          <li>github.com/seungyeonleeee</li>
+          <li>
+            <FontAwesomeIcon icon={faEnvelope} />
+            syyy0.02@gmail.com
+          </li>
+          <li>
+            <FontAwesomeIcon icon={faGithub} />
+            github.com/seungyeonleeee
+          </li>
         </ul>
         <p className="copyright">© 2024 SeungYeon Lee. All Right Reserved</p>
       </ContactInner>
