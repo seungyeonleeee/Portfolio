@@ -13,6 +13,7 @@ const Container = styled.section`
     var(--bg-light-color) 20%,
     var(--bg-beige-color)
   );
+  min-height: 100vh;
   &::before {
     content: "";
     width: 100%;
