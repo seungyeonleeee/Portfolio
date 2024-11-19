@@ -1,8 +1,7 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
-import { delay, motion, AnimatePresence } from "framer-motion";
-import { wrapper, Inner } from "../../styledComponents";
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
+import { AnimatePresence } from "framer-motion";
+import { wrapper } from "../../styledComponents";
 import HomeIntroAnimation from "./HomeIntroAnimation";
 import HomeFinalAnimation from "./HomeFinalAnimation";
 import HomeBackAnimation from "./HomeBackAnimation";

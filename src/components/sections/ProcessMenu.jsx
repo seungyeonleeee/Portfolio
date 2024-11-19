@@ -19,16 +19,18 @@ const Accordion = styled.ul`
     align-items: center;
     border-top: 1px solid var(--bg-light-gray);
     position: relative;
+    transition: border-color 0.3s;
     .title {
       width: 100%;
+      height: 100px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 30px;
       position: absolute;
-      top: 38px;
-      left: 50%;
-      transform: translateX(-50%);
+      z-index: 1;
+      top: 0;
+      left: 0;
       cursor: pointer;
       .title-inner {
         display: flex;
@@ -40,6 +42,7 @@ const Accordion = styled.ul`
         }
         h4 {
           color: var(--bg-dark-color);
+          transition: color 0.3s;
         }
       }
       .title-arrow {
@@ -55,9 +58,12 @@ const Accordion = styled.ul`
     }
     .content {
       overflow: hidden;
-      padding: 0;
       margin-top: 100px;
+      padding: 0px 30px 30px;
       transform-origin: top;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
       p {
         white-space: pre-wrap;
         font: 400 16px/1.3 "Pretendard";
@@ -65,6 +71,7 @@ const Accordion = styled.ul`
       }
     }
     &.active {
+      border-top: 1px solid var(--bg-dark-gray);
       .title {
         .title-inner {
           h4 {
@@ -77,6 +84,10 @@ const Accordion = styled.ul`
             stroke: var(--bg-dark-color);
           }
         }
+      }
+      .content {
+        opacity: 1;
+        pointer-events: auto;
       }
     }
   }
@@ -92,7 +103,7 @@ const ProcessMenu = ({ activeIndex, onClickMenu }) => {
             onClick={() => onClickMenu(index)}
             className={activeIndex === index ? "active" : null}
             animate={{
-              height: activeIndex === index ? "auto" : 100,
+              height: activeIndex === index ? 215 : 100,
             }}
           >
             <div className="title">
@@ -116,16 +127,9 @@ const ProcessMenu = ({ activeIndex, onClickMenu }) => {
                 </svg>
               </div>
             </div>
-            <motion.div
-              className="content"
-              animate={{
-                scaleY: activeIndex === index ? 1 : 0,
-              }}
-              transition={{ type: "linear" }}
-              style={{ padding: "0 30px 30px" }}
-            >
+            <div className="content">
               <p>{item.content}</p>
-            </motion.div>
+            </div>
           </motion.li>
         ))}
       </Accordion>

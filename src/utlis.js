@@ -1,3 +1,6 @@
+// Nav Menu
+export const navMenus = ["home", "about", "project", "contact"];
+
 // Home Title
 export const titles = [
   {
@@ -106,39 +109,31 @@ export const accordionItems = [
 export const projectTabMenu = ["Javascript", "React", "Typescript", "Node.js"];
 export const projectLists = [
   {
+    skill: "Javascript",
     title: "Hyndai E&C",
     description:
       "현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지 전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.",
     badges: ["Anime.js", "Fullpage"],
   },
   {
+    skill: "Javascript",
     title: "INNISFREE",
     description:
       "브랜드의 자연 친화적인 이미지를 돋보이게 하는 부드러운 슬라이드와 인터랙션을 구현했습니다.",
     badges: ["Slick"],
   },
   {
-    title: "To Do List ",
+    skill: "React",
+    title: "To Do List",
     description:
       "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
     badges: ["Vite", "Styled-components"],
   },
   {
-    title: "Hyndai E&C",
-    description:
-      "현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지 전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.",
-    badges: ["Anime.js", "Fullpage"],
-  },
-  {
-    title: "INNISFREE",
-    description:
-      "브랜드의 자연 친화적인 이미지를 돋보이게 하는 부드러운 슬라이드와 인터랙션을 구현했습니다.",
-    badges: ["Slick"],
-  },
-  {
-    title: "To Do List ",
+    skill: "React",
+    title: "Emotion Diary",
     description:
       "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
-    badges: ["Vite", "Styled-components"],
+    badges: ["Motion", "Styled-components"],
   },
 ];

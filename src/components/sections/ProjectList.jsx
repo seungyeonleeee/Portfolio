@@ -13,15 +13,20 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1;
+  overflow: hidden;
 `;
-
 const ListInner = styled(Inner)`
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  top: 0;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   gap: 10px;
+  height: 400vh;
+  transition: opacity 1s;
 `;
-
 const ListMenu = styled.div`
   width: 100%;
   display: flex;
@@ -41,18 +46,16 @@ const ListMenu = styled.div`
     }
   }
 `;
-
 const ProjectWrapper = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 17%;
-  left: 0;
+  left: 0; */
   width: 100%;
   height: 800px;
-  overflow-x: hidden;
+
   ul {
     display: flex;
     gap: 30px;
-    /* transform: ${({ translateX }) => `translateX(${translateX}px)`}; */
     transition: transform 0.2s ease-out;
     li {
       width: 430px;
@@ -93,34 +96,29 @@ const ProjectWrapper = styled.div`
 `;
 
 // Animation Variants
-const slideVariants = {
-  start: { x: 0 },
-  end: (scroll) => ({ x: -scroll / 3 }),
-};
 
 const ProjectList = () => {
-  const { scrollY } = useScroll();
-  const [scroll, setScroll] = useState(0);
-  const [isFixed, setIsFixed] = useState(false);
+  const [y, setY] = useState(0);
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.4 });
+  const isInView = useInView(ref);
+  const { scrollY } = useScroll();
 
   useEffect(() => {
-    scrollY.on("change", () => setScroll(scrollY.get()));
-    setIsFixed(isInView);
-  }, [scrollY, isInView]);
+    scrollY.on("change", () => setY(scrollY.get()));
+  }, [scrollY]);
 
-  // console.log(isInView);
-
+  const projectsVariants = {
+    hidden: { x: 0 },
+    visible: { x: -y / 3 },
+  };
   return (
-    <Container
-      ref={ref}
-      style={{
-        position: isFixed ? "sticky" : "static",
-        top: isFixed ? "0" : "auto",
-      }}
-    >
-      <ListInner>
+    <Container ref={ref}>
+      <ListInner
+        style={{
+          opacity: isInView ? 1 : 0,
+          pointerEvents: isInView ? "auto" : "none",
+        }}
+      >
         <SectionTitle>Featured Projects</SectionTitle>
         <ListMenu>
           <ul>
@@ -134,10 +132,8 @@ const ProjectList = () => {
         </ListMenu>
         <ProjectWrapper>
           <motion.ul
-            variants={slideVariants}
-            initial="start"
-            animate="end"
-            custom={scroll}
+            animate={isInView ? "visible" : "hidden"}
+            variants={projectsVariants}
           >
             {projectLists.map((list, index) => (
               <li key={index}>

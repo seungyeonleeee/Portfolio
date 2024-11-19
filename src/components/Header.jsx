@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion, useAnimation, useScroll } from "framer-motion";
+import { navMenus } from "../utlis";
 import { Inner } from "../styledComponents";
+import DesktopMenu from "./DesktopMenu";
+import MobileMenu from "./MobileMenu";
 
 // Styled
 const Container = styled(motion.header)`
@@ -31,29 +34,11 @@ const Logo = styled.div`
     font: normal 24px/1 "Poppins-Light";
   }
 `;
-const DesktopMenu = styled.ul`
+const MenuContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 30px;
-  a {
-    position: relative;
-    font: normal 16px/1 "Poppins-Medium";
-    letter-spacing: 1px;
-    transition: color 0.3s ease;
-    &.active {
-      color: var(--bg-accent-color);
-    }
-  }
+  gap: 40px;
 `;
-const MenuLine = styled(motion.div)`
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: var(--bg-accent-color);
-`;
-const MobileMenu = styled.ul``;
 
 // Animation Variants
 const navVariants = {
@@ -98,7 +83,7 @@ const Header = () => {
       navAnimation.start("visible").then(() => navAnimation.start("top"));
     }, 8000);
 
-    // Scroll Event Handler
+    // Scroll Event
     const handleScroll = () => {
       if (scrollY.get() > 80) {
         navAnimation.start("scroll");
@@ -106,29 +91,30 @@ const Header = () => {
         navAnimation.start("top");
       }
 
-      const sections = ["home", "about", "project", "contact"];
-      const isBottom =
-        window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 100;
+      requestAnimationFrame(() => {
+        const isBottom =
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 100;
 
-      if (isBottom) {
-        setActiveSection("contact");
-        return;
-      }
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (
-          element?.getBoundingClientRect().top >= -800 &&
-          element?.getBoundingClientRect().top <= 400
-        ) {
-          setActiveSection(section);
-          break;
+        if (isBottom) {
+          setActiveSection("contact");
+          return;
         }
-      }
+
+        const viewportCenter = window.innerHeight / 2;
+        for (const menu of navMenus) {
+          const element = document.getElementById(menu);
+          if (!element) return;
+
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
+            setActiveSection(menu);
+            break;
+          }
+        }
+      });
     };
 
-    // Scroll Event Listener
     window.addEventListener("scroll", handleScroll);
     scrollY.on("change", handleScroll);
 
@@ -147,53 +133,10 @@ const Header = () => {
           <img src="/images/logo.svg" alt="logo" />
           <span>eungyeonLee</span>
         </Logo>
-        <div>
-          <DesktopMenu>
-            <li>
-              <a
-                href="#home"
-                className={activeSection === "home" ? "active" : ""}
-              >
-                HOME
-                {activeSection === "home" ? <MenuLine layoutId="line" /> : null}
-              </a>
-            </li>
-            <li>
-              <a
-                href="#about"
-                className={activeSection === "about" ? "active" : ""}
-              >
-                ABOUT
-                {activeSection === "about" ? (
-                  <MenuLine layoutId="line" />
-                ) : null}
-              </a>
-            </li>
-            <li>
-              <a
-                href="#project"
-                className={activeSection === "project" ? "active" : ""}
-              >
-                PROJECT
-                {activeSection === "project" ? (
-                  <MenuLine layoutId="line" />
-                ) : null}
-              </a>
-            </li>
-            <li>
-              <a
-                href="#contact"
-                className={activeSection === "contact" ? "active" : ""}
-              >
-                CONTACT
-                {activeSection === "contact" ? (
-                  <MenuLine layoutId="line" />
-                ) : null}
-              </a>
-            </li>
-          </DesktopMenu>
-          <MobileMenu></MobileMenu>
-        </div>
+        <MenuContainer>
+          <DesktopMenu activeSection={activeSection} />
+          <MobileMenu />
+        </MenuContainer>
       </HeaderInner>
     </Container>
   );
