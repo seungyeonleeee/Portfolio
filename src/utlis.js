@@ -136,4 +136,18 @@ export const projectLists = [
       "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
     badges: ["Motion", "Styled-components"],
   },
+  {
+    skill: "React",
+    title: "To Do List",
+    description:
+      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
+    badges: ["Vite", "Styled-components"],
+  },
+  {
+    skill: "React",
+    title: "Emotion Diary",
+    description:
+      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
+    badges: ["Motion", "Styled-components"],
+  },
 ];

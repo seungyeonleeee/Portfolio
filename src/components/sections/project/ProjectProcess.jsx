@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import ProcessMenu from "./ProcessMenu";
 import ProcessImg from "./ProcessImg";
-import { SectionTitle, Inner } from "../../styledComponents";
+import { SectionTitle, Inner } from "../../../styledComponents";
 
 const Container = styled(Inner)`
   width: 100%;

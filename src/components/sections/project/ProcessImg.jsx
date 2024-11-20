@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { accordionItems } from "../../utlis";
-import { ImgBoxLarge, ImgBoxSmall } from "../../styledComponents";
+import { accordionItems } from "../../../utlis";
+import { ImgBoxLarge, ImgBoxSmall } from "../../../styledComponents";
 
 // Styled
 const Container = styled.div`

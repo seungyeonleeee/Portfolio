@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { motion, useInView } from "framer-motion";
 import AboutIntro from "./AboutIntro";
 import AboutSkill from "./AboutSkill";
-import { wrapper, Inner } from "../../styledComponents";
+import { wrapper, Inner } from "../../../styledComponents";
 
 // Animation
 const upper = keyframes`

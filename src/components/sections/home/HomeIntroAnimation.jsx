@@ -6,7 +6,7 @@ import {
   Inner,
   TextGroup,
   MainElement,
-} from "../../styledComponents";
+} from "../../../styledComponents";
 
 // Styled
 const HomeInner = styled(Inner)`

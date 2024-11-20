@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import ViewMoreButton from "../ViewMoreButton";
-import { accordionItems } from "../../utlis";
+import ViewMoreButton from "../../ViewMoreButton";
+import { accordionItems } from "../../../utlis";
 
 const Container = styled.div`
   width: 520px;

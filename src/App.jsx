@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import Header from "./components/Header";
-import Home from "./components/sections/Home";
-import About from "./components/sections/About";
-import Project from "./components/sections/Project";
-import Contact from "./components/sections/Contact";
-import LoadingScreen from "./components/sections/LoadingScreen";
+import Home from "./components/sections/home/Home";
+import About from "./components/sections/about/About";
+import Project from "./components/sections/project/Project";
+import Contact from "./components/sections/contact/Contact";
+import LoadingScreen from "./components/LoadingScreen";
 
 const Container = styled.main`
   /* position: relative; */

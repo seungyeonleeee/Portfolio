@@ -5,8 +5,8 @@ import "swiper/swiper-bundle.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { Autoplay, Pagination } from "swiper/modules";
-import { wrapper } from "../../styledComponents";
-import { skills } from "../../utlis";
+import { wrapper } from "../../../styledComponents";
+import { skills } from "../../../utlis";
 
 // Styled
 const Container = styled.div`

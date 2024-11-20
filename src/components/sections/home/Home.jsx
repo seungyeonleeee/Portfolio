@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { AnimatePresence } from "framer-motion";
-import { wrapper } from "../../styledComponents";
+import { wrapper } from "../../../styledComponents";
 import HomeIntroAnimation from "./HomeIntroAnimation";
 import HomeFinalAnimation from "./HomeFinalAnimation";
 import HomeBackAnimation from "./HomeBackAnimation";

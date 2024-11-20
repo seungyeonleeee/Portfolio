@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { wrapper, Inner } from "../../styledComponents";
+import { wrapper, Inner } from "../../../styledComponents";
 
 // Styled
 const Container = styled.section`
