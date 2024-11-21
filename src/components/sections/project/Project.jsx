@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ProjectProcess from "./ProjectProcess";
 import ProjectList from "./ProjectList";
 import { wrapper, Inner } from "../../../styledComponents";
+import ProjectAllView from "./ProjectAllView";
 
 const Container = styled.section`
   ${wrapper}

@@ -4,8 +4,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ViewMoreButton from "../../ViewMoreButton";
 import { Inner, SectionTitle } from "../../../styledComponents";
-import { projectTabMenu, projectLists } from "../../../utlis";
-
+import { projectCategory, projectLists } from "../../../utlis";
+import ProjectItem from "./ProjectItem";
 // Styled
 const Wrapper = styled.div`
   width: 100%;
@@ -28,7 +28,7 @@ const ListInner = styled(Inner)`
   justify-content: flex-start;
   gap: 20px;
 `;
-const ListMenu = styled.div`
+const ListTabMenu = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -53,41 +53,6 @@ const ProjectWrapper = styled.div`
     display: flex;
     gap: 30px;
     transition: transform 0.2s ease-out;
-    li {
-      width: 430px;
-      .img-box {
-        width: 430px;
-        height: 430px;
-        border-radius: 20px;
-        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
-        background-color: var(--bg-light-gray);
-      }
-      .badge-group {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 40px 0 20px;
-        span {
-          padding: 6px 20px;
-          border: 1px solid var(--bg-light-gray);
-          border-radius: 20px;
-          color: var(--bg-dark-gray);
-          background-color: var(--bg-beige-color);
-          font: 400 14px/1 "Poppins-Regular";
-          cursor: default;
-        }
-      }
-      h3 {
-        font-size: 35px;
-        font-weight: 500;
-        margin-bottom: 10px;
-      }
-      p {
-        color: var(--bg-dark-gray);
-        line-height: 1.3;
-        word-break: keep-all;
-      }
-    }
   }
 `;
 
@@ -127,32 +92,23 @@ const ProjectList = () => {
       <Container className="project-list-container" ref={triggerRef}>
         <ListInner>
           <SectionTitle>Featured Projects</SectionTitle>
-          <ListMenu>
+          <ListTabMenu>
             <ul>
-              {projectTabMenu.map((menu, index) => (
+              {projectCategory.map((category, index) => (
                 <li
                   key={index}
-                  className={menu === "Javascript" ? "active" : ""}
+                  className={category === "Javascript" ? "active" : null}
                 >
-                  {menu}
+                  {category}
                 </li>
               ))}
             </ul>
             <ViewMoreButton text={"See All Projects"} />
-          </ListMenu>
+          </ListTabMenu>
           <ProjectWrapper>
             <ul ref={slideRef}>
-              {projectLists.map((list, index) => (
-                <li key={index}>
-                  <div className="img-box"></div>
-                  <div className="badge-group">
-                    {list.badges.map((badge, index) => (
-                      <span key={index}>{badge}</span>
-                    ))}
-                  </div>
-                  <h3>{list.title}</h3>
-                  <p>{list.description}</p>
-                </li>
+              {projectLists.map((list) => (
+                <ProjectItem key={list.id} {...list} />
               ))}
             </ul>
           </ProjectWrapper>

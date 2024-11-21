@@ -7,6 +7,7 @@ import About from "./components/sections/about/About";
 import Project from "./components/sections/project/Project";
 import Contact from "./components/sections/contact/Contact";
 import LoadingScreen from "./components/LoadingScreen";
+import ProjectAllView from "./components/sections/project/ProjectAllView";
 
 const Container = styled.main`
   /* position: relative; */
@@ -39,11 +40,12 @@ const App = () => {
           <Contact />
         </>
       )} */}
-      <Header />
+      {/* <Header />
       <Home />
       <About />
       <Project />
-      <Contact />
+      <Contact /> */}
+      <ProjectAllView />
     </Container>
   );
 };

@@ -66,13 +66,13 @@ export const skills = [
   },
   {
     icon: "node-js",
-    title: "Node.js",
+    title: "NodeJs",
     description:
       "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
   },
   {
     icon: "node-js",
-    title: "Node.js",
+    title: "NodeJs",
     description:
       "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
   },
@@ -106,48 +106,70 @@ export const accordionItems = [
   },
 ];
 // Project List
-export const projectTabMenu = ["Javascript", "React", "Typescript", "Node.js"];
+export const projectCategory = ["Javascript", "React", "Typescript", "NodeJs"];
 export const projectLists = [
   {
-    skill: "Javascript",
+    id: 0,
+    skill: "Typescript",
     title: "Hyndai E&C",
     description:
       "현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지 전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.",
-    badges: ["Anime.js", "Fullpage"],
+    tools: ["Anime.js", "Fullpage"],
   },
   {
+    id: 1,
     skill: "Javascript",
     title: "INNISFREE",
     description:
       "브랜드의 자연 친화적인 이미지를 돋보이게 하는 부드러운 슬라이드와 인터랙션을 구현했습니다.",
-    badges: ["Slick"],
+    tools: ["Slick"],
   },
   {
+    id: 2,
+    skill: "React",
+    title: "Hyndai E&C",
+    description:
+      "현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지 전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.",
+    tools: ["Anime.js", "Fullpage"],
+  },
+  {
+    id: 3,
+    skill: "NodeJs",
+    title: "INNISFREE",
+    description:
+      "브랜드의 자연 친화적인 이미지를 돋보이게 하는 부드러운 슬라이드와 인터랙션을 구현했습니다.",
+    tools: ["Slick"],
+  },
+  {
+    id: 4,
     skill: "React",
     title: "To Do List",
     description:
       "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
-    badges: ["Vite", "Styled-components"],
+    tools: ["Vite", "Styled-components"],
   },
   {
+    id: 5,
     skill: "React",
     title: "Emotion Diary",
     description:
       "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
-    badges: ["Motion", "Styled-components"],
+    tools: ["Motion", "Styled-components"],
   },
   {
-    skill: "React",
+    id: 6,
+    skill: "Typescript",
     title: "To Do List",
     description:
       "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
-    badges: ["Vite", "Styled-components"],
+    tools: ["Vite", "Styled-components"],
   },
   {
-    skill: "React",
+    id: 7,
+    skill: "NodeJs",
     title: "Emotion Diary",
     description:
       "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
-    badges: ["Motion", "Styled-components"],
+    tools: ["Motion", "Styled-components"],
   },
 ];

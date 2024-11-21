@@ -11,7 +11,7 @@ const upper = keyframes`
     transform: translateY(100%);
   }
   100% {
-    transform: translateY(-40px);
+    transform: translateY(-80px);
   }
 `;
 
@@ -25,7 +25,7 @@ const Container = styled.section`
   &::before {
     content: "";
     width: 100%;
-    height: 80px;
+    height: 120px;
     position: absolute;
     top: 0;
     left: 0;

@@ -104,8 +104,8 @@ const sidebarVariants = {
     clipPath: "circle(30px at calc(100% - 40px) 40px)",
     pointerEvents: "none",
     transition: {
-      delay: 0.4,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       type: "spring",
       stiffness: 100,
       damping: 20,
@@ -119,7 +119,7 @@ const overlayVariants = {
     height: "100vh",
     transition: {
       delay: 0.2,
-      duration: 0.5,
+      duration: 0.3,
       type: "tween",
     },
   },
@@ -128,7 +128,7 @@ const overlayVariants = {
     width: "0vw",
     height: "0vh",
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       type: "tween",
     },
   },
@@ -165,7 +165,7 @@ const MobileMenu = () => {
   const containerRef = useRef(null);
   const height = window.innerHeight;
 
-  console.log(isOpen);
+  // console.log(isOpen);
 
   return (
     <>
