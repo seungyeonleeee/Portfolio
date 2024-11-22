@@ -11,7 +11,7 @@ const Container = styled(motion.li)`
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
     background-color: var(--bg-light-gray);
   }
-  .badge-group {
+  .tools-group {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -44,14 +44,15 @@ const itemVariants = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 1,
+      duration: 0.2,
       ease: "easeOut",
     },
   },
   exit: {
-    scale: 0,
+    opacity: 0,
+    scale: 0.5,
     transition: {
-      duration: 1,
+      duration: 0.2,
       ease: "easeIn",
     },
   },
@@ -64,15 +65,16 @@ const ProjectItem = ({ id, skill, title, description, tools }) => {
       variants={itemVariants}
       initial="hidden"
       animate="visible"
+      exit="exit"
     >
-      <div className="img-box"></div>
-      <div className="badge-group">
+      <motion.div className="img-box" layoutId={`img-box-${id}`}></motion.div>
+      <motion.div className="tools-group" layoutId={`tools-group-${id}`}>
         {tools.map((tool, index) => (
           <span key={index}>{tool}</span>
         ))}
-      </div>
-      <h3>{title}</h3>
-      <p>{description}</p>
+      </motion.div>
+      <motion.h3 layoutId={`title-${id}`}>{title}</motion.h3>
+      <motion.p layoutId={`description-${id}`}>{description}</motion.p>
     </Container>
   );
 };

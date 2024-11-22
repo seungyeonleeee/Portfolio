@@ -95,8 +95,8 @@ const sidebarVariants = {
     transition: {
       duration: 0.3,
       type: "spring",
-      stiffness: 20,
-      restDelta: 2,
+      stiffness: 50,
+      // restDelta: 2,
     },
   }),
   closed: {
@@ -186,6 +186,7 @@ const MobileMenu = () => {
         <Overlay
           variants={overlayVariants}
           animate={isOpen ? "open" : "closed"}
+          onClick={() => toggleOpen()}
         />
         <Background
           variants={sidebarVariants}
@@ -194,7 +195,9 @@ const MobileMenu = () => {
         <Navigation variants={navVariants} animate={isOpen ? "open" : "closed"}>
           {navMenus.map((menu, index) => (
             <motion.li key={index} variants={itemVariants}>
-              <a href={`#${menu}`}>{menu}</a>
+              <a href={`#${menu}`} onClick={() => toggleOpen(false)}>
+                {menu}
+              </a>
             </motion.li>
           ))}
         </Navigation>

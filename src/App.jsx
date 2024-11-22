@@ -40,12 +40,11 @@ const App = () => {
           <Contact />
         </>
       )} */}
-      {/* <Header />
+      <Header />
       <Home />
       <About />
       <Project />
-      <Contact /> */}
-      <ProjectAllView />
+      <Contact />
     </Container>
   );
 };

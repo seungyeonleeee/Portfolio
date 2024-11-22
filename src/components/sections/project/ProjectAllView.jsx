@@ -1,27 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
 import { wrapper, Inner } from "../../../styledComponents";
 import { SectionTitle } from "../../../styledComponents";
 import { projectCategory, projectLists } from "../../../utlis";
 import ProjectItem from "./ProjectItem";
-import { AnimatePresence } from "framer-motion";
+import Button from "../../Button";
 
-const Container = styled.section`
+const Container = styled(motion.section)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 5;
+`;
+const Overlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+`;
+const Modal = styled(motion.div)`
   ${wrapper}
   width: 90vw;
   height: auto;
   position: relative;
-  background: var(--bg-light-color);
-  background: #f0f0f0;
-  padding: 140px 0;
+  padding: 120px 0;
   margin: 5vw auto;
-  z-index: 100;
+  background: var(--bg-light-color);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: height 0.3s ease;
+  button {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+  }
 `;
 const AllViewInner = styled(Inner)`
   flex-direction: column;
   align-items: flex-start;
   gap: 40px;
-  border: 1px solid red;
 `;
 const ProjectTabMenu = styled.ul`
   display: flex;
@@ -32,7 +57,8 @@ const ProjectTabMenu = styled.ul`
     color: var(--bg-dark-gray);
     cursor: pointer;
     transition: color 0.3s ease;
-    &.active {
+    &.active,
+    &:hover {
       color: var(--bg-accent-color);
     }
   }
@@ -59,7 +85,29 @@ const ProjectListWrapper = styled.ul`
   }
 `;
 
-const ProjectAllView = () => {
+const modalVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.8,
+    transition: { duration: 0.3 },
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.3 },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.8,
+    transition: { duration: 0.3 },
+  },
+};
+const OverlayVariants = {
+  hidden: { opacity: 0, transition: { duration: 0.3 } },
+  visible: { opacity: 1, transition: { duration: 0.3 } },
+};
+
+const ProjectAllView = ({ setIsAllView }) => {
   const newArr = ["All", ...projectCategory];
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [filteredProjects, setFilteredProjects] = useState([]);
@@ -74,109 +122,44 @@ const ProjectAllView = () => {
 
   return (
     <Container>
-      <AllViewInner>
-        <SectionTitle>Featured Projects</SectionTitle>
-        <ProjectTabMenu>
-          {newArr.map((category, index) => (
-            <li
-              key={category}
-              className={selectedCategory === category ? "active" : null}
-              onClick={() => setSelectedCategory(category)}
-            >
-              {category}
-            </li>
-          ))}
-        </ProjectTabMenu>
-        <ProjectListWrapper>
-          <AnimatePresence>
-            {filteredProjects.map((list) => (
-              <ProjectItem key={list.id} {...list} />
+      <Overlay
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        variants={OverlayVariants}
+        onClick={() => setIsAllView(false)}
+      />
+      <Modal
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        variants={modalVariants}
+      >
+        <AllViewInner>
+          <SectionTitle>Featured Projects</SectionTitle>
+          <ProjectTabMenu>
+            {newArr.map((category) => (
+              <li
+                key={category}
+                className={selectedCategory === category ? "active" : null}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </li>
             ))}
-          </AnimatePresence>
-        </ProjectListWrapper>
-      </AllViewInner>
+          </ProjectTabMenu>
+          <ProjectListWrapper>
+            <AnimatePresence>
+              {filteredProjects.map((list) => (
+                <ProjectItem key={list.id} {...list} />
+              ))}
+            </AnimatePresence>
+          </ProjectListWrapper>
+        </AllViewInner>
+        <Button text={"Close"} setIsAllView={setIsAllView} />
+      </Modal>
     </Container>
   );
 };
 
 export default ProjectAllView;
-
-/*
-const projectsData = [
-  { id: 1, category: "Design", imageUrl: "/img/dd.jpg" },
-  { id: 2, category: "Brand", imageUrl: "/img/dd.jpg" },
-  { id: 3, category: "Photos", imageUrl: "/img/image.png" },
-  { id: 4, category: "Design", imageUrl: "/img/dd.jpg" },
-  { id: 5, category: "Brand", imageUrl: "/img/꼬북이.jfif" },
-  { id: 6, category: "Photos", imageUrl: "/img/파이리.jfif" },
-  { id: 7, category: "Photos", imageUrl: "/img/dd.jpg" },
-];
-// Framer Motion Variants
-const itemVariants = {
-  hidden: { opacity: 0, scale: 0.5 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.5,
-    transition: {
-      duration: 0.4,
-      ease: "easeIn",
-    },
-  },
-};
-const Project: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
-  const filteredProjects =
-    selectedCategory === "All"
-      ? projectsData             
-      : projectsData.filter((project) => project.category === selectedCategory);
-  return (
-    <Wrapper>
-      <Header>MY Project</Header>
-      <FilterContainer>
-        {["All", "Design", "Brand", "Photos"].map((category) => (
-          <FilterButton
-            key={category}
-            active={selectedCategory === category}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </FilterButton>
-        ))}
-      </FilterContainer>
-      <GridContainer>
-        <AnimatePresence>
-          {filteredProjects.map((project) => (
-            <ProjectItem
-              key={project.id}
-              variants={itemVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              layout
-              onClick={() => setSelectedProject(project.imageUrl)} // 클릭 시 모달 열기
-            >
-              <ProjectImage src={project.imageUrl} alt={project.category} />
-            </ProjectItem>
-          ))}
-        </AnimatePresence>
-      </GridContainer>
-      {selectedProject && (
-        <OpenProject
-          imageUrl={selectedProject}
-          onClose={() => setSelectedProject(null)} // 모달 닫기
-        />
-      )}
-    </Wrapper>
-  );
-};
-export default Project;
-*/

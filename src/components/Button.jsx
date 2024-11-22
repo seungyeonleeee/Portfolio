@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = styled.button`
+const Container = styled.button`
   width: 219px;
   display: flex;
   justify-content: center;
@@ -34,9 +34,9 @@ const Button = styled.button`
   }
 `;
 
-const ViewMoreButton = ({ text }) => {
+const Button = ({ text, setIsAllView }) => {
   return (
-    <Button>
+    <Container onClick={() => setIsAllView(true)}>
       {text}
       <svg
         width="12"
@@ -47,8 +47,8 @@ const ViewMoreButton = ({ text }) => {
       >
         <path d="M12 0V9.00075H11.002V1.70557L0.705589 12L0 11.2922L10.2944 0.99975H2.99301V0H12Z" />
       </svg>
-    </Button>
+    </Container>
   );
 };
 
-export default ViewMoreButton;
+export default Button;

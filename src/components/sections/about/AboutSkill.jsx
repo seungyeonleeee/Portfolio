@@ -76,13 +76,14 @@ const AboutSkill = () => {
       <SkillList>
         <Swiper
           slidesPerView={4}
+          slidesPerGroup={4}
           autoplay={{
             delay: 4000,
             disableOnInteraction: true,
           }}
           pagination={{
             clickable: true,
-            // dynamicBullets: true,
+            dynamicBullets: true,
           }}
           modules={[Autoplay, Pagination]}
         >

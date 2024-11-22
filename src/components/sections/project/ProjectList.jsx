@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+import { AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ViewMoreButton from "../../ViewMoreButton";
+import Button from "../../Button";
 import { Inner, SectionTitle } from "../../../styledComponents";
 import { projectCategory, projectLists } from "../../../utlis";
 import ProjectItem from "./ProjectItem";
+import ProjectAllView from "./ProjectAllView";
+import ProjectDetails from "./ProjectDetails";
+
 // Styled
 const Wrapper = styled.div`
   width: 100%;
-  height: ${(props) => props.$containerHeight / 1.8}px;
+  height: ${(props) => props.$containerHeight}px;
 `;
 const Container = styled.div`
   width: 100%;
@@ -33,6 +37,7 @@ const ListTabMenu = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 10px;
   ul {
     display: flex;
     align-items: center;
@@ -57,27 +62,25 @@ const ProjectWrapper = styled.div`
 `;
 
 const ProjectList = () => {
+  const [isAllView, setIsAllView] = useState(false);
   gsap.registerPlugin(ScrollTrigger);
   const slideRef = useRef(null);
   const triggerRef = useRef(null);
   const [containerHeight, setContainerHeight] = useState(0);
 
   useEffect(() => {
-    // ul의 전체 너비 계산: 각 li의 너비(430px) * 항목 수 + gap(30px) * (항목 수 - 1)
-    const totalWidth =
-      projectLists.length * 430 + (projectLists.length - 1) * 30;
-    setContainerHeight(totalWidth);
+    setContainerHeight(slideRef?.current.scrollWidth);
 
     const fixedTl = gsap.fromTo(
       slideRef.current,
       { x: 0 },
       {
-        x: "-120%",
+        x: -slideRef?.current.scrollWidth,
         ease: "none",
         scrollTrigger: {
           trigger: triggerRef.current,
           start: "top top",
-          end: "bottom center",
+          end: `+=${slideRef?.current.scrollWidth - 1000}px`,
           scrub: 3,
           pin: ".project-list-container",
           pinSpacing: false,
@@ -87,34 +90,44 @@ const ProjectList = () => {
     return () => fixedTl.kill();
   }, []);
 
+  // console.log(isAllView);
+
   return (
-    <Wrapper $containerHeight={containerHeight}>
-      <Container className="project-list-container" ref={triggerRef}>
-        <ListInner>
-          <SectionTitle>Featured Projects</SectionTitle>
-          <ListTabMenu>
-            <ul>
-              {projectCategory.map((category, index) => (
-                <li
-                  key={index}
-                  className={category === "Javascript" ? "active" : null}
-                >
-                  {category}
-                </li>
-              ))}
-            </ul>
-            <ViewMoreButton text={"See All Projects"} />
-          </ListTabMenu>
-          <ProjectWrapper>
-            <ul ref={slideRef}>
-              {projectLists.map((list) => (
-                <ProjectItem key={list.id} {...list} />
-              ))}
-            </ul>
-          </ProjectWrapper>
-        </ListInner>
-      </Container>
-    </Wrapper>
+    <>
+      <Wrapper $containerHeight={containerHeight}>
+        <Container className="project-list-container" ref={triggerRef}>
+          <ListInner>
+            <SectionTitle>Featured Projects</SectionTitle>
+            <ListTabMenu>
+              <ul>
+                {projectCategory.map((category, index) => (
+                  <li
+                    key={index}
+                    className={category === "Javascript" ? "active" : null}
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
+              <Button text={"See All Projects"} setIsAllView={setIsAllView} />
+            </ListTabMenu>
+            <ProjectWrapper>
+              <ul ref={slideRef}>
+                {projectLists.map((list) => (
+                  <ProjectItem key={list.id} {...list} />
+                ))}
+                {/* <AnimatePresence>
+                      {list.id && <ProjectDetails {...list} />}
+                    </AnimatePresence> */}
+              </ul>
+            </ProjectWrapper>
+          </ListInner>
+        </Container>
+        <AnimatePresence>
+          {isAllView && <ProjectAllView setIsAllView={setIsAllView} />}
+        </AnimatePresence>
+      </Wrapper>
+    </>
   );
 };
 
