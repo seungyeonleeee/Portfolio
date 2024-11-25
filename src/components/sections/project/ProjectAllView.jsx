@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { wrapper, Inner } from "../../../styledComponents";
-import { SectionTitle } from "../../../styledComponents";
+import { Inner, Overlay, Modal, SectionTitle } from "../../../styledComponents";
 import { projectCategory, projectLists } from "../../../utlis";
 import ProjectItem from "./ProjectItem";
 import Button from "../../Button";
@@ -14,34 +13,7 @@ const Container = styled(motion.section)`
   width: 100vw;
   height: 100%;
   overflow-y: auto;
-  z-index: 5;
-`;
-const Overlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(5px);
-  cursor: pointer;
-`;
-const Modal = styled(motion.div)`
-  ${wrapper}
-  width: 90vw;
-  height: auto;
-  position: relative;
-  padding: 120px 0;
-  margin: 5vw auto;
-  background: var(--bg-light-color);
-  border-radius: 20px;
-  overflow: hidden;
-  transition: height 0.3s ease;
-  button {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-  }
+  z-index: 2;
 `;
 const AllViewInner = styled(Inner)`
   flex-direction: column;

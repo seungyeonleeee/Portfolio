@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "../../Button";
-import { Inner, SectionTitle } from "../../../styledComponents";
+import { Inner, SectionTitle, Overlay } from "../../../styledComponents";
 import { projectCategory, projectLists } from "../../../utlis";
 import ProjectItem from "./ProjectItem";
 import ProjectAllView from "./ProjectAllView";
@@ -54,14 +54,30 @@ const ListTabMenu = styled.div`
 `;
 const ProjectWrapper = styled.div`
   width: 100%;
+  pointer-events: all;
   ul {
     display: flex;
     gap: 30px;
     transition: transform 0.2s ease-out;
+    li {
+      pointer-events: all;
+    }
   }
 `;
 
+// const TestModal = styled(motion.div)`
+//   position: fixed;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   width: 80vw;
+//   height: 80vh;
+//   z-index: 10;
+//   background: #ccc;
+// `;
+
 const ProjectList = () => {
+  const [seletedId, setSelectedId] = useState(null);
   const [isAllView, setIsAllView] = useState(false);
   gsap.registerPlugin(ScrollTrigger);
   const slideRef = useRef(null);
@@ -75,13 +91,13 @@ const ProjectList = () => {
       slideRef.current,
       { x: 0 },
       {
-        x: -slideRef?.current.scrollWidth,
+        x: -slideRef?.current.scrollWidth + 1200,
         ease: "none",
         scrollTrigger: {
           trigger: triggerRef.current,
           start: "top top",
-          end: `+=${slideRef?.current.scrollWidth - 1000}px`,
-          scrub: 3,
+          end: `+=${slideRef?.current.scrollWidth - 900}px`,
+          scrub: 1,
           pin: ".project-list-container",
           pinSpacing: false,
         },
@@ -89,8 +105,6 @@ const ProjectList = () => {
     );
     return () => fixedTl.kill();
   }, []);
-
-  // console.log(isAllView);
 
   return (
     <>
@@ -114,11 +128,15 @@ const ProjectList = () => {
             <ProjectWrapper>
               <ul ref={slideRef}>
                 {projectLists.map((list) => (
-                  <ProjectItem key={list.id} {...list} />
+                  <ProjectItem
+                    key={list.id}
+                    {...list}
+                    layoutId={list.id}
+                    onClick={() => {
+                      setSelectedId(list.id);
+                    }}
+                  />
                 ))}
-                {/* <AnimatePresence>
-                      {list.id && <ProjectDetails {...list} />}
-                    </AnimatePresence> */}
               </ul>
             </ProjectWrapper>
           </ListInner>
@@ -127,6 +145,19 @@ const ProjectList = () => {
           {isAllView && <ProjectAllView setIsAllView={setIsAllView} />}
         </AnimatePresence>
       </Wrapper>
+
+      <AnimatePresence>
+        {seletedId && (
+          <Overlay
+            onClick={() => setSelectedId(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <ProjectDetails layoutId={seletedId} />
+          </Overlay>
+        )}
+      </AnimatePresence>
     </>
   );
 };

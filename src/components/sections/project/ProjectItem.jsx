@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Container = styled(motion.li)`
   width: 430px;
@@ -58,14 +58,23 @@ const itemVariants = {
   },
 };
 
-const ProjectItem = ({ id, skill, title, description, tools }) => {
+const ProjectItem = ({
+  id,
+  skill,
+  title,
+  description,
+  tools,
+  projectModalId,
+  onClick,
+}) => {
   return (
     <Container
-      layout
+      layoutId={projectModalId}
       variants={itemVariants}
       initial="hidden"
       animate="visible"
       exit="exit"
+      onClick={onClick}
     >
       <motion.div className="img-box" layoutId={`img-box-${id}`}></motion.div>
       <motion.div className="tools-group" layoutId={`tools-group-${id}`}>

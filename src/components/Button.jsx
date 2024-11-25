@@ -36,7 +36,7 @@ const Container = styled.button`
 
 const Button = ({ text, setIsAllView }) => {
   return (
-    <Container onClick={() => setIsAllView(true)}>
+    <Container onClick={() => setIsAllView((prev) => !prev)}>
       {text}
       <svg
         width="12"

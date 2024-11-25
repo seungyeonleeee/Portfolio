@@ -25,6 +25,35 @@ export const AnimationWrapper = styled(motion.div)`
 `;
 
 // Components
+export const Overlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+  z-index: 1;
+`;
+export const Modal = styled(motion.div)`
+  ${wrapper}
+  width: 90vw;
+  height: auto;
+  position: relative;
+  padding: 120px 0;
+  margin: 5vw auto;
+  background: var(--bg-light-color);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: height 0.3s ease;
+  z-index: 2;
+  button {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+  }
+`;
 export const ImgBoxLarge = styled(motion.div)`
   width: 420px;
   height: 550px;
