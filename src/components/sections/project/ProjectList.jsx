@@ -8,7 +8,7 @@ import { Inner, SectionTitle, Overlay } from "../../../styledComponents";
 import { projectCategory, projectLists } from "../../../utlis";
 import ProjectItem from "./ProjectItem";
 import ProjectAllView from "./ProjectAllView";
-import ProjectDetails from "./ProjectDetails";
+import ProjectDetail from "./ProjectDetail";
 
 // Styled
 const Wrapper = styled.div`
@@ -65,17 +65,6 @@ const ProjectWrapper = styled.div`
   }
 `;
 
-// const TestModal = styled(motion.div)`
-//   position: fixed;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   width: 80vw;
-//   height: 80vh;
-//   z-index: 10;
-//   background: #ccc;
-// `;
-
 const ProjectList = () => {
   const [seletedId, setSelectedId] = useState(null);
   const [isAllView, setIsAllView] = useState(false);
@@ -127,13 +116,13 @@ const ProjectList = () => {
             </ListTabMenu>
             <ProjectWrapper>
               <ul ref={slideRef}>
-                {projectLists.map((list) => (
+                {projectLists.map((project) => (
                   <ProjectItem
-                    key={list.id}
-                    {...list}
-                    layoutId={list.id}
+                    key={project.id}
+                    {...project}
+                    layoutId={project.id}
                     onClick={() => {
-                      setSelectedId(list.id);
+                      setSelectedId(project.id);
                     }}
                   />
                 ))}
@@ -154,7 +143,7 @@ const ProjectList = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <ProjectDetails layoutId={seletedId} />
+            <ProjectDetail layoutId={seletedId} />
           </Overlay>
         )}
       </AnimatePresence>

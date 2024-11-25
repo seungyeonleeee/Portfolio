@@ -74,10 +74,6 @@ const modalVariants = {
     transition: { duration: 0.3 },
   },
 };
-const OverlayVariants = {
-  hidden: { opacity: 0, transition: { duration: 0.3 } },
-  visible: { opacity: 1, transition: { duration: 0.3 } },
-};
 
 const ProjectAllView = ({ setIsAllView }) => {
   const newArr = ["All", ...projectCategory];
@@ -95,10 +91,9 @@ const ProjectAllView = ({ setIsAllView }) => {
   return (
     <Container>
       <Overlay
-        initial="hidden"
-        animate="visible"
-        exit="hidden"
-        variants={OverlayVariants}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         onClick={() => setIsAllView(false)}
       />
       <Modal

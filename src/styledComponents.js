@@ -46,8 +46,7 @@ export const Modal = styled(motion.div)`
   background: var(--bg-light-color);
   border-radius: 20px;
   overflow: hidden;
-  transition: height 0.3s ease;
-  z-index: 2;
+  z-index: 3;
   button {
     position: absolute;
     top: 50px;
