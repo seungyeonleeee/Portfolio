@@ -24,6 +24,7 @@ const Container = styled(motion.li)`
       background: var(--bg-beige-color);
       font: 400 14px/1 "Poppins-Regular";
       cursor: default;
+      letter-spacing: 0;
     }
   }
   h3 {
