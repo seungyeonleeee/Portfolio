@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-// Layout
+// Common Layout
 export const wrapper = `
   width: 100%;
   display: flex;
@@ -35,6 +35,15 @@ export const Overlay = styled(motion.div)`
   backdrop-filter: blur(5px);
   cursor: pointer;
   z-index: 1;
+`;
+export const ModalContainer = styled(motion.section)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 2;
 `;
 export const Modal = styled(motion.div)`
   ${wrapper}

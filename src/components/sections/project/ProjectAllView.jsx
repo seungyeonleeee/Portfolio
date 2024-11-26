@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { Inner, Overlay, Modal, SectionTitle } from "../../../styledComponents";
+import {
+  Inner,
+  Overlay,
+  ModalContainer,
+  Modal,
+  SectionTitle,
+} from "../../../styledComponents";
 import { projectCategory, projectLists } from "../../../utlis";
 import ProjectItem from "./ProjectItem";
 import Button from "../../Button";
 
-const Container = styled(motion.section)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 2;
-`;
 const AllViewInner = styled(Inner)`
   flex-direction: column;
   align-items: flex-start;
@@ -89,7 +86,7 @@ const ProjectAllView = ({ setIsAllView }) => {
   }, [selectedCategory]);
 
   return (
-    <Container>
+    <ModalContainer>
       <Overlay
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -125,7 +122,7 @@ const ProjectAllView = ({ setIsAllView }) => {
         </AllViewInner>
         <Button text={"Close"} setIsAllView={setIsAllView} />
       </Modal>
-    </Container>
+    </ModalContainer>
   );
 };
 
