@@ -85,7 +85,7 @@ const ProjectList = () => {
         scrollTrigger: {
           trigger: triggerRef.current,
           start: "top top",
-          end: `+=${slideRef?.current.scrollWidth - 900}px`,
+          end: `+=${slideRef?.current.scrollWidth - 1000}px`,
           scrub: 1,
           pin: ".project-list-container",
           pinSpacing: false,
@@ -95,46 +95,47 @@ const ProjectList = () => {
     return () => fixedTl.kill();
   }, []);
 
-  return (
-    <>
-      <Wrapper $containerHeight={containerHeight}>
-        <Container className="project-list-container" ref={triggerRef}>
-          <ListInner>
-            <SectionTitle>Featured Projects</SectionTitle>
-            <ListTabMenu>
-              <ul>
-                {projectCategory.map((category, index) => (
-                  <li
-                    key={index}
-                    className={category === "Javascript" ? "active" : null}
-                  >
-                    {category}
-                  </li>
-                ))}
-              </ul>
-              <Button text={"See All Projects"} setIsAllView={setIsAllView} />
-            </ListTabMenu>
-            <ProjectWrapper>
-              <ul ref={slideRef}>
-                {projectLists.map((project) => (
-                  <ProjectItem
-                    key={project.id}
-                    {...project}
-                    layoutId={project.id}
-                    onClick={() => {
-                      setSelectedId(project.id);
-                    }}
-                  />
-                ))}
-              </ul>
-            </ProjectWrapper>
-          </ListInner>
-        </Container>
-        <AnimatePresence>
-          {isAllView && <ProjectAllView setIsAllView={setIsAllView} />}
-        </AnimatePresence>
-      </Wrapper>
+  const handleClick = (id) => {
+    setSelectedId(id);
+  };
 
+  return (
+    <Wrapper $containerHeight={containerHeight}>
+      <Container className="project-list-container" ref={triggerRef}>
+        <ListInner>
+          <SectionTitle>Featured Projects</SectionTitle>
+          <ListTabMenu>
+            <ul>
+              {projectCategory.map((category, index) => (
+                <li
+                  key={index}
+                  className={category === "Javascript" ? "active" : null}
+                >
+                  {category}
+                </li>
+              ))}
+            </ul>
+            <Button text={"See All Projects"} setIsAllView={setIsAllView} />
+          </ListTabMenu>
+          <ProjectWrapper>
+            <ul ref={slideRef}>
+              {projectLists.map((project) => (
+                <ProjectItem
+                  key={project.id}
+                  {...project}
+                  layoutId={project.id}
+                  onClick={() => {
+                    handleClick(project.id);
+                  }}
+                />
+              ))}
+            </ul>
+          </ProjectWrapper>
+        </ListInner>
+      </Container>
+      <AnimatePresence>
+        {isAllView && <ProjectAllView setIsAllView={setIsAllView} />}
+      </AnimatePresence>
       <AnimatePresence>
         {seletedId && (
           <Overlay
@@ -143,11 +144,11 @@ const ProjectList = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <ProjectDetail layoutId={seletedId} />
+            <ProjectDetail layoutId={seletedId} isAllView={false} />
           </Overlay>
         )}
       </AnimatePresence>
-    </>
+    </Wrapper>
   );
 };
 

@@ -23,6 +23,7 @@ const TextBox = styled(motion.ul)`
       span {
         font-size: 44px;
         font-weight: 500;
+        letter-spacing: 0;
       }
       h2 {
         margin-bottom: 0;
@@ -88,8 +89,8 @@ const AboutIntro = ({ isInView }) => {
       >
         <li>
           <div className="intro-name">
-            <span>이 승연</span>
-            <SectionTitle>SeungYeon Lee</SectionTitle>
+            <span>이승연</span>
+            <SectionTitle>LeeSeungYeon</SectionTitle>
           </div>
           <h5>1998.01.10</h5>
         </li>

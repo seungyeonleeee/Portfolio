@@ -11,6 +11,7 @@ import {
 import { projectCategory, projectLists } from "../../../utlis";
 import ProjectItem from "./ProjectItem";
 import Button from "../../Button";
+import ProjectDetail from "./ProjectDetail";
 
 const AllViewInner = styled(Inner)`
   flex-direction: column;
@@ -76,6 +77,7 @@ const ProjectAllView = ({ setIsAllView }) => {
   const newArr = ["All", ...projectCategory];
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [filteredProjects, setFilteredProjects] = useState([]);
+  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
     const filteredProjects =
@@ -86,7 +88,7 @@ const ProjectAllView = ({ setIsAllView }) => {
   }, [selectedCategory]);
 
   return (
-    <ModalContainer>
+    <ModalContainer className="all-view-modal-container">
       <Overlay
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -115,13 +117,30 @@ const ProjectAllView = ({ setIsAllView }) => {
           <ProjectListWrapper>
             <AnimatePresence>
               {filteredProjects.map((list) => (
-                <ProjectItem key={list.id} {...list} />
+                <ProjectItem
+                  key={list.id}
+                  {...list}
+                  isAllView={true}
+                  onClick={() => setSelectedId(list.id)}
+                />
               ))}
             </AnimatePresence>
           </ProjectListWrapper>
         </AllViewInner>
         <Button text={"Close"} setIsAllView={setIsAllView} />
       </Modal>
+      <AnimatePresence>
+        {selectedId && (
+          <Overlay
+            onClick={() => setSelectedId(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <ProjectDetail layoutId={selectedId} isAllView={true} />
+          </Overlay>
+        )}
+      </AnimatePresence>
     </ModalContainer>
   );
 };

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 const Container = styled(motion.li)`
   width: 430px;
+  cursor: pointer;
   .img-box {
     width: 430px;
     height: 430px;
@@ -65,26 +66,27 @@ const ProjectItem = ({
   title,
   description,
   tools,
-  projectModalId,
   onClick,
+  isAllView,
 }) => {
   return (
     <Container
-      layoutId={projectModalId}
       variants={itemVariants}
       initial="hidden"
       animate="visible"
       exit="exit"
       onClick={onClick}
+      {...(isAllView && { layout: "position" })}
+      {...(!isAllView && { layoutId: `container-${id}` })}
     >
-      <motion.div className="img-box" layoutId={`img-box-${id}`}></motion.div>
-      <motion.div className="tools-group" layoutId={`tools-group-${id}`}>
+      <div className="img-box"></div>
+      <div className="tools-group">
         {tools.map((tool, index) => (
           <span key={index}>{tool}</span>
         ))}
-      </motion.div>
-      <motion.h3 layoutId={`title-${id}`}>{title}</motion.h3>
-      <motion.p layoutId={`description-${id}`}>{description}</motion.p>
+      </div>
+      <h3>{title}</h3>
+      <p>{description}</p>
     </Container>
   );
 };

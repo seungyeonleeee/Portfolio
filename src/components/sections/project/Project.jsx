@@ -14,7 +14,6 @@ const Container = styled.section`
     var(--bg-light-color) 20%,
     var(--bg-beige-color)
   );
-  min-height: 100vh;
   &::before {
     content: "";
     width: 100%;
@@ -27,7 +26,7 @@ const Container = styled.section`
     background: var(--bg-light-color);
   }
 `;
-const LineElement = styled.div`
+const LineElement = styled.article`
   position: absolute;
   top: -40px;
   right: 0;

@@ -34,7 +34,7 @@ export const Overlay = styled(motion.div)`
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(5px);
   cursor: pointer;
-  z-index: 1;
+  z-index: 3;
 `;
 export const ModalContainer = styled(motion.section)`
   position: fixed;
@@ -47,7 +47,7 @@ export const ModalContainer = styled(motion.section)`
 `;
 export const Modal = styled(motion.div)`
   ${wrapper}
-  width: 90vw;
+  width: 80vw;
   height: auto;
   position: relative;
   padding: 120px 0;
@@ -100,6 +100,7 @@ export const SectionTitle = styled.h2`
   font-size: 44px;
   font-weight: 500;
   margin-bottom: 20px;
+  letter-spacing: 0;
 `;
 export const MainElement = styled(motion.div)`
   display: flex;

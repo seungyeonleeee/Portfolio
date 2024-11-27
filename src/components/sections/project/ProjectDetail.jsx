@@ -11,7 +11,6 @@ import {
 } from "../../../styledComponents";
 
 const DetailModal = styled(Modal)`
-  width: 80vw;
   flex-direction: column;
 `;
 const DetailInner = styled(Inner)`
@@ -85,7 +84,7 @@ const DetailHeader = styled.div`
     }
   }
 `;
-const DetailImg = styled.div`
+const DetailImg = styled(motion.div)`
   width: 100%;
   height: 700px;
   border-radius: 30px 30px 0 0;
@@ -156,7 +155,7 @@ const DetailContent = styled.div`
   }
 `;
 
-const ProjectDetail = ({ layoutId }) => {
+const ProjectDetail = ({ layoutId, isAllView }) => {
   const selectedProject = projectLists.find(
     (project) => project.id === layoutId
   );
@@ -166,16 +165,14 @@ const ProjectDetail = ({ layoutId }) => {
   const { skill, tools, title, description } = selectedProject;
 
   return (
-    <ModalContainer
-    // layoutId={layoutId}
-    >
-      <DetailModal>
+    <ModalContainer>
+      <DetailModal {...(!isAllView && { layoutId: `container-${layoutId}` })}>
         <DetailHeader>
           <DetailInner className="detail-header-inner">
             <div className="detail-header-text">
               <span className="skill">{skill}</span>
               <SectionTitle>{title}</SectionTitle>
-              <p className="main-description">{description}</p>
+              <motion.p>{description}</motion.p>
             </div>
             <div className="detail-header-btns">
               <span className="move-page-btn">
@@ -195,9 +192,7 @@ const ProjectDetail = ({ layoutId }) => {
             </div>
           </DetailInner>
         </DetailHeader>
-        <DetailImg
-        //  layoutId={`img-box-${layoutId}`}
-        ></DetailImg>
+        <DetailImg></DetailImg>
         <DetailContent>
           <DetailInner className="detail-content-inner">
             <div className="detail-content-text">

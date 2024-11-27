@@ -40,15 +40,18 @@ const ParallaxImgBoxRight = styled(motion.div)`
 `;
 
 const ProcessImg = ({ currentIndex }) => {
+  const containerRef = React.useRef(null);
+
   const { scrollYProgress } = useScroll({
+    target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  const leftImgY = useTransform(scrollYProgress, [0, 0.5, 1], [400, 250, -400]);
+  const leftImgY = useTransform(scrollYProgress, [0, 0.5, 1], [200, 100, -200]);
   const rightImgY = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [800, 250, -800]
+    [400, 100, -400]
   );
 
   const springLeftY = useSpring(leftImgY, {
@@ -63,7 +66,10 @@ const ProcessImg = ({ currentIndex }) => {
   });
 
   return (
-    <Container $bgimg={accordionItems[currentIndex]?.mainImg}>
+    <Container
+      ref={containerRef}
+      $bgimg={accordionItems[currentIndex]?.mainImg}
+    >
       <ImgBox />
       <ParallaxImgBoxLeft
         className="img-box-small"
