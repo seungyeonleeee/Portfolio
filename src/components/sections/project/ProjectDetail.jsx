@@ -8,7 +8,10 @@ import {
   ModalContainer,
   Modal,
   SectionTitle,
+  ButtonStyle,
+  BadgeStyle,
 } from "../../../styledComponents";
+import { ArrowIcon } from "../../../components/ArrowIcon";
 
 const DetailModal = styled(Modal)`
   flex-direction: column;
@@ -28,12 +31,8 @@ const DetailHeader = styled.div`
   margin-bottom: 100px;
   .detail-header-text {
     .skill {
-      padding: 6px 20px;
-      border: 1px solid var(--bg-light-gray);
-      border-radius: 20px;
-      background: var(--bg-light-color);
-      font: 400 14px/1 "Poppins-Regular";
-      cursor: default;
+      ${BadgeStyle}
+      color: var(--bg-dark-color);
     }
     h2 {
       margin: 30px 0;
@@ -45,41 +44,53 @@ const DetailHeader = styled.div`
   }
   .detail-header-btns {
     display: flex;
-    .move-page-btn {
-      width: 219px;
-      border: 1px solid var(--bg-accent-color);
-      border-radius: 54px;
-      color: var(--bg-accent-color);
-      background: var(--bg-light-color);
-      transition: all 0.3s;
-      a {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    ul {
+      width: 220px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 5px;
+      li {
         width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        padding: 15px 40px;
-        letter-spacing: 0;
-        svg {
-          width: 12px;
-          height: 12px;
-          path {
-            fill: var(--bg-accent-color);
-            transition: all 0.3s;
+        ${ButtonStyle}
+        flex: 1;
+        /* padding: 10px 20px; */
+        color: var(--bg-dark-gray);
+        border-color: var(--bg-dark-gray);
+        transition: all 0.3s;
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+          svg {
+            transition: fill 0.3s;
+            path {
+              fill: var(--bg-dark-gray);
+            }
+          }
+        }
+        &:hover,
+        &:active {
+          background: var(--bg-dark-gray);
+          color: var(--bg-light-color);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+          a {
+            svg {
+              path {
+                fill: var(--bg-light-color);
+              }
+            }
           }
         }
       }
-      &:hover,
-      &:active {
-        background: var(--bg-accent-color);
-        color: var(--bg-light-color);
-        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
-        svg {
-          path {
-            fill: var(--bg-light-color);
-          }
-        }
+    }
+    .move-page-btn {
+      a {
+        ${ButtonStyle}
       }
     }
   }
@@ -175,18 +186,24 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
               <motion.p>{description}</motion.p>
             </div>
             <div className="detail-header-btns">
+              <ul>
+                <li>
+                  <a>
+                    Figma
+                    <ArrowIcon />
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    Github
+                    <ArrowIcon />
+                  </a>
+                </li>
+              </ul>
               <span className="move-page-btn">
                 <a>
                   View Web Page
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M12 0V9.00075H11.002V1.70557L0.705589 12L0 11.2922L10.2944 0.99975H2.99301V0H12Z" />
-                  </svg>
+                  <ArrowIcon />
                 </a>
               </span>
             </div>

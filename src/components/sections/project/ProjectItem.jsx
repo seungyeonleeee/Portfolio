@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { BadgeStyle } from "../../../styledComponents";
 
 const Container = styled(motion.li)`
   width: 430px;
@@ -18,14 +19,7 @@ const Container = styled(motion.li)`
     gap: 10px;
     margin: 40px 0 20px;
     span {
-      padding: 6px 20px;
-      border: 1px solid var(--bg-light-gray);
-      border-radius: 20px;
-      color: var(--bg-dark-gray);
-      background: var(--bg-beige-color);
-      font: 400 14px/1 "Poppins-Regular";
-      cursor: default;
-      letter-spacing: 0;
+      ${BadgeStyle}
     }
   }
   h3 {

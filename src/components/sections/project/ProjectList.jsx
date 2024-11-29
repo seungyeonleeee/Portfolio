@@ -66,8 +66,9 @@ const ProjectWrapper = styled.div`
 `;
 
 const ProjectList = () => {
-  const [seletedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
   const [isAllView, setIsAllView] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("Javascript");
   gsap.registerPlugin(ScrollTrigger);
   const slideRef = useRef(null);
   const triggerRef = useRef(null);
@@ -89,6 +90,19 @@ const ProjectList = () => {
           scrub: 1,
           pin: ".project-list-container",
           pinSpacing: false,
+          onUpdate: (self) => {
+            const scrollProgress = self.progress;
+            const itemWidth =
+              slideRef.current.scrollWidth / projectLists.length;
+            const currentIndex = Math.floor(
+              (scrollProgress * slideRef.current.scrollWidth) / itemWidth
+            );
+            const currentProject = projectLists[currentIndex];
+
+            if (currentProject) {
+              setActiveCategory(currentProject.skill);
+            }
+          },
         },
       }
     );
@@ -109,7 +123,7 @@ const ProjectList = () => {
               {projectCategory.map((category, index) => (
                 <li
                   key={index}
-                  className={category === "Javascript" ? "active" : null}
+                  className={category === activeCategory ? "active" : null}
                 >
                   {category}
                 </li>
@@ -133,18 +147,19 @@ const ProjectList = () => {
           </ProjectWrapper>
         </ListInner>
       </Container>
+
       <AnimatePresence>
         {isAllView && <ProjectAllView setIsAllView={setIsAllView} />}
       </AnimatePresence>
       <AnimatePresence>
-        {seletedId && (
+        {selectedId && (
           <Overlay
             onClick={() => setSelectedId(null)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <ProjectDetail layoutId={seletedId} isAllView={false} />
+            <ProjectDetail layoutId={selectedId} isAllView={false} />
           </Overlay>
         )}
       </AnimatePresence>

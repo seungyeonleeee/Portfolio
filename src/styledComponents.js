@@ -25,6 +25,50 @@ export const AnimationWrapper = styled(motion.div)`
 `;
 
 // Components
+export const ButtonStyle = `
+  width: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 15px 40px;
+  letter-spacing: 0;
+  border: 1px solid var(--bg-accent-color);
+  border-radius: 54px;
+  color: var(--bg-accent-color);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s;
+  svg {
+    width: 12px;
+    height: 12px;
+    path {
+      fill: var(--bg-accent-color);
+      transition: all 0.3s;
+    }
+  }
+  &:hover,
+  &:active {
+    background: var(--bg-accent-color);
+    color: var(--bg-light-color);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+    svg {
+      path {
+        fill: var(--bg-light-color);
+      }
+    }
+  }
+`;
+export const BadgeStyle = `
+  padding: 6px 20px;
+  border: 1px solid var(--bg-light-gray);
+  border-radius: 20px;
+  color: var(--bg-dark-gray);
+  font: 500 14px/1 "Poppins-Medium";
+  letter-spacing: 0;
+  text-align: center;
+  cursor: default;
+`;
 export const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
