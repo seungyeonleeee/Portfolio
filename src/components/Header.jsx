@@ -38,6 +38,20 @@ const MenuContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 40px;
+
+  .desktop-menu {
+    display: flex;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .mobile-menu {
+    display: flex;
+    @media screen and (min-width: 769px) {
+      display: none;
+    }
+  }
 `;
 
 // Animation Variants
@@ -134,8 +148,12 @@ const Header = () => {
           <span>eungyeonLee</span>
         </Logo>
         <MenuContainer>
-          <DesktopMenu activeSection={activeSection} />
-          <MobileMenu />
+          <div className="desktop-menu">
+            <DesktopMenu activeSection={activeSection} />
+          </div>
+          <div className="mobile-menu">
+            <MobileMenu />
+          </div>
         </MenuContainer>
       </HeaderInner>
     </Container>

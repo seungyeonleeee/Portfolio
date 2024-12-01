@@ -27,7 +27,7 @@ const Title = styled.div`
   right: 0;
   transform: translateY(-50%);
   width: 100%;
-  max-width: 1628px;
+  max-width: 1625px;
   svg {
     width: 100%;
   }
@@ -57,13 +57,13 @@ const pathVariants = {
   hidden: { strokeDashoffset: 1200 },
   visible: {
     strokeDashoffset: 0,
-    transition: { duration: 1.8, ease: "easeOut" },
+    transition: { duration: 1, ease: "easeOut" },
   },
 };
 
 const Contact = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.4 });
+  const isInView = useInView(ref, { amount: 0.4, once: true, fallback: true });
 
   return (
     <Container ref={ref} id="contact">
@@ -157,7 +157,7 @@ const Contact = () => {
             github.com/seungyeonleeee
           </li>
         </ul>
-        <p className="copyright">© 2024 SeungYeon Lee. All Right Reserved</p>
+        <p className="copyright">© 2024 LeeSeungYeon. All Right Reserved</p>
       </ContactInner>
     </Container>
   );

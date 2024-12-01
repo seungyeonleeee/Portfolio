@@ -11,40 +11,66 @@ export const titles = [
   {
     keyword: "Communication",
     description:
-      "열린 의사소통을 통해 다양한 아이디어를 연결하고, \n창의적인 해결책을 찾아가는 과정을 소중히 여깁니다.",
+      "소통은 서로를 이해하는 첫걸음입니다. \n명확하고 진심 어린 대화를 통해 아이디어와 감정을 이어갑니다.",
   },
   {
     keyword: "Collaboration",
     description:
-      "열린 의사소통을 통해 다양한 아이디어를 연결하고, \n그 안에서 창의적인 해결책을 찾아가는 과정을 소중히 여깁니다.",
+      "함께하는 힘이 더 큰 가치를 만듭니다. \n다양한 관점과 능력을 하나로 모아 새로운 가능성을 열어갑니다.",
   },
 ];
 
 // About Skill
 export const skills = [
   {
-    icon: "figma",
-    title: "Figma",
+    icon: "node-js",
+    title: "Node.js",
     description:
-      "Figma를 활용해 효율적인 UI/UX 디자인을 구현하며, 팀원들과의 실시간 협업을 통해 디자인 의도를 명확히 전달할 수 있습니다.",
+      "Node.js를 활용해 백엔드 서버와 API를 구축하며, 비동기 처리로 데이터 흐름을 관리합니다.",
   },
   {
-    icon: "html5",
-    title: "HTML5",
+    icon: "next-js",
+    title: "Next.js",
     description:
-      "HTML5를 활용해 구조적이고 의미 있는 웹 페이지를 구현할 수 있습니다. 웹 표준을 준수하여 SEO 최적화와 접근성 높은 마크업을 작성하는 데 주력하고 있습니다.",
+      "Next.js를 활용해 서버 사이드 렌더링(SSR)과 정적 사이트 생성(SSG)을 구현합니다.",
   },
   {
-    icon: "css3",
-    title: "CSS3",
+    icon: "ts",
+    title: "Typescript",
     description:
-      "CSS3를 활용해 반응형 웹 디자인과 시각적으로 매력적인 레이아웃을 구현할 수 있습니다.",
+      "TypeScript를 통해 코드의 안정성과 가독성을 높이고, 타입 시스템을 활용해 오류를 사전에 방지합니다.",
   },
   {
-    icon: "scss",
-    title: "SCSS",
+    icon: "react",
+    title: "React.js",
     description:
-      "SCSS를 활용해 반응형 웹 디자인과 시각적으로 매력적인 레이아웃을 구현할 수 있습니다.",
+      "React를 활용해 컴포넌트 기반으로 재사용 가능한 UI를 구현합니다.",
+  },
+  {
+    icon: "recoil",
+    title: "Recoil",
+    description: "Recoil을 활용해 전역 상태를 효율적으로 관리합니다.",
+  },
+  {
+    icon: "react-query",
+    title: "React-Query",
+    description: "React Query를 활용해 서버 상태를 관리합니다.",
+  },
+  {
+    icon: "redux",
+    title: "Redux",
+    description: "Redux를 활용해 복잡한 상태를 체계적으로 관리합니다.",
+  },
+  {
+    icon: "router",
+    title: "React Router",
+    description: "React Router를 활용해 유연한 라우팅을 구현합니다.",
+  },
+  {
+    icon: "styled-components",
+    title: "Styled-Components",
+    description:
+      "Styled Components를 통해 컴포넌트 기반으로 모듈화된 스타일을 작성합니다.",
   },
   {
     icon: "js",
@@ -53,28 +79,33 @@ export const skills = [
       "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
   },
   {
-    icon: "react",
-    title: "React.js",
+    icon: "scss",
+    title: "SCSS",
     description:
-      "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
+      "SCSS를 활용해 변수와 믹스인 등으로 효율적인 스타일링을 구현합니다.",
   },
   {
-    icon: "ts",
-    title: "Typescript",
+    icon: "css3",
+    title: "CSS3",
     description:
-      "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
+      "CSS3를 활용해 반응형 웹 디자인과 시각적으로 매력적인 레이아웃을 구현할 수 있습니다.",
   },
   {
-    icon: "node-js",
-    title: "NodeJs",
+    icon: "html5",
+    title: "HTML5",
     description:
-      "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
+      "HTML5를 활용해 구조적이고 의미 있는 웹 페이지를 구현할 수 있습니다.",
   },
   {
-    icon: "node-js",
-    title: "NodeJs",
+    icon: "github",
+    title: "GitHub",
+    description: "GitHub를 활용해 버전 관리를 효율적으로 수행합니다.",
+  },
+  {
+    icon: "figma",
+    title: "Figma",
     description:
-      "JavaScript를 통해 동적인 웹 페이지를 구현하며, 사용자와의 상호작용을 자연스럽게 설계할 수 있습니다.",
+      "Figma를 활용해 효율적인 UI/UX 디자인을 구현하며, 팀원들과의 실시간 협업을 통해 디자인 의도를 명확히 전달할 수 있습니다.",
   },
 ];
 
@@ -83,7 +114,7 @@ export const accordionItems = [
   {
     title: "Planning",
     content:
-      "프로젝트 요구사항을 이해하고 명확한 목표를 설정 했습니다.\n사용자 페르소나를 설정하고, 주요 기능과 페이지 간의 관계를 설계했습니다.\n웹사이트의 구조와 콘텐츠 흐름을 정의하여\n사용자 경험이 원활하도록 계획했습니다.",
+      "WBS 일정표를 기반으로 체계적으로 진행 일정을 수립했습니다.\n또한, 사용자를 이해하기 위해 페르소나를 작성하고, 정보 구조(IA)를 체계적으로 설계하여 프로젝트의 방향성을 명확히 설정했습니다.",
     mainImg: "process_planning01.jpg",
     subImg01: "process_planning02.jpg",
     subImg02: "process_planning03.jpg",
@@ -91,7 +122,7 @@ export const accordionItems = [
   {
     title: "Design",
     content:
-      "디자인의 일관성을 유지하기 위해 컴포넌트화 하여 피그마를 작업했습니다.\n각 페이지에 필요한 UI 요소를 정의하고, 재사용 가능한 디자인 시스템을 구축하여\n효율적인 디자인 프로세스를 구현했습니다.",
+      "Figma를 활용해 와이어프레임을 제작하고, UI/UX 디자인을 완성했습니다.\n디자인 과정에서 팀원들과 협업하여 실시간 피드백과 의견 교환을 통해 사용자 중심의 디자인을 구현했습니다.",
     mainImg: "process_design01.jpg",
     subImg01: "process_design02.jpg",
     subImg02: "process_design03.jpg",
@@ -99,22 +130,22 @@ export const accordionItems = [
   {
     title: "Development",
     content:
-      "주요 기능을 직접 구현하며 사용자 인터랙션을 처리했습니다.\nDOM을 제어하고 이벤트 핸들링을 통해 동적인 웹 요소들을 구현했습니다.\n최적화된 코드 작성으로 성능을 고려한 개발을 완료했습니다.",
+      "GitHub를 통해 코드를 버전 관리하며, 브랜치를 나누어 작업을 분배했습니다.\nPull Request와 코드 리뷰를 통해 협업 품질을 높였으며, 팀원들과 적극적으로 소통하며 개발을 진행했습니다.",
     mainImg: "process_development01.jpg",
     subImg01: "process_development02.jpg",
     subImg02: "process_development03.jpg",
   },
   {
-    title: "Development",
+    title: "Presentation",
     content:
-      "주요 기능을 직접 구현하며 사용자 인터랙션을 처리했습니다.\nDOM을 제어하고 이벤트 핸들링을 통해 동적인 웹 요소들을 구현했습니다.\n최적화된 코드 작성으로 성능을 고려한 개발을 완료했습니다.",
+      "프로젝트 발표에서 피드백을 수집하고, 이를 기반으로 개선 사항을 반영하여 결과물을 수정했습니다.\n평가에 맞춰 팀원들과 함께 프로젝트의 완성도를 한 단계 높였습니다.",
     mainImg: "process_development01.jpg",
     subImg01: "process_development02.jpg",
     subImg02: "process_development03.jpg",
   },
 ];
 // Project List
-export const projectCategory = ["Javascript", "React", "Typescript", "NodeJs"];
+export const projectCategory = ["Javascript", "React", "Typescript", "Node.js"];
 export const projectLists = [
   {
     id: 1,
@@ -166,7 +197,7 @@ export const projectLists = [
   },
   {
     id: 7,
-    skill: "NodeJs",
+    skill: "Node.js",
     title: "To Do List",
     description:
       "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
@@ -174,7 +205,7 @@ export const projectLists = [
   },
   {
     id: 8,
-    skill: "NodeJs",
+    skill: "Node.js",
     title: "Emotion Diary",
     description:
       "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",

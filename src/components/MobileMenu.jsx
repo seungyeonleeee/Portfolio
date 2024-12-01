@@ -7,10 +7,7 @@ import { navMenus } from "../utlis";
 const Trigger = styled.button`
   width: 30px;
   height: 10px;
-  position: fixed;
-  top: 40px;
-  right: 10px;
-  transform: translate(-50%, -50%);
+  position: relative;
   z-index: 4;
   span {
     position: absolute;
@@ -164,8 +161,6 @@ const MobileMenu = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
   const height = window.innerHeight;
-
-  // console.log(isOpen);
 
   return (
     <>

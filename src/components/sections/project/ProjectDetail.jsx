@@ -54,36 +54,38 @@ const DetailHeader = styled.div`
       align-items: center;
       gap: 5px;
       li {
-        width: 100%;
-        ${ButtonStyle}
-        flex: 1;
-        /* padding: 10px 20px; */
-        color: var(--bg-dark-gray);
-        border-color: var(--bg-dark-gray);
         transition: all 0.3s;
         a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 5px;
+          ${ButtonStyle}
+          color: var(--bg-dark-gray);
+          border-color: var(--bg-dark-gray);
           svg {
             transition: fill 0.3s;
             path {
               fill: var(--bg-dark-gray);
             }
           }
-        }
-        &:hover,
-        &:active {
-          background: var(--bg-dark-gray);
-          color: var(--bg-light-color);
-          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-          a {
-            svg {
-              path {
-                fill: var(--bg-light-color);
+          &:hover,
+          &:active {
+            background: var(--bg-dark-gray);
+            color: var(--bg-light-color);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+            a {
+              svg {
+                path {
+                  fill: var(--bg-light-color);
+                }
               }
             }
+          }
+        }
+      }
+      &.detail-move-btns-inner {
+        li {
+          a {
+            width: 100%;
+            flex: 1;
+            padding: 10px 20px;
           }
         }
       }
@@ -186,7 +188,7 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
               <motion.p>{description}</motion.p>
             </div>
             <div className="detail-header-btns">
-              <ul>
+              <ul className="detail-move-btns-inner">
                 <li>
                   <a>
                     Figma
@@ -200,6 +202,14 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
                   </a>
                 </li>
               </ul>
+              {/* <ul className="move-github-btn">
+                <li>
+                  <a>
+                    Github
+                    <ArrowIcon />
+                  </a>
+                </li>
+              </ul> */}
               <span className="move-page-btn">
                 <a>
                   View Web Page

@@ -47,6 +47,7 @@ export const GlobalStyles = createGlobalStyle`
 
     /* variables */
     :root{
+      /* colors */
     --bg-light-color: #fff;
     --bg-dark-color: #000;
     --bg-light-gray: #ccc;

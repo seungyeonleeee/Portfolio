@@ -16,7 +16,7 @@ const Circle = styled(motion.span)`
   top: 50%;
   left: 50%;
   display: inline-block;
-  border: 1px solid #f1eee9;
+  border: 1px solid #eceae7;
   border-radius: 50%;
 
   &:nth-child(1) {

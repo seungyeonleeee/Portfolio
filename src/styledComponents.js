@@ -14,6 +14,10 @@ export const Inner = styled.article`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 1330px) {
+    width: 100%;
+    padding: 0 15px;
+  }
 `;
 export const AnimationWrapper = styled(motion.div)`
   position: fixed;

@@ -29,7 +29,7 @@ const LineElement = styled.div`
 const WrapperVariants = {
   start: { opacity: 0 },
   end: { opacity: 1, transition: { duration: 4.8 } },
-  exit: { opacity: 0, filter: "blur(10px)", transition: { duration: 1.2 } },
+  exit: { opacity: 0, filter: "blur(10px)", transition: { duration: 0.8 } },
 };
 const pathVariants = {
   hidden: { strokeDashoffset: 1500 },
@@ -110,18 +110,6 @@ const HomeIntroAnimation = ({ setIsIntroEnd }) => {
             animate="visible"
             variants={pathVariants}
           />
-          {/* <mask id="reveal-mask">
-            <motion.rect
-              x="0"
-              y="0"
-              width="706"
-              height="507"
-              fill="#fff"
-              variants={lineVariants}
-              initial="invisible"
-              animate="visible"
-            />
-          </mask> */}
         </motion.svg>
       </LineElement>
       <HomeInner>
@@ -139,17 +127,23 @@ const HomeIntroAnimation = ({ setIsIntroEnd }) => {
             承
           </motion.span>
         </MainElement>
-        <TextGroup
-          className="main-title"
-          custom={{ coord: { x: -30, y: 0 }, delay: 1.8 }}
-          initial="start"
-          animate="end"
-          variants={FadeInVariants}
-        >
-          <h1>
+        <TextGroup className="main-title">
+          <motion.h1
+            custom={{ coord: { x: -30, y: 0 }, delay: 1.8 }}
+            initial="start"
+            animate="end"
+            variants={FadeInVariants}
+          >
             <span>이을</span> 승
-          </h1>
-          <p>서로의 이야기를 이어 공감을 쌓아갑니다.</p>
+          </motion.h1>
+          <motion.p
+            custom={{ coord: { x: -30, y: 0 }, delay: 2.3 }}
+            initial="start"
+            animate="end"
+            variants={FadeInVariants}
+          >
+            서로의 이야기를 이어 공감을 쌓아갑니다.
+          </motion.p>
         </TextGroup>
       </HomeInner>
     </AnimationWrapper>

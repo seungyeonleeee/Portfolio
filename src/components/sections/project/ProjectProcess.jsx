@@ -7,8 +7,7 @@ import { SectionTitle, Inner } from "../../../styledComponents";
 
 const Container = styled(Inner)`
   width: 100%;
-  padding: 100px 0;
-  /* min-height: 100vh; */
+  padding: 120px 0;
   h2 {
     text-align: center;
   }

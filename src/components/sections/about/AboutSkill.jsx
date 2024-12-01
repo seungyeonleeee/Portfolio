@@ -1,6 +1,6 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
-import { motion } from "framer-motion";
+import styled from "styled-components";
+import { motion, useInView } from "framer-motion";
 import "swiper/swiper-bundle.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
@@ -20,7 +20,7 @@ const Container = styled.div`
     color: var(--bg-dark-gray);
   }
 `;
-const SkillList = styled.div`
+const SkillList = styled(motion.div)`
   width: 100%;
   .swiper {
     height: 500px;
@@ -65,15 +65,22 @@ const Skill = styled.div`
   p {
     line-height: 1.3;
     color: var(--bg-dark-gray);
-    /* word-break: keep-all; */
   }
 `;
 
 const AboutSkill = () => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
     <Container>
       <span>My Skills</span>
-      <SkillList>
+      <SkillList
+        ref={ref}
+        initial={{ opacity: 0, y: 100 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <Swiper
           slidesPerView={4}
           slidesPerGroup={4}
