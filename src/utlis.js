@@ -20,7 +20,18 @@ export const titles = [
   },
 ];
 
-// About Skill
+// About
+export const introData = {
+  name: "이승연",
+  englishName: "LeeSeungYeon",
+  birth: "1998.01.10",
+  introduction:
+    "원활한 소통을 중요시하며, 프론트엔드 개발을 통해\n사람과 사람, 사람과 기술을 연결하는 경험을 추구합니다.\n직관적이고 반응성 좋은 UI로 소통의 가치를 실현하는 개발자가 되고자 합니다.",
+  education: [
+    "2024.06 ~ 2024.12 K-Digital Training (KDT) 기업연계 프론트엔드 개발 수료",
+    "2023.12 ~ 2024.04 (디지털디자인) UI/UX 웹디자인 & 웹퍼블리셔 수료",
+  ],
+};
 export const skills = [
   {
     icon: "node-js",

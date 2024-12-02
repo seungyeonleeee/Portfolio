@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { responsiveContext } from "../../../App";
 import { accordionItems } from "../../../utlis";
 
 const Container = styled.div`
-  width: 520px;
-  height: 550px;
+  width: ${({ $isDesktop, $isTablet }) =>
+    $isDesktop ? "520px" : $isTablet ? "50%" : "100%"};
+  height: ${({ $isTablet }) => ($isTablet ? "550px" : "auto")};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,6 +38,7 @@ const Accordion = styled.ul`
         align-items: center;
         gap: 30px;
         font: 500 24px/1 "Poppins-Medium";
+        font-size: ${({ $isMobile }) => ($isMobile ? "20px" : "24px")};
         span {
           color: var(--bg-dark-gray);
         }
@@ -93,16 +96,41 @@ const Accordion = styled.ul`
 `;
 
 const ProcessMenu = ({ activeIndex, onClickMenu }) => {
+  const [contentHeight, setContentHeight] = useState({});
+  const { isDesktop, isTablet, isMobile } = useContext(responsiveContext);
+
+  const updateContentHeights = () => {
+    accordionItems.forEach((_, index) => {
+      const content = document.querySelector(
+        `li:nth-child(${index + 1}) .content`
+      );
+      if (content) {
+        setContentHeight((prev) => ({
+          ...prev,
+          [index]: content.scrollHeight + 100,
+        }));
+      }
+    });
+  };
+
+  useEffect(() => {
+    updateContentHeights();
+
+    window.addEventListener("resize", updateContentHeights);
+
+    return () => window.removeEventListener("resize", updateContentHeights);
+  }, []);
+
   return (
-    <Container>
-      <Accordion>
+    <Container $isDesktop={isDesktop} $isTablet={isTablet} $isMobile={isMobile}>
+      <Accordion $isMobile={isMobile}>
         {accordionItems.map((item, index) => (
           <motion.li
             key={index}
             onClick={() => onClickMenu(index)}
             className={activeIndex === index ? "active" : null}
             animate={{
-              height: activeIndex === index ? 215 : 100,
+              height: activeIndex === index ? contentHeight[index] || 215 : 100,
             }}
           >
             <div className="title">

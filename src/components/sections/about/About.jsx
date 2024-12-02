@@ -31,7 +31,7 @@ const Container = styled.section`
     left: 0;
     border-radius: 40px 40px 0 0;
     background: var(--bg-beige-color);
-    animation: ${upper} 0.8s 10s linear both;
+    animation: ${upper} 0.8s 8.5s linear both;
   }
 `;
 const AboutInner = styled(Inner)`
@@ -39,7 +39,7 @@ const AboutInner = styled(Inner)`
   flex-direction: column;
   gap: 100px;
 `;
-const LineElement = styled.div`
+const LineElement = styled.article`
   width: 35%;
   min-width: 640px;
   position: absolute;

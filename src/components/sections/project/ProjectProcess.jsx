@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { responsiveContext } from "../../../App";
 import ProcessMenu from "./ProcessMenu";
 import ProcessImg from "./ProcessImg";
 import { SectionTitle, Inner } from "../../../styledComponents";
@@ -17,14 +17,17 @@ const ProcessInner = styled(Inner)`
   gap: 50px;
 `;
 const ProcessWrapper = styled.div`
+  width: 100%;
   display: flex;
+  flex-direction: ${({ $isTablet }) => ($isTablet ? "column" : "row")};
   justify-content: center;
   align-items: center;
-  gap: 80px;
+  gap: ${({ $isDesktop }) => ($isDesktop ? "80px" : "40px")};
   position: relative;
 `;
 
 const ProjectProcess = () => {
+  const { isDesktop, isTablet } = useContext(responsiveContext);
   const [activeIndex, setActiveIndex] = useState(0);
   const [lastActiveIndex, setLastActiveIndex] = useState(0);
 
@@ -38,7 +41,7 @@ const ProjectProcess = () => {
     <Container>
       <ProcessInner>
         <SectionTitle>Process Work</SectionTitle>
-        <ProcessWrapper>
+        <ProcessWrapper $isDesktop={isDesktop} $isTablet={isTablet}>
           <ProcessMenu activeIndex={activeIndex} onClickMenu={onClickMenu} />
           <ProcessImg currentIndex={currentIndex} />
         </ProcessWrapper>

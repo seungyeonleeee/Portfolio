@@ -21,7 +21,7 @@ const WrapperVariants = {
   end: {
     opacity: 1,
     filter: "blur(0px)",
-    transition: { duration: 1.6 },
+    transition: { duration: 1 },
   },
 };
 const FadeInVariants = {
@@ -48,7 +48,7 @@ const firstCVariants = {
   animate: {
     rotate: -30,
     translateX: "-33%",
-    transition: { delay: 3.6, duration: 0.8, type: "tween" },
+    transition: { delay: 2.6, duration: 0.8, type: "tween" },
   },
 };
 const secondCVariants = {
@@ -57,7 +57,7 @@ const secondCVariants = {
     opacity: 1,
     rotate: 150,
     translateX: "33%",
-    transition: { delay: 3.6, duration: 0.8, type: "tween" },
+    transition: { delay: 2.6, duration: 0.8, type: "tween" },
   },
 };
 

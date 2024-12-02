@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { motion, useInView } from "framer-motion";
 import "swiper/swiper-bundle.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { Autoplay, Pagination } from "swiper/modules";
+import { responsiveContext } from "../../../App";
 import { wrapper } from "../../../styledComponents";
 import { skills } from "../../../utlis";
 
@@ -23,7 +24,7 @@ const Container = styled.div`
 const SkillList = styled(motion.div)`
   width: 100%;
   .swiper {
-    height: 500px;
+    height: ${({ $isMobile }) => ($isMobile ? "350px" : "500px")};
   }
   .swiper-pagination {
     bottom: 0px;
@@ -38,18 +39,19 @@ const SkillList = styled(motion.div)`
   }
 `;
 const StyledSwiperSlide = styled(SwiperSlide)`
-  height: 450px;
+  height: ${({ $isMobile }) => ($isMobile ? "300px" : "450px")};
   display: flex;
   &:nth-child(even) {
     align-items: flex-end;
   }
 `;
 const Skill = styled.div`
-  height: 300px;
+  height: ${({ $isMobile }) => ($isMobile ? "150px" : "300px")};
   display: flex;
   flex-direction: column;
+  justify-content: ${({ $isMobile }) => ($isMobile ? "center" : "flex-start")};
   gap: 50px;
-  padding: 0 45px;
+  padding: ${({ $isTablet }) => ($isTablet ? "0 20px" : "0 45px")};
   border-left: 1px solid var(--bg-light-gray);
   .skill-icon {
     width: 30px;
@@ -60,7 +62,10 @@ const Skill = styled.div`
     }
   }
   h3 {
-    font: 500 24px/1 "Poppins-Medium";
+    font: ${({ $isMobile }) =>
+      $isMobile
+        ? "500 18px/1 'Poppins-Medium'"
+        : "500 24px/1 'Poppins-Medium'"};
   }
   p {
     line-height: 1.3;
@@ -71,6 +76,7 @@ const Skill = styled.div`
 const AboutSkill = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true });
+  const { isTablet, isMobile } = useContext(responsiveContext);
 
   return (
     <Container>
@@ -80,6 +86,7 @@ const AboutSkill = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
+        $isMobile={isMobile}
       >
         <Swiper
           slidesPerView={4}
@@ -95,8 +102,8 @@ const AboutSkill = () => {
           modules={[Autoplay, Pagination]}
         >
           {skills?.map((skill, index) => (
-            <StyledSwiperSlide key={index}>
-              <Skill>
+            <StyledSwiperSlide key={index} $isMobile={isMobile}>
+              <Skill $isTablet={isTablet} $isMobile={isMobile}>
                 <div className="skill-icon">
                   <img
                     src={`/images/skills/${skill.icon}.svg`}
@@ -104,7 +111,7 @@ const AboutSkill = () => {
                   />
                 </div>
                 <h3>{skill.title}</h3>
-                <p>{skill.description}</p>
+                {isMobile ? null : <p>{skill.description}</p>}
               </Skill>
             </StyledSwiperSlide>
           ))}

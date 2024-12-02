@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { responsiveContext } from "../../../App";
 import { wrapper, ImgBoxLarge, SectionTitle } from "../../../styledComponents";
+import { introData } from "../../../utlis";
 
 const Container = styled.div`
   ${wrapper}
-  gap: 100px;
+  display: flex;
+  gap: ${({ $isDesktop }) => ($isDesktop ? "100px" : "50px")};
+  flex-direction: ${({ $isTablet }) => ($isTablet ? "column" : "row")};
 `;
 const TextBox = styled(motion.ul)`
   display: flex;
@@ -17,11 +21,12 @@ const TextBox = styled(motion.ul)`
     gap: 10px;
     .intro-name {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 20px;
+      gap: ${({ $isMobile }) => ($isMobile ? "10px" : "20px")};
       margin-bottom: 10px;
       span {
-        font-size: 44px;
+        font-size: ${({ $isMobile }) => ($isMobile ? "30px" : "44px")};
         font-weight: 500;
         letter-spacing: 0;
       }
@@ -29,7 +34,6 @@ const TextBox = styled(motion.ul)`
         margin-bottom: 0;
       }
     }
-
     h5 {
       font: 400 18px/1 "Poppins-Regular";
       font-size: 18px;
@@ -37,6 +41,7 @@ const TextBox = styled(motion.ul)`
     }
     p {
       line-height: 1.5;
+      white-space: pre-wrap;
       &.intro-education {
         color: var(--bg-dark-gray);
       }
@@ -48,11 +53,13 @@ const TextBox = styled(motion.ul)`
 const imgVariants = {
   start: {
     opacity: 0,
+    x: 40,
     y: 40,
     rotate: 30,
   },
   end: {
     opacity: 1,
+    x: 40,
     y: 20,
     rotate: -10,
     transition: {
@@ -73,8 +80,10 @@ const textVariants = {
 };
 
 const AboutIntro = ({ isInView }) => {
+  const { isDesktop, isTablet, isMobile } = useContext(responsiveContext);
+
   return (
-    <Container>
+    <Container $isDesktop={isDesktop} $isTablet={isTablet}>
       <ImgBoxLarge
         initial="start"
         animate={isInView ? "end" : "start"}
@@ -86,33 +95,24 @@ const AboutIntro = ({ isInView }) => {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={textVariants}
+        $isMobile={isMobile}
       >
         <li>
           <div className="intro-name">
-            <span>이승연</span>
-            <SectionTitle>LeeSeungYeon</SectionTitle>
+            <span>{introData.name}</span>
+            <SectionTitle>{introData.englishName}</SectionTitle>
           </div>
-          <h5>1998.01.10</h5>
+          <h5>{introData.birth}</h5>
         </li>
         <li>
           <h5>Introduction</h5>
-          <p>
-            원활한 소통을 중요시하며, 프론트엔드 개발을 통해 <br />
-            사람과 사람, 사람과 기술을 연결하는 경험을 추구합니다. <br />
-            직관적이고 반응성 좋은 UI로 소통의 가치를 실현하는 개발자가 되고자
-            합니다.
-          </p>
+          <p>{introData.introduction}</p>
         </li>
         <li>
           <h5>Education</h5>
           <div>
-            <p className="intro-education">
-              2024.06 ~ 2024.12 K-Digital Training (KDT) 기업연계 프론트엔드
-              개발 수료
-            </p>
-            <p className="intro-education">
-              2023.12 ~ 2024.04 (디지털디자인) UI/UX 웹디자인 & 웹퍼블리셔 수료
-            </p>
+            <p className="intro-education">{introData.education[0]}</p>
+            <p className="intro-education">{introData.education[1]}</p>
           </div>
         </li>
       </TextBox>

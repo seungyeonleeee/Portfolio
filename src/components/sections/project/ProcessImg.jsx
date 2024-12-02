@@ -1,22 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { responsiveContext } from "../../../App";
 import { accordionItems } from "../../../utlis";
-import { ImgBoxLarge, ImgBoxSmall } from "../../../styledComponents";
+import { ImgBoxLarge } from "../../../styledComponents";
 
 // Styled
 const Container = styled.div`
-  width: 597px;
-  height: 550px;
   position: relative;
+  width: ${({ $isDesktop }) => ($isDesktop ? "597px" : "40%")};
+  height: ${({ $isDesktop }) => ($isDesktop ? "550px" : "500px")};
   div {
     position: absolute;
     background: url(/images/${(props) => props.$bgimg || ""}) center/cover
       no-repeat;
     transition: background 0.5s;
     &.img-box-small {
-      width: 220px;
-      height: 160px;
+      width: ${({ $isDesktop }) => ($isDesktop ? "220px" : "180px")};
+      height: ${({ $isDesktop }) => ($isDesktop ? "160px" : "130px")};
       overflow: hidden;
       border: 2px solid var(--bg-dark-gray);
       border-radius: 10px;
@@ -25,22 +26,24 @@ const Container = styled.div`
   }
 `;
 const ImgBox = styled(ImgBoxLarge)`
+  width: ${({ $isDesktop }) => ($isDesktop ? "420px" : "100%")};
+  left: ${({ $isDesktop }) => ($isDesktop ? "53%" : "50%")};
   top: 50%;
-  left: 53%;
   transform: translate(-50%, -50%);
   border: 3px solid var(--bg-dark-gray);
 `;
 const ParallaxImgBoxLeft = styled(motion.div)`
   top: 20%;
-  left: 0;
+  left: ${({ $isDesktop }) => ($isDesktop ? "0" : "-10%")};
 `;
 const ParallaxImgBoxRight = styled(motion.div)`
   top: 0;
-  right: 0;
+  right: ${({ $isDesktop }) => ($isDesktop ? "0" : "-10%")};
 `;
 
 const ProcessImg = ({ currentIndex }) => {
   const containerRef = React.useRef(null);
+  const { isDesktop } = useContext(responsiveContext);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -68,9 +71,10 @@ const ProcessImg = ({ currentIndex }) => {
   return (
     <Container
       ref={containerRef}
+      $isDesktop={isDesktop}
       $bgimg={accordionItems[currentIndex]?.mainImg}
     >
-      <ImgBox />
+      <ImgBox $isDesktop={isDesktop} />
       <ParallaxImgBoxLeft
         className="img-box-small"
         style={{

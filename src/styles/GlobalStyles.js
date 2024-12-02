@@ -54,6 +54,7 @@ export const GlobalStyles = createGlobalStyle`
     --bg-dark-gray: #666;
     --bg-beige-color: #f1eee9;
     --bg-accent-color: #ff481f;
+    
   }
 
   /* common */

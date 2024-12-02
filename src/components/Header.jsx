@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { motion, useAnimation, useScroll } from "framer-motion";
+import { responsiveContext } from "../App";
 import { navMenus } from "../utlis";
 import { Inner } from "../styledComponents";
 import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
-
 // Styled
 const Container = styled(motion.header)`
   width: 100%;
@@ -23,33 +23,16 @@ const HeaderInner = styled(Inner)`
   justify-content: space-between;
 `;
 const Logo = styled.div`
-  display: flex;
-  align-items: center;
-  img {
-    width: 25px;
-    height: 25px;
-    object-fit: contain;
-  }
-  span {
-    font: normal 24px/1 "Poppins-Light";
-  }
-`;
-const MenuContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 40px;
-
-  .desktop-menu {
+  a {
     display: flex;
-    @media screen and (max-width: 768px) {
-      display: none;
+    align-items: flex-end;
+    img {
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
     }
-  }
-
-  .mobile-menu {
-    display: flex;
-    @media screen and (min-width: 769px) {
-      display: none;
+    span {
+      font: normal 24px/1 "Poppins-Light";
     }
   }
 `;
@@ -90,12 +73,13 @@ const Header = () => {
   const [activeSection, setActiveSection] = useState("home");
   const navAnimation = useAnimation();
   const { scrollY } = useScroll();
+  const { isMobile } = useContext(responsiveContext);
 
   useEffect(() => {
     // Header Visible Animation
     const animationTimer = setTimeout(() => {
       navAnimation.start("visible").then(() => navAnimation.start("top"));
-    }, 8000);
+    }, 8500);
 
     // Scroll Event
     const handleScroll = () => {
@@ -144,17 +128,16 @@ const Header = () => {
     <Container variants={navVariants} animate={navAnimation} initial="initial">
       <HeaderInner as="nav">
         <Logo>
-          <img src="/images/logo.svg" alt="logo" />
-          <span>eungyeonLee</span>
+          <a href="/">
+            <img src="/images/logo.svg" alt="logo" />
+            <span>eungyeonLee</span>
+          </a>
         </Logo>
-        <MenuContainer>
-          <div className="desktop-menu">
-            <DesktopMenu activeSection={activeSection} />
-          </div>
-          <div className="mobile-menu">
-            <MobileMenu />
-          </div>
-        </MenuContainer>
+        {isMobile ? (
+          <DesktopMenu activeSection={activeSection} />
+        ) : (
+          <MobileMenu />
+        )}
       </HeaderInner>
     </Container>
   );

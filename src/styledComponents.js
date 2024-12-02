@@ -135,13 +135,10 @@ export const ImgBoxLarge = styled(motion.div)`
       rgba(143, 140, 133, 0.5)
     );
   }
-`;
-export const ImgBoxSmall = styled.div`
-  width: 220px;
-  height: 160px;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: var(--bg-light-gray);
+  @media screen and (max-width: 510px) {
+    width: 80%;
+    height: 390px;
+  }
 `;
 export const SectionTitle = styled.h2`
   font-family: "Poppins-Medium";
@@ -149,6 +146,9 @@ export const SectionTitle = styled.h2`
   font-weight: 500;
   margin-bottom: 20px;
   letter-spacing: 0;
+  @media screen and (max-width: 840px) {
+    font-size: 30px;
+  }
 `;
 export const MainElement = styled(motion.div)`
   display: flex;
