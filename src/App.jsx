@@ -22,16 +22,15 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const isDesktop = useMediaQuery({
-    query: "(min-width: 1331px) and (max-width: 1920px)",
+    query: "(min-width: 1330px) and (max-width: 1920px)",
+  });
+  const isTabletOrDesktop = useMediaQuery({
+    query: "(max-width: 1330px) and (min-width: 1000px)",
   });
   const isTablet = useMediaQuery({
-    query: "(max-width: 1330px) and (min-width: 841px)",
+    query: "(max-width: 1000px) and (min-width: 840px)",
   });
   const isMobile = useMediaQuery({ query: "(max-width: 840px)" });
-
-  console.log(
-    `isDesktop: ${isDesktop}, isTablet: ${isTablet}, isMobile: ${isMobile}`
-  );
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -44,6 +43,7 @@ const App = () => {
     <responsiveContext.Provider
       value={{
         isDesktop,
+        isTabletOrDesktop,
         isTablet,
         isMobile,
       }}

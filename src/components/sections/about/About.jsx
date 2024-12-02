@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { motion, useInView } from "framer-motion";
+import { responsiveContext } from "../../../App";
 import AboutIntro from "./AboutIntro";
 import AboutSkill from "./AboutSkill";
 import { wrapper, Inner } from "../../../styledComponents";
@@ -37,11 +38,11 @@ const Container = styled.section`
 const AboutInner = styled(Inner)`
   position: relative;
   flex-direction: column;
-  gap: 100px;
+  gap: 50px;
 `;
 const LineElement = styled.article`
-  width: 35%;
-  min-width: 640px;
+  width: ${({ $isDesktop, $isTabletOrDesktop, $isTablet }) =>
+    $isDesktop ? "40%" : $isTabletOrDesktop || $isTablet ? "60%" : "100%"};
   position: absolute;
   top: 8%;
   left: 0;
@@ -56,7 +57,7 @@ const pathVariants = {
   hidden: { strokeDashoffset: -3000 },
   visible: {
     strokeDashoffset: 0,
-    transition: { duration: 2.6, ease: "easeOut" },
+    transition: { duration: 2, ease: "easeOut" },
   },
 };
 
@@ -64,12 +65,18 @@ const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: true,
-    amount: 0.25,
+    amount: 0.1,
   });
+  const { isDesktop, isTabletOrDesktop, isTablet } =
+    useContext(responsiveContext);
 
   return (
     <Container ref={ref} id="about">
-      <LineElement>
+      <LineElement
+        $isDesktop={isDesktop}
+        $isTabletOrDesktop={isTabletOrDesktop}
+        $isTablet={isTablet}
+      >
         <svg
           width="976"
           height="972"

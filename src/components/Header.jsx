@@ -6,6 +6,7 @@ import { navMenus } from "../utlis";
 import { Inner } from "../styledComponents";
 import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
+
 // Styled
 const Container = styled(motion.header)`
   width: 100%;
@@ -134,9 +135,9 @@ const Header = () => {
           </a>
         </Logo>
         {isMobile ? (
-          <DesktopMenu activeSection={activeSection} />
-        ) : (
           <MobileMenu />
+        ) : (
+          <DesktopMenu activeSection={activeSection} />
         )}
       </HeaderInner>
     </Container>

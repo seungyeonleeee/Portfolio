@@ -111,7 +111,6 @@ export const Modal = styled(motion.div)`
   }
 `;
 export const ImgBoxLarge = styled(motion.div)`
-  width: 420px;
   height: 550px;
   border-radius: 20px;
   overflow: hidden;
@@ -134,10 +133,6 @@ export const ImgBoxLarge = styled(motion.div)`
       transparent 80%,
       rgba(143, 140, 133, 0.5)
     );
-  }
-  @media screen and (max-width: 510px) {
-    width: 80%;
-    height: 390px;
   }
 `;
 export const SectionTitle = styled.h2`

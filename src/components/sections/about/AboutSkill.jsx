@@ -51,7 +51,7 @@ const Skill = styled.div`
   flex-direction: column;
   justify-content: ${({ $isMobile }) => ($isMobile ? "center" : "flex-start")};
   gap: 50px;
-  padding: ${({ $isTablet }) => ($isTablet ? "0 20px" : "0 45px")};
+  padding: ${({ $isDesktop }) => ($isDesktop ? "0 45px" : "0 20px")};
   border-left: 1px solid var(--bg-light-gray);
   .skill-icon {
     width: 30px;
@@ -62,10 +62,8 @@ const Skill = styled.div`
     }
   }
   h3 {
-    font: ${({ $isMobile }) =>
-      $isMobile
-        ? "500 18px/1 'Poppins-Medium'"
-        : "500 24px/1 'Poppins-Medium'"};
+    font: 500 24px/1 "Poppins-Medium";
+    font-size: ${({ $isMobile }) => ($isMobile ? "18px" : "24px")};
   }
   p {
     line-height: 1.3;
@@ -76,7 +74,7 @@ const Skill = styled.div`
 const AboutSkill = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true });
-  const { isTablet, isMobile } = useContext(responsiveContext);
+  const { isDesktop, isMobile } = useContext(responsiveContext);
 
   return (
     <Container>
@@ -103,7 +101,7 @@ const AboutSkill = () => {
         >
           {skills?.map((skill, index) => (
             <StyledSwiperSlide key={index} $isMobile={isMobile}>
-              <Skill $isTablet={isTablet} $isMobile={isMobile}>
+              <Skill $isDesktop={isDesktop} $isMobile={isMobile}>
                 <div className="skill-icon">
                   <img
                     src={`/images/skills/${skill.icon}.svg`}

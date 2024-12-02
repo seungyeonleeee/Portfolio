@@ -7,14 +7,19 @@ import { introData } from "../../../utlis";
 
 const Container = styled.div`
   ${wrapper}
-  display: flex;
   gap: ${({ $isDesktop }) => ($isDesktop ? "100px" : "50px")};
-  flex-direction: ${({ $isTablet }) => ($isTablet ? "column" : "row")};
+  flex-direction: ${({ $isTablet, $isMobile }) =>
+    $isTablet || $isMobile ? "column" : "row"};
+  .intro-img {
+    width: ${({ $isDesktop, $isTabletOrDesktop, $isTablet }) =>
+      $isDesktop || $isTablet ? "420px" : $isTabletOrDesktop ? "40%" : "330px"};
+    height: ${({ $isMobile }) => ($isMobile ? "470px" : "550px")};
+  }
 `;
 const TextBox = styled(motion.ul)`
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: ${({ $isMobile }) => ($isMobile ? "30px" : "50px")};
   li {
     display: flex;
     flex-direction: column;
@@ -65,6 +70,7 @@ const imgVariants = {
     transition: {
       duration: 1,
       ease: "easeInOut",
+      delay: 0.8,
     },
   },
   type: "tween",
@@ -75,16 +81,23 @@ const textVariants = {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 1, ease: "easeOut" },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 
 const AboutIntro = ({ isInView }) => {
-  const { isDesktop, isTablet, isMobile } = useContext(responsiveContext);
+  const { isDesktop, isTabletOrDesktop, isTablet, isMobile } =
+    useContext(responsiveContext);
 
   return (
-    <Container $isDesktop={isDesktop} $isTablet={isTablet}>
+    <Container
+      $isDesktop={isDesktop}
+      $isTabletOrDesktop={isTabletOrDesktop}
+      $isTablet={isTablet}
+      $isMobile={isMobile}
+    >
       <ImgBoxLarge
+        className="intro-img"
         initial="start"
         animate={isInView ? "end" : "start"}
         variants={imgVariants}
