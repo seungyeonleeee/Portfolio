@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { responsiveContext } from "../../../App";
 import { BadgeStyle } from "../../../styledComponents";
 
 const Container = styled(motion.li)`
   width: 430px;
   cursor: pointer;
   .img-box {
-    width: 430px;
-    height: 430px;
+    width: ${({ $isDesktop }) => ($isDesktop ? "430px" : "300px")};
+    height: ${({ $isDesktop }) => ($isDesktop ? "430px" : "300px")};
     border-radius: 20px;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
     background-color: var(--bg-light-gray);
@@ -23,7 +24,7 @@ const Container = styled(motion.li)`
     }
   }
   h3 {
-    font-size: 35px;
+    font-size: ${({ $isDesktop }) => ($isDesktop ? "35px" : "25px")};
     font-weight: 500;
     margin-bottom: 10px;
   }
@@ -54,15 +55,9 @@ const itemVariants = {
   },
 };
 
-const ProjectItem = ({
-  id,
-  skill,
-  title,
-  description,
-  tools,
-  onClick,
-  isAllView,
-}) => {
+const ProjectItem = ({ id, title, description, tools, onClick, isAllView }) => {
+  const { isDesktop } = useContext(responsiveContext);
+
   return (
     <Container
       variants={itemVariants}
@@ -72,6 +67,7 @@ const ProjectItem = ({
       onClick={onClick}
       {...(isAllView && { layout: "position" })}
       {...(!isAllView && { layoutId: `container-${id}` })}
+      $isDesktop={isDesktop}
     >
       <div className="img-box"></div>
       <div className="tools-group">

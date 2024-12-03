@@ -8,7 +8,14 @@ import { ImgBoxLarge } from "../../../styledComponents";
 // Styled
 const Container = styled.div`
   position: relative;
-  width: ${({ $isDesktop }) => ($isDesktop ? "597px" : "40%")};
+  width: ${({ $isDesktop, $isTabletOrDesktop, $isTablet }) =>
+    $isDesktop
+      ? "597px"
+      : $isTabletOrDesktop
+      ? "40%"
+      : $isTablet
+      ? "60%"
+      : "95%"};
   height: ${({ $isDesktop }) => ($isDesktop ? "550px" : "500px")};
   div {
     position: absolute;
@@ -16,8 +23,10 @@ const Container = styled.div`
       no-repeat;
     transition: background 0.5s;
     &.img-box-small {
-      width: ${({ $isDesktop }) => ($isDesktop ? "220px" : "180px")};
-      height: ${({ $isDesktop }) => ($isDesktop ? "160px" : "130px")};
+      width: ${({ $isDesktop, $isTablet }) =>
+        $isDesktop || $isTablet ? "220px" : "180px"};
+      height: ${({ $isDesktop, $isTablet }) =>
+        $isDesktop || $isTablet ? "160px" : "130px"};
       overflow: hidden;
       border: 2px solid var(--bg-dark-gray);
       border-radius: 10px;
@@ -27,6 +36,7 @@ const Container = styled.div`
 `;
 const ImgBox = styled(ImgBoxLarge)`
   width: ${({ $isDesktop }) => ($isDesktop ? "420px" : "100%")};
+  height: 100%;
   left: ${({ $isDesktop }) => ($isDesktop ? "53%" : "50%")};
   top: 50%;
   transform: translate(-50%, -50%);
@@ -34,16 +44,19 @@ const ImgBox = styled(ImgBoxLarge)`
 `;
 const ParallaxImgBoxLeft = styled(motion.div)`
   top: 20%;
-  left: ${({ $isDesktop }) => ($isDesktop ? "0" : "-10%")};
+  left: ${({ $isDesktop, $isTablet, $isMobile }) =>
+    $isDesktop ? "0" : $isTablet ? "-30%" : $isMobile ? "-5%" : "-10%"};
 `;
 const ParallaxImgBoxRight = styled(motion.div)`
   top: 0;
-  right: ${({ $isDesktop }) => ($isDesktop ? "0" : "-10%")};
+  right: ${({ $isDesktop, $isTablet, $isMobile }) =>
+    $isDesktop ? "0" : $isTablet ? "-20%" : $isMobile ? "-5%" : "-10%"};
 `;
 
 const ProcessImg = ({ currentIndex }) => {
   const containerRef = React.useRef(null);
-  const { isDesktop } = useContext(responsiveContext);
+  const { isDesktop, isTabletOrDesktop, isTablet, isMobile } =
+    useContext(responsiveContext);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -72,6 +85,8 @@ const ProcessImg = ({ currentIndex }) => {
     <Container
       ref={containerRef}
       $isDesktop={isDesktop}
+      $isTabletOrDesktop={isTabletOrDesktop}
+      $isTablet={isTablet}
       $bgimg={accordionItems[currentIndex]?.mainImg}
     >
       <ImgBox $isDesktop={isDesktop} />
@@ -80,12 +95,16 @@ const ProcessImg = ({ currentIndex }) => {
         style={{
           y: springLeftY,
         }}
+        $isTablet={isTablet}
+        $isMobile={isMobile}
       />
       <ParallaxImgBoxRight
         className="img-box-small"
         style={{
           y: springRightY,
         }}
+        $isTablet={isTablet}
+        $isMobile={isMobile}
       />
     </Container>
   );

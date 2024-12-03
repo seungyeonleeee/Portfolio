@@ -5,9 +5,9 @@ import { responsiveContext } from "../../../App";
 import { accordionItems } from "../../../utlis";
 
 const Container = styled.div`
-  width: ${({ $isDesktop, $isTablet }) =>
-    $isDesktop ? "520px" : $isTablet ? "50%" : "100%"};
-  height: ${({ $isTablet }) => ($isTablet ? "550px" : "auto")};
+  width: ${({ $isDesktop, $isTabletOrDesktop }) =>
+    $isDesktop ? "520px" : $isTabletOrDesktop ? "50%" : "100%"};
+  height: ${({ $isDesktop }) => ($isDesktop ? "550px" : "auto")};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -27,7 +27,7 @@ const Accordion = styled.ul`
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 30px;
+      padding: ${({ $isMobile }) => ($isMobile ? "0 10px" : "0 30px")};
       position: absolute;
       z-index: 1;
       top: 0;
@@ -59,15 +59,18 @@ const Accordion = styled.ul`
       }
     }
     .content {
+      width: 100%;
       overflow: hidden;
       margin-top: 100px;
-      padding: 0px 30px 30px;
+      padding: ${({ $isMobile }) =>
+        $isMobile ? "0px 10px 30px" : "0px 30px 30px"};
       transform-origin: top;
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s;
       p {
         white-space: pre-wrap;
+        word-break: keep-all;
         font: 400 16px/1.3 "Pretendard";
         color: var(--bg-dark-gray);
       }
@@ -97,7 +100,8 @@ const Accordion = styled.ul`
 
 const ProcessMenu = ({ activeIndex, onClickMenu }) => {
   const [contentHeight, setContentHeight] = useState({});
-  const { isDesktop, isTablet, isMobile } = useContext(responsiveContext);
+  const { isDesktop, isTabletOrDesktop, isMobile } =
+    useContext(responsiveContext);
 
   const updateContentHeights = () => {
     accordionItems.forEach((_, index) => {
@@ -122,7 +126,7 @@ const ProcessMenu = ({ activeIndex, onClickMenu }) => {
   }, []);
 
   return (
-    <Container $isDesktop={isDesktop} $isTablet={isTablet} $isMobile={isMobile}>
+    <Container $isDesktop={isDesktop} $isTabletOrDesktop={isTabletOrDesktop}>
       <Accordion $isMobile={isMobile}>
         {accordionItems.map((item, index) => (
           <motion.li

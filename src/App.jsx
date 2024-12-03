@@ -28,9 +28,9 @@ const App = () => {
     query: "(max-width: 1330px) and (min-width: 1000px)",
   });
   const isTablet = useMediaQuery({
-    query: "(max-width: 1000px) and (min-width: 840px)",
+    query: "(max-width: 1000px) and (min-width: 740px)",
   });
-  const isMobile = useMediaQuery({ query: "(max-width: 840px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 740px)" });
 
   useEffect(() => {
     const timer = setTimeout(() => {

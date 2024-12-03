@@ -19,7 +19,8 @@ const ProcessInner = styled(Inner)`
 const ProcessWrapper = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: ${({ $isTablet }) => ($isTablet ? "column" : "row")};
+  flex-direction: ${({ $isDesktop, $isTabletOrDesktop }) =>
+    $isDesktop || $isTabletOrDesktop ? "row" : "column"};
   justify-content: center;
   align-items: center;
   gap: ${({ $isDesktop }) => ($isDesktop ? "80px" : "40px")};
@@ -27,7 +28,7 @@ const ProcessWrapper = styled.div`
 `;
 
 const ProjectProcess = () => {
-  const { isDesktop, isTablet } = useContext(responsiveContext);
+  const { isDesktop, isTabletOrDesktop } = useContext(responsiveContext);
   const [activeIndex, setActiveIndex] = useState(0);
   const [lastActiveIndex, setLastActiveIndex] = useState(0);
 
@@ -41,7 +42,10 @@ const ProjectProcess = () => {
     <Container>
       <ProcessInner>
         <SectionTitle>Process Work</SectionTitle>
-        <ProcessWrapper $isDesktop={isDesktop} $isTablet={isTablet}>
+        <ProcessWrapper
+          $isDesktop={isDesktop}
+          $isTabletOrDesktop={isTabletOrDesktop}
+        >
           <ProcessMenu activeIndex={activeIndex} onClickMenu={onClickMenu} />
           <ProcessImg currentIndex={currentIndex} />
         </ProcessWrapper>

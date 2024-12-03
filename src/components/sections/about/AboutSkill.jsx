@@ -68,13 +68,14 @@ const Skill = styled.div`
   p {
     line-height: 1.3;
     color: var(--bg-dark-gray);
+    font-size: ${({ $isTablet }) => ($isTablet ? "14px" : "16px")};
   }
 `;
 
 const AboutSkill = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true });
-  const { isDesktop, isMobile } = useContext(responsiveContext);
+  const { isDesktop, isTablet, isMobile } = useContext(responsiveContext);
 
   return (
     <Container>
@@ -101,7 +102,11 @@ const AboutSkill = () => {
         >
           {skills?.map((skill, index) => (
             <StyledSwiperSlide key={index} $isMobile={isMobile}>
-              <Skill $isDesktop={isDesktop} $isMobile={isMobile}>
+              <Skill
+                $isDesktop={isDesktop}
+                $isTablet={isTablet}
+                $isMobile={isMobile}
+              >
                 <div className="skill-icon">
                   <img
                     src={`/images/skills/${skill.icon}.svg`}

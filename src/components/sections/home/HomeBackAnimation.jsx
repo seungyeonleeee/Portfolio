@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { responsiveContext } from "../../../App";
 import { AnimationWrapper } from "../../../styledComponents";
 
 // Styled
@@ -18,18 +19,56 @@ const Circle = styled(motion.span)`
   display: inline-block;
   border: 1px solid #eceae7;
   border-radius: 50%;
-
   &:nth-child(1) {
+    ${({ $isDesktop, $isMobile }) =>
+      $isDesktop
+        ? `
     width: 600px;
     height: 600px;
+    `
+        : $isMobile
+        ? `
+    width: 200px;
+    height: 200px;
+    `
+        : `
+    width: 400px;
+    height: 400px;
+    `}
   }
   &:nth-child(2) {
+    ${({ $isDesktop, $isMobile }) =>
+      $isDesktop
+        ? `
     width: 1200px;
     height: 1200px;
+    `
+        : $isMobile
+        ? `
+    width: 400px;
+    height: 400px;
+    `
+        : `
+    width: 800px;
+    height: 800px;
+    `}
   }
   &:nth-child(3) {
+    ${({ $isDesktop, $isMobile }) =>
+      $isDesktop
+        ? `
     width: 1700px;
     height: 1700px;
+    `
+        : $isMobile
+        ? `
+    width: 600px;
+    height: 600px;
+    `
+        : `
+    width: 1200px;
+    height: 1200px;
+    `}
   }
 `;
 
@@ -92,6 +131,7 @@ const circleVariants = {
 
 const HomeBackAnimation = () => {
   const [showShadow, setShowShadow] = useState(false);
+  const { isDesktop, isMobile } = useContext(responsiveContext);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -115,6 +155,8 @@ const HomeBackAnimation = () => {
             initial="start"
             animate={showShadow ? "shadow" : "visible"}
             custom={index}
+            $isDesktop={isDesktop}
+            $isMobile={isMobile}
           />
         ))}
       </Background>

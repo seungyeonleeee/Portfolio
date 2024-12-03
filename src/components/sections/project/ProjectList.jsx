@@ -23,20 +23,20 @@ const Container = styled.div`
   align-items: center;
   z-index: 1;
   overflow: hidden;
-  padding-top: 200px;
 `;
 const ListInner = styled(Inner)`
   height: 100vh;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
   gap: 20px;
 `;
 const ListTabMenu = styled.div`
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
   margin-bottom: 10px;
   ul {
     display: flex;

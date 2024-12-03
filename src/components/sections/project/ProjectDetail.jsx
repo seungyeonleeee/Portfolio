@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { responsiveContext } from "../../../App";
 import { projectLists } from "../../../utlis";
 import {
   Inner,
@@ -19,17 +20,27 @@ const DetailModal = styled(Modal)`
 const DetailInner = styled(Inner)`
   &.detail-header-inner {
     justify-content: space-between;
-    align-items: flex-end;
-    gap: 100px;
+    align-items: ${({ $isMobile }) => ($isMobile ? "center" : "flex-end")};
+    flex-direction: ${({ $isMobile }) => ($isMobile ? "column" : "row")};
+    gap: ${({ $isMobile }) => ($isMobile ? "30px" : "100px")};
   }
   &.detail-content-inner {
     flex-direction: column;
     gap: 60px;
   }
+  @media screen and (max-width: 1700px) {
+    width: 100%;
+    padding: 0 20px;
+  }
 `;
 const DetailHeader = styled.div`
-  margin-bottom: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: ${({ $isMobile }) => ($isMobile ? "50px" : "100px")};
   .detail-header-text {
+    text-align: ${({ $isMobile }) => ($isMobile ? "center" : "left")};
     .skill {
       ${BadgeStyle}
       color: var(--bg-dark-color);
@@ -37,8 +48,9 @@ const DetailHeader = styled.div`
     h2 {
       margin: 30px 0;
     }
-    .main-description {
+    p {
       font: 400 16px/1.5 "Pretendard";
+      word-break: keep-all;
       color: var(--bg-dark-gray);
     }
   }
@@ -70,13 +82,6 @@ const DetailHeader = styled.div`
             background: var(--bg-dark-gray);
             color: var(--bg-light-color);
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-            a {
-              svg {
-                path {
-                  fill: var(--bg-light-color);
-                }
-              }
-            }
           }
         }
       }
@@ -99,7 +104,8 @@ const DetailHeader = styled.div`
 `;
 const DetailImg = styled(motion.div)`
   width: 100%;
-  height: 700px;
+  height: ${({ $isTablet, $isMobile }) =>
+    $isTablet ? "500px" : $isMobile ? "300px" : "700px"};
   border-radius: 30px 30px 0 0;
   background-color: var(--bg-light-gray);
   box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.1);
@@ -110,7 +116,8 @@ const DetailContent = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  padding-top: 100px;
+  padding-top: ${({ $isMobile }) => ($isMobile ? "50px" : "100px")};
+  background: var(--bg-light-color);
   &::before {
     content: "";
     display: block;
@@ -124,18 +131,22 @@ const DetailContent = styled.div`
     border-radius: 30px 30px 0 0;
   }
   .detail-content-text {
+    text-align: ${({ $isMobile }) => ($isMobile ? "center" : "left")};
     h3 {
       font: 500 40px/1 "Poppins-Medium";
     }
     p {
-      font: 400 20px/1.5 "Pretendard";
+      font: ${({ $isMobile }) => ($isMobile ? "400 16px/1.5" : "400 20px/1.5")}
+        "Pretendard";
       margin: 30px 0 60px;
     }
     .tech-group {
-      width: 60%;
+      width: ${({ $isMobile }) => ($isMobile ? "80%" : "60%")};
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 30px;
+      margin: ${({ $isMobile }) => ($isMobile ? "0 auto" : "0")};
+      text-align: left;
       li {
         padding: 20px 0;
         h4 {
@@ -158,10 +169,11 @@ const DetailContent = styled.div`
   .detail-content-img {
     width: 100%;
     display: flex;
-    gap: 30px;
+    flex-direction: ${({ $isMobile }) => ($isMobile ? "column" : "row")};
+    gap: 20px;
     div {
-      flex: 1;
-      height: 600px;
+      width: 100%;
+      height: ${({ $isMobile }) => ($isMobile ? "300px" : "500px")};
       background: var(--bg-light-gray);
       border-radius: 30px;
     }
@@ -169,6 +181,8 @@ const DetailContent = styled.div`
 `;
 
 const ProjectDetail = ({ layoutId, isAllView }) => {
+  const { isTablet, isMobile } = useContext(responsiveContext);
+
   const selectedProject = projectLists.find(
     (project) => project.id === layoutId
   );
@@ -180,12 +194,12 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
   return (
     <ModalContainer>
       <DetailModal {...(!isAllView && { layoutId: `container-${layoutId}` })}>
-        <DetailHeader>
-          <DetailInner className="detail-header-inner">
+        <DetailHeader $isMobile={isMobile}>
+          <DetailInner className="detail-header-inner" $isMobile={isMobile}>
             <div className="detail-header-text">
               <span className="skill">{skill}</span>
               <SectionTitle>{title}</SectionTitle>
-              <motion.p>{description}</motion.p>
+              <p>{description}</p>
             </div>
             <div className="detail-header-btns">
               <ul className="detail-move-btns-inner">
@@ -219,11 +233,11 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
             </div>
           </DetailInner>
         </DetailHeader>
-        <DetailImg></DetailImg>
-        <DetailContent>
+        <DetailImg $isTablet={isTablet} $isMobile={isMobile}></DetailImg>
+        <DetailContent $isMobile={isMobile}>
           <DetailInner className="detail-content-inner">
             <div className="detail-content-text">
-              <h3>Description</h3>
+              <SectionTitle>Description</SectionTitle>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex
                 animi, soluta facilis non cum dolorum. Unde ex officiis eligendi

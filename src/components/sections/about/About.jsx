@@ -15,6 +15,14 @@ const upper = keyframes`
     transform: translateY(-80px);
   }
 `;
+const upperMobile = keyframes`
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-40px);
+  }
+`;
 
 // Styled
 const Container = styled.section`
@@ -26,13 +34,14 @@ const Container = styled.section`
   &::before {
     content: "";
     width: 100%;
-    height: 120px;
+    height: ${({ $isMobile }) => ($isMobile ? "80px" : "120px")};
     position: absolute;
     top: 0;
     left: 0;
     border-radius: 40px 40px 0 0;
     background: var(--bg-beige-color);
-    animation: ${upper} 0.8s 8.5s linear both;
+    animation: ${({ $isMobile }) => ($isMobile ? upperMobile : upper)} 0.8s 8.5s
+      linear both;
   }
 `;
 const AboutInner = styled(Inner)`
@@ -67,11 +76,11 @@ const About = () => {
     once: true,
     amount: 0.1,
   });
-  const { isDesktop, isTabletOrDesktop, isTablet } =
+  const { isDesktop, isTabletOrDesktop, isTablet, isMobile } =
     useContext(responsiveContext);
 
   return (
-    <Container ref={ref} id="about">
+    <Container ref={ref} id="about" $isMobile={isMobile}>
       <LineElement
         $isDesktop={isDesktop}
         $isTabletOrDesktop={isTabletOrDesktop}

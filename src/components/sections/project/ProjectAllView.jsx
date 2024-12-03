@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
+import { responsiveContext } from "../../../App";
 import {
   Inner,
   Overlay,
@@ -17,11 +18,16 @@ const AllViewInner = styled(Inner)`
   flex-direction: column;
   align-items: flex-start;
   gap: 40px;
+  @media screen and (max-width: 1700px) {
+    width: 100%;
+    padding: 0 20px;
+  }
 `;
 const ProjectTabMenu = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 40px;
+  gap: ${({ $isMobile }) => ($isMobile ? "20px" : "40px")};
   li {
     font: normal 18px/1em "Poppins-Regular";
     color: var(--bg-dark-gray);
@@ -35,14 +41,19 @@ const ProjectTabMenu = styled.ul`
 `;
 const ProjectListWrapper = styled.ul`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${({ $isTablet, $isMobile }) =>
+    $isTablet
+      ? "repeat(2, 1fr)"
+      : $isMobile
+      ? "repeat(1, 1fr)"
+      : "repeat(3, 1fr)"};
   column-gap: 30px;
   row-gap: 60px;
   li {
     width: 100%;
     .img-box {
       width: 100%;
-      height: 400px;
+      height: ${({ $isMobile }) => ($isMobile ? "350px" : "400px")};
       background: var(--bg-dark-gray);
     }
     .badge-group {
@@ -78,6 +89,7 @@ const ProjectAllView = ({ setIsAllView }) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
+  const { isTablet, isMobile } = useContext(responsiveContext);
 
   useEffect(() => {
     const filteredProjects =
@@ -100,10 +112,11 @@ const ProjectAllView = ({ setIsAllView }) => {
         animate="visible"
         exit="hidden"
         variants={modalVariants}
+        $isMobile={isMobile}
       >
         <AllViewInner>
           <SectionTitle>Featured Projects</SectionTitle>
-          <ProjectTabMenu>
+          <ProjectTabMenu $isMobile={isMobile}>
             {newArr.map((category) => (
               <li
                 key={category}
@@ -114,7 +127,7 @@ const ProjectAllView = ({ setIsAllView }) => {
               </li>
             ))}
           </ProjectTabMenu>
-          <ProjectListWrapper>
+          <ProjectListWrapper $isTablet={isTablet} $isMobile={isMobile}>
             <AnimatePresence>
               {filteredProjects.map((list) => (
                 <ProjectItem

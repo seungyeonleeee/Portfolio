@@ -35,10 +35,10 @@ export const ButtonStyle = `
   justify-content: center;
   align-items: center;
   gap: 5px;
-  padding: 15px 40px;
   letter-spacing: 0;
   border: 1px solid var(--bg-accent-color);
   border-radius: 54px;
+  padding: 15px 40px;
   color: var(--bg-accent-color);
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
@@ -91,11 +91,11 @@ export const ModalContainer = styled(motion.section)`
   width: 100vw;
   height: 100%;
   overflow-y: auto;
-  z-index: 2;
+  z-index: 3;
 `;
 export const Modal = styled(motion.div)`
   ${wrapper}
-  width: 80vw;
+  width: ${({ $isDesktop }) => ($isDesktop ? "80vw" : "92vw")};
   height: auto;
   position: relative;
   padding: 120px 0;
@@ -106,8 +106,8 @@ export const Modal = styled(motion.div)`
   z-index: 3;
   button {
     position: absolute;
-    top: 50px;
-    right: 50px;
+    top: ${({ $isMobile }) => ($isMobile ? "20px" : "50px")};
+    right: ${({ $isMobile }) => ($isMobile ? "20px" : "50px")};
   }
 `;
 export const ImgBoxLarge = styled(motion.div)`
@@ -150,9 +150,16 @@ export const MainElement = styled(motion.div)`
   justify-content: center;
   align-items: center;
   span {
-    font: 300 300px/1 "Poppins-Light";
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     position: absolute;
+    font-family: "Poppins-Light";
+    font-size: 300px;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    @media screen and (max-width: 1330px) {
+      font-size: 250px;
+    }
+    @media screen and (max-width: 740px) {
+      font-size: 150px;
+    }
   }
 `;
 export const TextGroup = styled(motion.div)`
@@ -166,6 +173,9 @@ export const TextGroup = styled(motion.div)`
     left: 10%;
     h1 {
       font-size: 70px;
+      @media screen and (max-width: 1000px) {
+        font-size: 40px;
+      }
       span {
         color: var(--bg-accent-color);
         text-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
@@ -173,6 +183,9 @@ export const TextGroup = styled(motion.div)`
     }
     p {
       font-size: 22px;
+      @media screen and (max-width: 1000px) {
+        font-size: 18px;
+      }
     }
   }
   &.sub-title {
@@ -182,11 +195,18 @@ export const TextGroup = styled(motion.div)`
       &::first-letter {
         color: var(--bg-accent-color);
       }
+      @media screen and (max-width: 1000px) {
+        font: 300 30px/1 "Poppins-Light";
+      }
     }
     p {
       font-size: 18px;
+      line-height: 1.3;
       color: var(--bg-dark-gray);
       white-space: pre-wrap;
+      @media screen and (max-width: 1000px) {
+        font-size: 15px;
+      }
     }
     &[data-index="0"] {
       top: 15%;
@@ -199,6 +219,24 @@ export const TextGroup = styled(motion.div)`
     &[data-index="2"] {
       top: 70%;
       right: 10%;
+    }
+    @media screen and (max-width: 1000px) {
+      gap: 6px;
+      &[data-index="0"] {
+        width: 100%;
+        top: 20%;
+        left: 50%;
+      }
+      &[data-index="1"] {
+        top: 65%;
+        left: 5%;
+        text-align: start;
+      }
+      &[data-index="2"] {
+        top: 80%;
+        right: 5%;
+        text-align: end;
+      }
     }
   }
 `;
