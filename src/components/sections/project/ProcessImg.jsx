@@ -31,6 +31,10 @@ const Container = styled.div`
       border: 2px solid var(--bg-dark-gray);
       border-radius: 10px;
       box-shadow: 30px 30px 50px rgba(0, 0, 0, 0.2);
+      @media (max-width: 440px) {
+        width: 160px;
+        height: 110px;
+      }
     }
   }
 `;

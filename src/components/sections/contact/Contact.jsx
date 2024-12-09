@@ -15,10 +15,12 @@ const Container = styled.section`
   position: relative;
   background: var(--bg-beige-color);
   .copyright {
+    width: 100%;
     position: absolute;
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
+    text-align: center;
     color: var(--bg-dark-gray);
     font: normal 12px/1 "Poppins-Regular";
   }
@@ -59,7 +61,8 @@ const Title = styled.div`
     }
   }
   .contact-title-mobile {
-    font: normal 100px/1 "Poppins-Light";
+    font-family: "Poppins-Light";
+    font-size: ${({ $isTablet }) => ($isTablet ? "90px" : "60px")};
     color: var(--bg-accent-color);
   }
 `;
@@ -87,7 +90,8 @@ const titleVariants = {
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.4, fallback: true });
-  const { isDesktop, isTabletOrDesktop } = useContext(responsiveContext);
+  const { isDesktop, isTabletOrDesktop, isTablet } =
+    useContext(responsiveContext);
 
   return (
     <Container
@@ -97,7 +101,7 @@ const Contact = () => {
       $isTabletOrDesktop={isTabletOrDesktop}
     >
       <ContactInner $isDesktop={isDesktop}>
-        <Title>
+        <Title $isTablet={isTablet}>
           {isDesktop || isTabletOrDesktop ? (
             <div className="contact-title-desktop">
               <motion.svg

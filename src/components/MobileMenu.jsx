@@ -77,8 +77,28 @@ const Navigation = styled(motion.ul)`
   z-index: 3;
   li {
     a {
-      font: normal 2.5rem/1 "Poppins-Medium";
+      font: normal 2rem/1 "Poppins-Medium";
       text-transform: uppercase;
+      position: relative;
+      &::before {
+        content: "";
+        width: 0;
+        height: 0;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        transition: all 0.3s ease;
+      }
+      &:hover {
+        &::before {
+          width: 50px;
+          height: 50px;
+        }
+      }
     }
   }
 `;
@@ -201,4 +221,4 @@ const MobileMenu = () => {
   );
 };
 
-export default MobileMenu;
+export default React.memo(MobileMenu);

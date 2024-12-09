@@ -12,6 +12,7 @@ const Container = styled.section`
   position: relative;
   ${wrapper}
   cursor: default;
+  overflow-x: hidden;
 `;
 
 const Home = () => {

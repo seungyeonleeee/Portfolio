@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
-import { delay, motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { responsiveContext } from "../../../App";
 import {
   AnimationWrapper,
   Inner,
@@ -60,8 +61,49 @@ const secondCVariants = {
     transition: { delay: 2.6, duration: 0.8, type: "tween" },
   },
 };
+const mobileFadeVariants = {
+  enter: {
+    x: 20,
+    translateX: "-50%",
+    opacity: 0,
+    filter: "blur(10px)",
+    transition: {
+      duration: 0.7,
+    },
+  },
+  center: {
+    x: 0,
+    translateX: "-50%",
+    opacity: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.7,
+    },
+  },
+  exit: {
+    x: -20,
+    translateX: "-50%",
+    opacity: 0,
+    filter: "blur(10px)",
+    transition: {
+      duration: 0.7,
+    },
+  },
+};
 
 const HomeFinalAnimation = () => {
+  const { isMobile } = useContext(responsiveContext);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (isMobile) {
+      const timer = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % titles.length);
+      }, 5000);
+      return () => clearInterval(timer);
+    }
+  }, [isMobile]);
+
   return (
     <AnimationWrapper
       variants={WrapperVariants}
@@ -90,20 +132,37 @@ const HomeFinalAnimation = () => {
             C
           </motion.span>
         </MainElement>
-        {titles.map((title, index) => (
-          <TextGroup
-            key={index}
-            className="sub-title"
-            data-index={index}
-            custom={{ coord: { x: 20, y: 0 }, index, delay: index * 0.5 + 1 }}
-            initial="start"
-            animate="end"
-            variants={FadeInVariants}
-          >
-            <h2>{title.keyword}</h2>
-            <p>{title.description}</p>
-          </TextGroup>
-        ))}
+        {isMobile ? (
+          <AnimatePresence>
+            <TextGroup
+              key={currentIndex}
+              className="sub-title sub-title-mobile"
+              data-index={currentIndex}
+              variants={mobileFadeVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+            >
+              <h2>{titles[currentIndex].keyword}</h2>
+              <p>{titles[currentIndex].description}</p>
+            </TextGroup>
+          </AnimatePresence>
+        ) : (
+          titles.map((title, index) => (
+            <TextGroup
+              key={index}
+              className="sub-title sub-title-desktop"
+              data-index={index}
+              custom={{ coord: { x: 20, y: 0 }, index, delay: index * 0.5 + 1 }}
+              initial="start"
+              animate="end"
+              variants={FadeInVariants}
+            >
+              <h2>{title.keyword}</h2>
+              <p>{title.description}</p>
+            </TextGroup>
+          ))
+        )}
       </HomeInner>
     </AnimationWrapper>
   );

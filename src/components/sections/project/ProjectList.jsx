@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { responsiveContext } from "../../../App";
 import Button from "../../Button";
 import { Inner, SectionTitle, Overlay } from "../../../styledComponents";
 import { projectCategory, projectLists } from "../../../utlis";
@@ -36,14 +37,17 @@ const ListTabMenu = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: ${({ $isMobile }) => ($isMobile ? "20px" : "40px")};
   margin-bottom: 10px;
   ul {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 40px;
+    row-gap: 10px;
+    column-gap: ${({ $isMobile }) => ($isMobile ? "20px" : "40px")};
     li {
-      font: 400 18px/1 "Poppins-Regular";
+      font-family: "Poppins-Regular";
+      font-size: ${({ $isMobile }) => ($isMobile ? "16px" : "18px")};
       cursor: pointer;
       transition: color 0.3s;
       &.active {
@@ -73,41 +77,46 @@ const ProjectList = () => {
   const slideRef = useRef(null);
   const triggerRef = useRef(null);
   const [containerHeight, setContainerHeight] = useState(0);
+  const { isDesktop, isMobile } = useContext(responsiveContext);
 
   useEffect(() => {
-    setContainerHeight(slideRef?.current.scrollWidth);
+    const calculateWidth = () => {
+      const itemWidth = isDesktop ? 430 : 300;
+      const totalWidth = itemWidth * projectLists.length;
+      setContainerHeight(totalWidth);
 
-    const fixedTl = gsap.fromTo(
-      slideRef.current,
-      { x: 0 },
-      {
-        x: -slideRef?.current.scrollWidth + 1200,
-        ease: "none",
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: "top top",
-          end: `+=${slideRef?.current.scrollWidth - 1000}px`,
-          scrub: 1,
-          pin: ".project-list-container",
-          pinSpacing: false,
-          onUpdate: (self) => {
-            const scrollProgress = self.progress;
-            const itemWidth =
-              slideRef.current.scrollWidth / projectLists.length;
-            const currentIndex = Math.floor(
-              (scrollProgress * slideRef.current.scrollWidth) / itemWidth
-            );
-            const currentProject = projectLists[currentIndex];
+      const fixedTl = gsap.fromTo(
+        slideRef.current,
+        { x: 0 },
+        {
+          x: -totalWidth + (isDesktop ? itemWidth * 2 : 0),
+          ease: "none",
+          scrollTrigger: {
+            trigger: triggerRef.current,
+            start: "top top",
+            end: `+=${totalWidth - (isDesktop ? 1000 : 800)}px`,
+            scrub: 1,
+            pin: ".project-list-container",
+            pinSpacing: false,
+            onUpdate: (self) => {
+              const scrollProgress = self.progress;
+              const currentIndex = Math.floor(
+                (scrollProgress * totalWidth) / itemWidth
+              );
+              const currentProject = projectLists[currentIndex];
 
-            if (currentProject) {
-              setActiveCategory(currentProject.skill);
-            }
+              if (currentProject) {
+                setActiveCategory(currentProject.skill);
+              }
+            },
           },
-        },
-      }
-    );
-    return () => fixedTl.kill();
-  }, []);
+        }
+      );
+      return () => fixedTl.kill();
+    };
+
+    calculateWidth();
+  }, [isMobile]);
 
   const handleClick = (id) => {
     setSelectedId(id);
@@ -118,7 +127,7 @@ const ProjectList = () => {
       <Container className="project-list-container" ref={triggerRef}>
         <ListInner>
           <SectionTitle>Featured Projects</SectionTitle>
-          <ListTabMenu>
+          <ListTabMenu $isMobile={isMobile}>
             <ul>
               {projectCategory.map((category, index) => (
                 <li

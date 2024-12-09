@@ -143,6 +143,7 @@ export const SectionTitle = styled.h2`
   letter-spacing: 0;
   @media screen and (max-width: 840px) {
     font-size: 30px;
+    margin-bottom: 0;
   }
 `;
 export const MainElement = styled(motion.div)`
@@ -167,10 +168,13 @@ export const TextGroup = styled(motion.div)`
   flex-direction: column;
   gap: 30px;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   &.main-title {
     top: 20%;
     left: 10%;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 100px rgba(255, 255, 255, 1);
+    border-radius: 20px;
     h1 {
       font-size: 70px;
       @media screen and (max-width: 1000px) {
@@ -204,38 +208,48 @@ export const TextGroup = styled(motion.div)`
       line-height: 1.3;
       color: var(--bg-dark-gray);
       white-space: pre-wrap;
-      @media screen and (max-width: 1000px) {
-        font-size: 15px;
+      @media screen and (max-width: 1100px) {
+        font-size: 16px;
       }
     }
-    &[data-index="0"] {
-      top: 15%;
-      left: 50%;
-    }
-    &[data-index="1"] {
-      top: 70%;
-      left: 10%;
-    }
-    &[data-index="2"] {
-      top: 70%;
-      right: 10%;
-    }
-    @media screen and (max-width: 1000px) {
-      gap: 6px;
+    &.sub-title-desktop {
       &[data-index="0"] {
-        width: 100%;
-        top: 20%;
+        top: 15%;
         left: 50%;
       }
       &[data-index="1"] {
-        top: 65%;
-        left: 5%;
-        text-align: start;
+        top: 70%;
+        left: 10%;
       }
       &[data-index="2"] {
-        top: 80%;
-        right: 5%;
-        text-align: end;
+        top: 70%;
+        right: 10%;
+      }
+      @media screen and (max-width: 1100px) {
+        gap: 10px;
+        &[data-index="0"] {
+          width: 100%;
+          top: 20%;
+          left: 50%;
+        }
+        &[data-index="1"] {
+          top: 65%;
+          left: 5%;
+          text-align: start;
+        }
+        &[data-index="2"] {
+          top: 75%;
+          right: 5%;
+          text-align: end;
+        }
+      }
+    }
+    &.sub-title-mobile {
+      width: 100%;
+      top: 70%;
+      left: 50%;
+      @media screen and (max-width: 1100px) {
+        gap: 10px;
       }
     }
   }

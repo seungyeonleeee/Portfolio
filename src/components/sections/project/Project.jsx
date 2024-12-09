@@ -30,6 +30,12 @@ const LineElement = styled.article`
   position: absolute;
   top: -40px;
   right: 0;
+  width: 100%;
+  max-width: 640px;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const Project = () => {
@@ -37,8 +43,8 @@ const Project = () => {
     <Container id="project">
       <LineElement>
         <svg
-          width="640"
-          height="1791"
+          // width="640"
+          // height="1791"
           viewBox="0 0 640 1791"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

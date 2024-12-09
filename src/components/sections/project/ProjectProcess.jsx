@@ -5,8 +5,11 @@ import ProcessMenu from "./ProcessMenu";
 import ProcessImg from "./ProcessImg";
 import { SectionTitle, Inner } from "../../../styledComponents";
 
-const Container = styled(Inner)`
+const Container = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 120px 0;
   h2 {
     text-align: center;

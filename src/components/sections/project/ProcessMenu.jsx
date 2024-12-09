@@ -15,11 +15,14 @@ const Container = styled.div`
 const Accordion = styled.ul`
   li {
     width: 100%;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: 1px solid var(--bg-light-gray);
+    margin: 0 auto;
     position: relative;
+    border-top: 1px solid var(--bg-light-gray);
+    background: var(--bg-light-color);
     transition: border-color 0.3s;
     .title {
       width: 100%;

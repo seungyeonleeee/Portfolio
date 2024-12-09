@@ -18,7 +18,7 @@ const Container = styled(motion.li)`
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 40px 0 20px;
+    margin: ${({ $isMobile }) => ($isMobile ? "20px 0 10px" : "40px 0 20px")};
     span {
       ${BadgeStyle}
     }
@@ -56,7 +56,7 @@ const itemVariants = {
 };
 
 const ProjectItem = ({ id, title, description, tools, onClick, isAllView }) => {
-  const { isDesktop } = useContext(responsiveContext);
+  const { isDesktop, isMobile } = useContext(responsiveContext);
 
   return (
     <Container
@@ -68,6 +68,7 @@ const ProjectItem = ({ id, title, description, tools, onClick, isAllView }) => {
       {...(isAllView && { layout: "position" })}
       {...(!isAllView && { layoutId: `container-${id}` })}
       $isDesktop={isDesktop}
+      $isMobile={isMobile}
     >
       <div className="img-box"></div>
       <div className="tools-group">

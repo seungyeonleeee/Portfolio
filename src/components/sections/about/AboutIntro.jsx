@@ -70,7 +70,7 @@ const imgVariants = {
     transition: {
       duration: 1,
       ease: "easeInOut",
-      delay: 0.8,
+      delay: 0.4,
     },
   },
   type: "tween",
