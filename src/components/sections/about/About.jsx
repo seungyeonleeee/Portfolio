@@ -38,7 +38,6 @@ const UpperElement = styled.div`
   background: var(--bg-beige-color);
   animation: ${({ $isMobile }) => ($isMobile ? upperMobile : upper)} 0.8s 8.5s
     linear both;
-  z-index: 1;
 `;
 const ContentContainer = styled.div`
   ${wrapper}

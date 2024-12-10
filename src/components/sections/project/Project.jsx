@@ -32,6 +32,7 @@ const LineElement = styled.article`
   right: 0;
   width: 100%;
   max-width: 640px;
+  min-width: 300px;
   svg {
     width: 100%;
     height: 100%;

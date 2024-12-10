@@ -19,8 +19,8 @@ const Container = styled.div`
   height: ${({ $isDesktop }) => ($isDesktop ? "550px" : "500px")};
   div {
     position: absolute;
-    background: url(/images/${(props) => props.$bgimg || ""}) center/cover
-      no-repeat;
+    /* background: url(/images/${(props) => props.$bgimg || ""}) center/cover
+      no-repeat; */
     transition: background 0.5s;
     &.img-box-small {
       width: ${({ $isDesktop, $isTablet }) =>
@@ -45,16 +45,22 @@ const ImgBox = styled(ImgBoxLarge)`
   top: 50%;
   transform: translate(-50%, -50%);
   border: 3px solid var(--bg-dark-gray);
+  background: url(/images/${(props) => props.$bgimg || ""}) center/cover
+    no-repeat;
 `;
 const ParallaxImgBoxLeft = styled(motion.div)`
   top: 20%;
   left: ${({ $isDesktop, $isTablet, $isMobile }) =>
     $isDesktop ? "0" : $isTablet ? "-30%" : $isMobile ? "-5%" : "-10%"};
+  background: url(/images/${(props) => props.$bgimg || ""}) center/cover
+    no-repeat;
 `;
 const ParallaxImgBoxRight = styled(motion.div)`
   top: 0;
   right: ${({ $isDesktop, $isTablet, $isMobile }) =>
     $isDesktop ? "0" : $isTablet ? "-20%" : $isMobile ? "-5%" : "-10%"};
+  background: url(/images/${(props) => props.$bgimg || ""}) center/cover
+    no-repeat;
 `;
 
 const ProcessImg = ({ currentIndex }) => {
@@ -91,9 +97,11 @@ const ProcessImg = ({ currentIndex }) => {
       $isDesktop={isDesktop}
       $isTabletOrDesktop={isTabletOrDesktop}
       $isTablet={isTablet}
-      $bgimg={accordionItems[currentIndex]?.mainImg}
     >
-      <ImgBox $isDesktop={isDesktop} />
+      <ImgBox
+        $bgimg={accordionItems[currentIndex]?.mainImg}
+        $isDesktop={isDesktop}
+      />
       <ParallaxImgBoxLeft
         className="img-box-small"
         style={{
@@ -101,6 +109,7 @@ const ProcessImg = ({ currentIndex }) => {
         }}
         $isTablet={isTablet}
         $isMobile={isMobile}
+        $bgimg={accordionItems[currentIndex]?.subImg01}
       />
       <ParallaxImgBoxRight
         className="img-box-small"
@@ -109,6 +118,7 @@ const ProcessImg = ({ currentIndex }) => {
         }}
         $isTablet={isTablet}
         $isMobile={isMobile}
+        $bgimg={accordionItems[currentIndex]?.subImg02}
       />
     </Container>
   );

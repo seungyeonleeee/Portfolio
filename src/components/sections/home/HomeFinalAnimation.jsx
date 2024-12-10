@@ -99,7 +99,7 @@ const HomeFinalAnimation = () => {
     if (isMobile) {
       const timer = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % titles.length);
-      }, 5000);
+      }, 4000);
       return () => clearInterval(timer);
     }
   }, [isMobile]);

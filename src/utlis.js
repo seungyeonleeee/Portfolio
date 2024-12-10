@@ -150,9 +150,9 @@ export const accordionItems = [
     title: "Presentation",
     content:
       "프로젝트 발표에서 피드백을 수집하고, 이를 기반으로 개선 사항을 반영하여 결과물을 수정했습니다.\n평가에 맞춰 팀원들과 함께 프로젝트의 완성도를 한 단계 높였습니다.",
-    mainImg: "process_development01.jpg",
-    subImg01: "process_development02.jpg",
-    subImg02: "process_development03.jpg",
+    mainImg: "process_presentation01.jpg",
+    subImg01: "process_presentation02.jpg",
+    subImg02: "process_presentation03.jpg",
   },
 ];
 // Project List

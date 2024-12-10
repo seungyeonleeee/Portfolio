@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import Header from "./components/Header";
 import Home from "./components/sections/home/Home";
@@ -8,8 +9,8 @@ import Project from "./components/sections/project/Project";
 import Contact from "./components/sections/contact/Contact";
 import LoadingScreen from "./components/LoadingScreen";
 import ProjectAllView from "./components/sections/project/ProjectAllView";
-import { useMediaQuery } from "react-responsive";
-import { createContext } from "react";
+import TopButton from "./components/TopButton";
+
 export const responsiveContext = createContext();
 
 const Container = styled.main`
@@ -67,6 +68,7 @@ const App = () => {
         <About />
         <Project />
         <Contact />
+        <TopButton />
       </Container>
     </responsiveContext.Provider>
   );
