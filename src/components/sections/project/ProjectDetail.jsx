@@ -30,7 +30,7 @@ const DetailInner = styled(Inner)`
   }
   @media screen and (max-width: 1700px) {
     width: 100%;
-    padding: 0 20px;
+    padding: 0 4%;
   }
 `;
 const DetailHeader = styled.div`
@@ -41,7 +41,7 @@ const DetailHeader = styled.div`
   margin-bottom: ${({ $isMobile }) => ($isMobile ? "50px" : "100px")};
   .detail-header-text {
     text-align: ${({ $isMobile }) => ($isMobile ? "center" : "left")};
-    .skill {
+    .category {
       ${BadgeStyle}
       color: var(--bg-dark-color);
     }
@@ -49,7 +49,7 @@ const DetailHeader = styled.div`
       margin: 30px 0;
     }
     p {
-      font: 400 16px/1.5 "Pretendard";
+      font: 400 17px/1.5 "Pretendard";
       word-break: keep-all;
       color: var(--bg-dark-gray);
     }
@@ -66,6 +66,7 @@ const DetailHeader = styled.div`
       align-items: center;
       gap: 5px;
       li {
+        width: 100%;
         transition: all 0.3s;
         a {
           ${ButtonStyle}
@@ -90,7 +91,7 @@ const DetailHeader = styled.div`
           a {
             width: 100%;
             flex: 1;
-            padding: 10px 20px;
+            padding: 15px 20px;
           }
         }
       }
@@ -131,6 +132,7 @@ const DetailContent = styled.div`
     border-radius: 30px 30px 0 0;
   }
   .detail-content-text {
+    width: 100%;
     text-align: ${({ $isMobile }) => ($isMobile ? "center" : "left")};
     h3 {
       font: 500 40px/1 "Poppins-Medium";
@@ -139,6 +141,7 @@ const DetailContent = styled.div`
       font: ${({ $isMobile }) => ($isMobile ? "400 16px/1.5" : "400 20px/1.5")}
         "Pretendard";
       margin: 30px 0 60px;
+      word-break: keep-all;
     }
     .tech-group {
       width: ${({ $isMobile }) => ($isMobile ? "80%" : "60%")};
@@ -156,12 +159,20 @@ const DetailContent = styled.div`
           color: var(--bg-dark-gray);
           margin-bottom: 20px;
         }
-        .tool-group {
+        .content-group {
           display: flex;
-          gap: 10px;
-          span {
-            font: 400 18px/1 "Pretendard";
+          gap: 5px;
+          span::after {
+            content: "|";
+            margin-left: 5px;
+            color: var(--bg-light-gray);
           }
+          span:last-child::after {
+            content: "";
+          }
+        }
+        span {
+          font: 400 18px/1 "Pretendard";
         }
       }
     }
@@ -189,7 +200,15 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
 
   if (!selectedProject) return null;
 
-  const { skill, tools, title, description } = selectedProject;
+  const {
+    category,
+    tech_group,
+    title,
+    description,
+    detail_description,
+    github,
+    figma,
+  } = selectedProject;
 
   return (
     <ModalContainer>
@@ -197,24 +216,28 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
         <DetailHeader $isMobile={isMobile}>
           <DetailInner className="detail-header-inner" $isMobile={isMobile}>
             <div className="detail-header-text">
-              <span className="skill">{skill}</span>
+              <span className="category">{category}</span>
               <SectionTitle>{title}</SectionTitle>
               <p>{description}</p>
             </div>
             <div className="detail-header-btns">
               <ul className="detail-move-btns-inner">
-                <li>
-                  <a>
-                    Figma
-                    <ArrowIcon />
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    Github
-                    <ArrowIcon />
-                  </a>
-                </li>
+                {github && (
+                  <li>
+                    <a href={github} target="_blank">
+                      Github
+                      <ArrowIcon />
+                    </a>
+                  </li>
+                )}
+                {figma && (
+                  <li>
+                    <a href={figma} target="_blank">
+                      Figma
+                      <ArrowIcon />
+                    </a>
+                  </li>
+                )}
               </ul>
               {/* <ul className="move-github-btn">
                 <li>
@@ -238,33 +261,22 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
           <DetailInner className="detail-content-inner">
             <div className="detail-content-text">
               <SectionTitle>Description</SectionTitle>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex
-                animi, soluta facilis non cum dolorum. Unde ex officiis eligendi
-                eveniet magnam culpa nam aperiam, voluptate molestias dolores,
-                est, minus iure.
-              </p>
+              <p>{detail_description}</p>
               <ul className="tech-group">
-                <li>
-                  <h4>Type</h4>
-                  <span>Responsive</span>
-                </li>
-                <li>
-                  <h4>Tools</h4>
-                  <div className="tool-group">
-                    {tools.map((tool, index) => (
-                      <span key={index}>{tool}</span>
-                    ))}
-                  </div>
-                </li>
-                <li>
-                  <h4>Type</h4>
-                  <span>Responsive</span>
-                </li>
-                <li>
-                  <h4>Type</h4>
-                  <span>Responsive</span>
-                </li>
+                {tech_group.map((tech, index) => (
+                  <li key={index}>
+                    <h4>{tech.title}</h4>
+                    {Array.isArray(tech.content) ? (
+                      <div className="content-group">
+                        {tech.content.map((item, i) => (
+                          <span key={i}>{item}</span>
+                        ))}
+                      </div>
+                    ) : (
+                      <span>{tech.content}</span>
+                    )}
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="detail-content-img">

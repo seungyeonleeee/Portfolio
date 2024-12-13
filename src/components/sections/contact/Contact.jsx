@@ -60,9 +60,10 @@ const Title = styled.div`
       width: 100%;
     }
   }
-  .contact-title-mobile {
+  .contact-title {
     font-family: "Poppins-Light";
-    font-size: ${({ $isTablet }) => ($isTablet ? "90px" : "60px")};
+    font-size: ${({ $isTabletOrDesktop, $isTablet }) =>
+      $isTabletOrDesktop ? "120px" : $isTablet ? "90px" : "60px"};
     color: var(--bg-accent-color);
   }
 `;
@@ -101,8 +102,8 @@ const Contact = () => {
       $isTabletOrDesktop={isTabletOrDesktop}
     >
       <ContactInner $isDesktop={isDesktop}>
-        <Title $isTablet={isTablet}>
-          {isDesktop || isTabletOrDesktop ? (
+        <Title $isTabletOrDesktop={isTabletOrDesktop} $isTablet={isTablet}>
+          {isDesktop ? (
             <div className="contact-title-desktop">
               <motion.svg
                 viewBox="0 0 1628 155"
@@ -187,7 +188,7 @@ const Contact = () => {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               variants={titleVariants}
-              className="contact-title-mobile"
+              className="contact-title"
             >
               Contact Me
             </motion.h2>

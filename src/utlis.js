@@ -110,7 +110,7 @@ export const skills = [
   {
     icon: "github",
     title: "GitHub",
-    description: "GitHub를 활용해 버전 관리를 효율적으로 수행합니다.",
+    description: "GitHub를 활용해 전 관리를 효율적으로 수행합니다.",
   },
   {
     icon: "figma",
@@ -160,66 +160,246 @@ export const projectCategory = ["Javascript", "React", "Typescript", "Node.js"];
 export const projectLists = [
   {
     id: 1,
-    skill: "Javascript",
-    title: "Hyndai E&C",
+    category: "Javascript",
+    title: "Joonggonara",
     description:
-      "현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지 전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.",
-    tools: ["Anime.js", "Fullpage"],
+      "기존 중고나라 페이지의 단조로운 구성을 순수 바닐라 자바스크립트만을 사용하여 사용자를 중심으로 한 편리한 UI로 개선했습니다.",
+    detail_description:
+      "이벤트 배너와 경매 기능을 추가하여 사용자 경험을 향상시키고 데이터를 지속적으로 관리하기 위해 로컬스토리지(Local Storage)를 활용했습니다.",
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Local Storage", "SCSS", "Github"],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Team",
+      },
+      {
+        title: "Pages",
+        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
+      },
+    ],
+    link: "https://seungyeon-emotion-diary0923.web.app/",
+    github: "https://github.com/park-ria/teamproject-corea",
+    figma:
+      "https://www.figma.com/design/cCLe6dVPpVkbsNCGpv8pLU/COREA-Team-project?node-id=12-22&t=459UhM4CVa4lG1wJ-1",
   },
   {
     id: 2,
-    skill: "Javascript",
+    category: "Javascript",
+    title: "Hyndai E&C",
+    description:
+      "현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지 전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.",
+    detail_description:
+      "여러 라이브러리들을 활용해 시각적인 역동성을 더하고, 부드러운 페이지 전환과 슬라이드 기능을 구현했습니다.",
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Anime.js", "Fullpage", "Featherlight"],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Individual",
+      },
+      {
+        title: "Pages",
+        content: ["Main Page", "Modal"],
+      },
+    ],
+    link: "https://seungyeon-emotion-diary0923.web.app/",
+    github:
+      "https://github.com/seungyeonleeee/Frontend-Class/tree/main/custom_project/hyundaiec",
+  },
+  {
+    id: 3,
+    category: "Javascript",
     title: "INNISFREE",
     description:
       "브랜드의 자연 친화적인 이미지를 돋보이게 하는 부드러운 슬라이드와 인터랙션을 구현했습니다.",
     tools: ["Slick"],
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Local Storage", "SCSS", "Github"],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Team",
+      },
+      {
+        title: "Pages",
+        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
+      },
+    ],
   },
   {
-    id: 3,
-    skill: "React",
+    id: 4,
+    category: "Javascript",
     title: "Hyndai E&C",
     description:
       "현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지 전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.",
     tools: ["Anime.js", "Fullpage"],
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Local Storage", "SCSS", "Github"],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Team",
+      },
+      {
+        title: "Pages",
+        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
+      },
+    ],
   },
   {
-    id: 4,
-    skill: "React",
+    id: 5,
+    category: "React",
     title: "INNISFREE",
     description:
       "브랜드의 자연 친화적인 이미지를 돋보이게 하는 부드러운 슬라이드와 인터랙션을 구현했습니다.",
     tools: ["Slick"],
-  },
-  {
-    id: 5,
-    skill: "Typescript",
-    title: "To Do List",
-    description:
-      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
-    tools: ["Vite", "Styled-components"],
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["SCSS", "Github"],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Team",
+      },
+      {
+        title: "Pages",
+        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
+      },
+    ],
   },
   {
     id: 6,
-    skill: "Typescript",
-    title: "Emotion Diary",
-    description:
-      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
-    tools: ["Motion", "Styled-components"],
-  },
-  {
-    id: 7,
-    skill: "Node.js",
+    category: "Typescript",
     title: "To Do List",
     description:
       "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
     tools: ["Vite", "Styled-components"],
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Local Storage", "SCSS", "Github"],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Team",
+      },
+      {
+        title: "Pages",
+        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
+      },
+    ],
   },
   {
-    id: 8,
-    skill: "Node.js",
+    id: 7,
+    category: "Typescript",
     title: "Emotion Diary",
     description:
       "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
     tools: ["Motion", "Styled-components"],
+    link: "https://seungyeon-emotion-diary0923.web.app/",
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Local Storage", "SCSS", "Github"],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Team",
+      },
+      {
+        title: "Pages",
+        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
+      },
+    ],
+  },
+  {
+    id: 8,
+    category: "Node.js",
+    title: "To Do List",
+    description:
+      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
+    tools: ["Vite", "Styled-components"],
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Local Storage", "SCSS", "Github"],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Team",
+      },
+      {
+        title: "Pages",
+        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
+      },
+    ],
+  },
+  {
+    id: 9,
+    category: "Node.js",
+    title: "Emotion Diary",
+    description:
+      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
+    tools: ["Motion", "Styled-components"],
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Local Storage", "SCSS", "Github"],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Team",
+      },
+      {
+        title: "Pages",
+        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
+      },
+    ],
   },
 ];

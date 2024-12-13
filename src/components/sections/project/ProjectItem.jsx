@@ -55,7 +55,14 @@ const itemVariants = {
   },
 };
 
-const ProjectItem = ({ id, title, description, tools, onClick, isAllView }) => {
+const ProjectItem = ({
+  id,
+  title,
+  description,
+  tech_group,
+  onClick,
+  isAllView,
+}) => {
   const { isDesktop, isMobile } = useContext(responsiveContext);
 
   return (
@@ -72,9 +79,13 @@ const ProjectItem = ({ id, title, description, tools, onClick, isAllView }) => {
     >
       <div className="img-box"></div>
       <div className="tools-group">
-        {tools.map((tool, index) => (
-          <span key={index}>{tool}</span>
-        ))}
+        {isDesktop
+          ? tech_group[0].content.map((tool, index) => (
+              <span key={index}>{tool}</span>
+            ))
+          : tech_group[0].content
+              .slice(0, 2)
+              .map((tool, index) => <span key={index}>{tool}</span>)}
       </div>
       <h3>{title}</h3>
       <p>{description}</p>

@@ -106,7 +106,7 @@ const ProjectList = () => {
               const currentProject = projectLists[currentIndex];
 
               if (currentProject) {
-                setActiveCategory(currentProject.skill);
+                setActiveCategory(currentProject.category);
               }
             },
           },

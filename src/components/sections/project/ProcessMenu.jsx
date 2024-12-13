@@ -22,7 +22,8 @@ const Accordion = styled.ul`
     margin: 0 auto;
     position: relative;
     border-top: 1px solid var(--bg-light-gray);
-    background: var(--bg-light-color);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
     transition: border-color 0.3s;
     .title {
       width: 100%;

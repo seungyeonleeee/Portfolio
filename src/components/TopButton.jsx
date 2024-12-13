@@ -6,26 +6,46 @@ const Container = styled(motion.div)`
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0px;
   cursor: pointer;
-  z-index: 10;
-  svg {
-    width: 25px;
-    height: 25px;
-    color: var(--bg-accent-color);
+  z-index: 2;
+  svg,
+  circle {
+    stroke: var(--bg-accent-color);
+    stroke-width: 2;
   }
 `;
 
+const buttonVariants = {
+  show: {
+    y: 0,
+    opacity: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.5,
+      ease: "linear",
+    },
+  },
+  hidden: {
+    y: 20,
+    opacity: 0,
+    filter: "blur(5px)",
+    transition: {
+      duration: 0.5,
+      ease: "linear",
+    },
+  },
+};
+
 const TopButton = () => {
   const [scrollProgress, setScrollProgress] = React.useState(0);
-
-  // 원의 반지름
-  const radius = 45;
-  // 원의 둘레 계산
+  const [show, setShow] = useState(false);
+  const radius = 23;
   const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
@@ -35,6 +55,8 @@ const TopButton = () => {
       const currentScroll = window.scrollY;
       const progress = (currentScroll / totalScroll) * 100;
       setScrollProgress(progress);
+
+      setShow(currentScroll > 300);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -43,32 +65,40 @@ const TopButton = () => {
 
   return (
     <Container
+      variants={buttonVariants}
+      initial="hidden"
+      animate={show ? "show" : "hidden"}
       onClick={() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }}
     >
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <circle
-          cx="50"
-          cy="50"
+      <svg viewBox="-2 -2 54 54" xmlns="http://www.w3.org/2000/svg">
+        <motion.circle
+          cx="25"
+          cy="25"
           r={radius}
-          stroke="#3498db"
-          strokeWidth="5"
           fill="none"
           strokeDasharray={circumference}
-          strokeDashoffset={
-            circumference - (circumference * scrollProgress) / 100
-          }
-          transform="rotate(-90, 50, 50)"
-          style={{ transition: "stroke-dashoffset 0.1s linear" }}
+          initial={{ strokeDashoffset: circumference }}
+          animate={{
+            strokeDashoffset:
+              circumference - (circumference * scrollProgress) / 100,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 40,
+            damping: 14,
+          }}
+          transform="rotate(-90, 25, 25)"
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="arrow-ap"
+          viewBox="0 0 22 22"
+          x="14"
+          y="12"
+          width="22"
+          height="22"
         >
           <path
             strokeLinecap="round"

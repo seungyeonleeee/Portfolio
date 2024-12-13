@@ -20,7 +20,7 @@ const AllViewInner = styled(Inner)`
   gap: 40px;
   @media screen and (max-width: 1700px) {
     width: 100%;
-    padding: 0 20px;
+    padding: 0 4%;
   }
 `;
 const ProjectTabMenu = styled.ul`
@@ -53,7 +53,8 @@ const ProjectListWrapper = styled.ul`
     width: 100%;
     .img-box {
       width: 100%;
-      height: ${({ $isMobile }) => ($isMobile ? "350px" : "400px")};
+      height: ${({ $isTabletOrDesktop, $isMobile }) =>
+        $isTabletOrDesktop || $isMobile ? "350px" : "400px"};
       background: var(--bg-dark-gray);
     }
     .badge-group {
@@ -89,7 +90,8 @@ const ProjectAllView = ({ setIsAllView }) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
-  const { isTablet, isMobile } = useContext(responsiveContext);
+  const { isTabletOrDesktop, isTablet, isMobile } =
+    useContext(responsiveContext);
 
   useEffect(() => {
     const filteredProjects =
@@ -127,7 +129,11 @@ const ProjectAllView = ({ setIsAllView }) => {
               </li>
             ))}
           </ProjectTabMenu>
-          <ProjectListWrapper $isTablet={isTablet} $isMobile={isMobile}>
+          <ProjectListWrapper
+            $isTabletOrDesktop={isTabletOrDesktop}
+            $isTablet={isTablet}
+            $isMobile={isMobile}
+          >
             <AnimatePresence>
               {filteredProjects.map((list) => (
                 <ProjectItem

@@ -68,6 +68,8 @@ export const BadgeStyle = `
   border: 1px solid var(--bg-light-gray);
   border-radius: 20px;
   color: var(--bg-dark-gray);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
   font: 500 14px/1 "Poppins-Medium";
   letter-spacing: 0;
   text-align: center;
@@ -156,7 +158,7 @@ export const MainElement = styled(motion.div)`
     font-size: 300px;
     text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     @media screen and (max-width: 1330px) {
-      font-size: 250px;
+      font-size: 230px;
     }
     @media screen and (max-width: 740px) {
       font-size: 150px;
