@@ -13,6 +13,15 @@ const Container = styled(motion.li)`
     border-radius: 20px;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
     background-color: var(--bg-light-gray);
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      filter: grayscale(100%);
+      transition: filter 0.3s;
+    }
   }
   .tools-group {
     display: flex;
@@ -27,11 +36,23 @@ const Container = styled(motion.li)`
     font-size: ${({ $isDesktop }) => ($isDesktop ? "35px" : "25px")};
     font-weight: 500;
     margin-bottom: 10px;
+    color: var(--bg-dark-color);
+    transition: color 0.3s;
   }
   p {
     color: var(--bg-dark-gray);
     line-height: 1.3;
     word-break: keep-all;
+  }
+  &:hover {
+    .img-box {
+      img {
+        filter: grayscale(0);
+      }
+    }
+    h3 {
+      color: var(--bg-accent-color);
+    }
   }
 `;
 
@@ -60,6 +81,7 @@ const ProjectItem = ({
   title,
   description,
   tech_group,
+  main_img,
   onClick,
   isAllView,
 }) => {
@@ -77,7 +99,9 @@ const ProjectItem = ({
       $isDesktop={isDesktop}
       $isMobile={isMobile}
     >
-      <div className="img-box"></div>
+      <div className="img-box">
+        <img src={`/images/projects/${main_img}`} alt={title} />
+      </div>
       <div className="tools-group">
         {isDesktop
           ? tech_group[0].content.map((tool, index) => (

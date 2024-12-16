@@ -19,8 +19,6 @@ const Container = styled.div`
   height: ${({ $isDesktop }) => ($isDesktop ? "550px" : "500px")};
   div {
     position: absolute;
-    /* background: url(/images/${(props) => props.$bgimg || ""}) center/cover
-      no-repeat; */
     transition: background 0.5s;
     &.img-box-small {
       width: ${({ $isDesktop, $isTablet }) =>

@@ -97,7 +97,9 @@ const ProjectAllView = ({ setIsAllView }) => {
     const filteredProjects =
       selectedCategory === "All"
         ? projectLists
-        : projectLists.filter((project) => project.skill === selectedCategory);
+        : projectLists.filter(
+            (project) => project.category === selectedCategory
+          );
     setFilteredProjects(filteredProjects);
   }, [selectedCategory]);
 

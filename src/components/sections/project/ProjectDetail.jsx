@@ -110,6 +110,8 @@ const DetailImg = styled(motion.div)`
   border-radius: 30px 30px 0 0;
   background-color: var(--bg-light-gray);
   box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.1);
+  background: url(/images/projects/${(props) => props.$bgimg || ""})
+    center/cover no-repeat fixed;
 `;
 const DetailContent = styled.div`
   width: 100%;
@@ -119,6 +121,7 @@ const DetailContent = styled.div`
   position: relative;
   padding-top: ${({ $isMobile }) => ($isMobile ? "50px" : "100px")};
   background: var(--bg-light-color);
+  box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.2);
   &::before {
     content: "";
     display: block;
@@ -138,13 +141,13 @@ const DetailContent = styled.div`
       font: 500 40px/1 "Poppins-Medium";
     }
     p {
-      font: ${({ $isMobile }) => ($isMobile ? "400 16px/1.5" : "400 20px/1.5")}
+      font: ${({ $isMobile }) => ($isMobile ? "400 16px/1.5" : "400 18px/1.5")}
         "Pretendard";
       margin: 30px 0 60px;
       word-break: keep-all;
     }
     .tech-group {
-      width: ${({ $isMobile }) => ($isMobile ? "80%" : "60%")};
+      width: ${({ $isDesktop }) => ($isDesktop ? "60%" : "100%")};
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 30px;
@@ -157,10 +160,11 @@ const DetailContent = styled.div`
           letter-spacing: 0;
           text-transform: uppercase;
           color: var(--bg-dark-gray);
-          margin-bottom: 20px;
+          margin-bottom: 15px;
         }
         .content-group {
           display: flex;
+          flex-wrap: wrap;
           gap: 5px;
           span::after {
             content: "|";
@@ -172,7 +176,7 @@ const DetailContent = styled.div`
           }
         }
         span {
-          font: 400 18px/1 "Pretendard";
+          font: 400 18px/1 "Poppins-Regular";
         }
       }
     }
@@ -186,13 +190,20 @@ const DetailContent = styled.div`
       width: 100%;
       height: ${({ $isMobile }) => ($isMobile ? "300px" : "500px")};
       background: var(--bg-light-gray);
+      border: 1px solid var(--bg-light-gray);
       border-radius: 30px;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
 `;
 
 const ProjectDetail = ({ layoutId, isAllView }) => {
-  const { isTablet, isMobile } = useContext(responsiveContext);
+  const { isDesktop, isTablet, isMobile } = useContext(responsiveContext);
 
   const selectedProject = projectLists.find(
     (project) => project.id === layoutId
@@ -206,8 +217,12 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
     title,
     description,
     detail_description,
-    github,
-    figma,
+    link,
+    github_url,
+    figma_url,
+    main_img,
+    sub_img01,
+    sub_img02,
   } = selectedProject;
 
   return (
@@ -222,33 +237,25 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
             </div>
             <div className="detail-header-btns">
               <ul className="detail-move-btns-inner">
-                {github && (
+                {github_url && (
                   <li>
-                    <a href={github} target="_blank">
+                    <a href={github_url} target="_blank">
                       Github
                       <ArrowIcon />
                     </a>
                   </li>
                 )}
-                {figma && (
+                {figma_url && (
                   <li>
-                    <a href={figma} target="_blank">
+                    <a href={figma_url} target="_blank">
                       Figma
                       <ArrowIcon />
                     </a>
                   </li>
                 )}
               </ul>
-              {/* <ul className="move-github-btn">
-                <li>
-                  <a>
-                    Github
-                    <ArrowIcon />
-                  </a>
-                </li>
-              </ul> */}
               <span className="move-page-btn">
-                <a>
+                <a href={link} target="_blank">
                   View Web Page
                   <ArrowIcon />
                 </a>
@@ -256,8 +263,12 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
             </div>
           </DetailInner>
         </DetailHeader>
-        <DetailImg $isTablet={isTablet} $isMobile={isMobile}></DetailImg>
-        <DetailContent $isMobile={isMobile}>
+        <DetailImg
+          $isTablet={isTablet}
+          $isMobile={isMobile}
+          $bgimg={main_img}
+        ></DetailImg>
+        <DetailContent $isDesktop={isDesktop} $isMobile={isMobile}>
           <DetailInner className="detail-content-inner">
             <div className="detail-content-text">
               <SectionTitle>Description</SectionTitle>
@@ -280,8 +291,22 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
               </ul>
             </div>
             <div className="detail-content-img">
-              <div className="img-box"></div>
-              <div className="img-box"></div>
+              {sub_img01 && (
+                <div className="img-box">
+                  <img
+                    src={`/images/projects/${sub_img01}`}
+                    alt={`${title}-subImg01`}
+                  />
+                </div>
+              )}
+              {sub_img02 && (
+                <div className="img-box">
+                  <img
+                    src={`/images/projects/${sub_img02}`}
+                    alt={`${title}-subImg02`}
+                  />
+                </div>
+              )}
             </div>
           </DetailInner>
         </DetailContent>

@@ -126,33 +126,33 @@ export const accordionItems = [
     title: "Planning",
     content:
       "WBS 일정표를 기반으로 체계적으로 진행 일정을 수립했습니다.\n또한, 사용자를 이해하기 위해 페르소나를 작성하고, 정보 구조(IA)를 체계적으로 설계하여 프로젝트의 방향성을 명확히 설정했습니다.",
-    mainImg: "process_planning01.jpg",
-    subImg01: "process_planning02.jpg",
-    subImg02: "process_planning03.jpg",
+    mainImg: "/process/process_planning01.jpg",
+    subImg01: "/process/process_planning02.jpg",
+    subImg02: "/process/process_planning03.jpg",
   },
   {
     title: "Design",
     content:
       "Figma를 활용해 와이어프레임을 제작하고, UI/UX 디자인을 완성했습니다.\n디자인 과정에서 팀원들과 협업하여 실시간 피드백과 의견 교환을 통해 사용자 중심의 디자인을 구현했습니다.",
-    mainImg: "process_design01.jpg",
-    subImg01: "process_design02.jpg",
-    subImg02: "process_design03.jpg",
+    mainImg: "/process/process_design01.jpg",
+    subImg01: "/process/process_design02.jpg",
+    subImg02: "/process/process_design03.jpg",
   },
   {
     title: "Development",
     content:
       "GitHub를 통해 코드를 버전 관리하며, 브랜치를 나누어 작업을 분배했습니다.\nPull Request와 코드 리뷰를 통해 협업 품질을 높였으며, 팀원들과 적극적으로 소통하며 개발을 진행했습니다.",
-    mainImg: "process_development01.jpg",
-    subImg01: "process_development02.jpg",
-    subImg02: "process_development03.jpg",
+    mainImg: "/process/process_development01.jpg",
+    subImg01: "/process/process_development02.jpg",
+    subImg02: "/process/process_development03.jpg",
   },
   {
     title: "Presentation",
     content:
       "프로젝트 발표에서 피드백을 수집하고, 이를 기반으로 개선 사항을 반영하여 결과물을 수정했습니다.\n평가에 맞춰 팀원들과 함께 프로젝트의 완성도를 한 단계 높였습니다.",
-    mainImg: "process_presentation01.jpg",
-    subImg01: "process_presentation02.jpg",
-    subImg02: "process_presentation03.jpg",
+    mainImg: "/process/process_presentation01.jpg",
+    subImg01: "/process/process_presentation02.jpg",
+    subImg02: "/process/process_presentation03.jpg",
   },
 ];
 // Project List
@@ -177,17 +177,20 @@ export const projectLists = [
       },
       {
         title: "Type",
-        content: "Team",
+        content: "Team Project",
       },
       {
         title: "Pages",
         content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
       },
     ],
-    link: "https://seungyeon-emotion-diary0923.web.app/",
-    github: "https://github.com/park-ria/teamproject-corea",
-    figma:
+    link: "https://junggonara-8874f.web.app/",
+    github_url: "https://github.com/park-ria/teamproject-corea",
+    figma_url:
       "https://www.figma.com/design/cCLe6dVPpVkbsNCGpv8pLU/COREA-Team-project?node-id=12-22&t=459UhM4CVa4lG1wJ-1",
+    main_img: "Joonggonara_main01.jpg",
+    sub_img01: "Joonggonara_sub01.jpg",
+    sub_img02: "Joonggonara_sub02.jpg",
   },
   {
     id: 2,
@@ -208,7 +211,7 @@ export const projectLists = [
       },
       {
         title: "Type",
-        content: "Individual",
+        content: "Individual Project",
       },
       {
         title: "Pages",
@@ -216,7 +219,7 @@ export const projectLists = [
       },
     ],
     link: "https://seungyeon-emotion-diary0923.web.app/",
-    github:
+    github_url:
       "https://github.com/seungyeonleeee/Frontend-Class/tree/main/custom_project/hyundaiec",
   },
   {
@@ -237,7 +240,7 @@ export const projectLists = [
       },
       {
         title: "Type",
-        content: "Team",
+        content: "Team Project",
       },
       {
         title: "Pages",
@@ -349,6 +352,12 @@ export const projectLists = [
         content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
       },
     ],
+    link: "https://seungyeon-emotion-diary0923.web.app/",
+    github_url:
+      "https://github.com/seungyeonleeee/Frontend-Class/tree/main/custom_project/emotiondiaryapp",
+    main_img: "emotionDiary_main01.jpg",
+    sub_img01: "emotionDiary_sub01.jpg",
+    sub_img02: "emotionDiary_sub02.jpg",
   },
   {
     id: 8,

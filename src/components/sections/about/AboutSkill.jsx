@@ -96,7 +96,6 @@ const AboutSkill = () => {
           }}
           pagination={{
             clickable: true,
-            dynamicBullets: true,
           }}
           modules={[Autoplay, Pagination]}
         >
