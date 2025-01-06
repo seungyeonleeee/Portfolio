@@ -17,7 +17,7 @@ const Circle = styled(motion.span)`
   top: 50%;
   left: 50%;
   display: inline-block;
-  border: 1px solid #eceae7;
+  border: 1px solid #d4d3d1;
   border-radius: 50%;
   &:nth-child(1) {
     ${({ $isDesktop, $isMobile }) =>
@@ -107,12 +107,12 @@ const circleVariants = {
     x: "-50%",
     y: "-50%",
     boxShadow: [
-      "0px 0px 0px rgba(240, 239, 238, 0)",
-      "30px -10px 50px rgba(240, 239, 238, 0.8)",
-      "10px 30px 50px rgba(240, 239, 238, 0.8)",
-      "-30px 10px 50px rgba(240, 239, 238, 0.8)",
-      "-10px -30px 50px rgba(240, 239, 238, 0.8)",
-      "30px -10px 50px rgba(240, 239, 238, 0.8)",
+      "0px 0px 0px rgba(232, 232, 232, 0.8)",
+      "30px -10px 50px rgba(232, 232, 232, 0.8)",
+      "10px 30px 50px rgba(232, 232, 232, 0.8)",
+      "-30px 10px 50px rgba(232, 232, 232,0.8)",
+      "-10px -30px 50px rgba(232, 232, 232, 0.8)",
+      "30px -10px 50px rgba(232, 232, 232,0.8)",
     ],
     transition: {
       delay: index * 0.8,

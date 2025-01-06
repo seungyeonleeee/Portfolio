@@ -52,6 +52,7 @@ const App = () => {
       <Container>
         <GlobalStyles />
         {/* <LoadingScreen /> */}
+
         {/* {isLoading ? (
           <LoadingScreen />
         ) : (
@@ -63,6 +64,7 @@ const App = () => {
             <Contact />
           </>
         )} */}
+
         <Header />
         <Home />
         <About />

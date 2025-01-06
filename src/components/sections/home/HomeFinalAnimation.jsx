@@ -8,7 +8,7 @@ import {
   TextGroup,
   MainElement,
 } from "../../../styledComponents";
-import { titles } from "../../../utlis";
+import { titles } from "../../../utils";
 
 // Styled
 const HomeInner = styled(Inner)`

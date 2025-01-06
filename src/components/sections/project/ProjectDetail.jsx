@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { responsiveContext } from "../../../App";
-import { projectLists } from "../../../utlis";
+import { projectLists } from "../../../utils";
 import {
   Inner,
   ModalContainer,
@@ -18,6 +17,9 @@ const DetailModal = styled(Modal)`
   flex-direction: column;
 `;
 const DetailInner = styled(Inner)`
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 4%;
   &.detail-header-inner {
     justify-content: space-between;
     align-items: ${({ $isMobile }) => ($isMobile ? "center" : "flex-end")};
@@ -27,10 +29,6 @@ const DetailInner = styled(Inner)`
   &.detail-content-inner {
     flex-direction: column;
     gap: 60px;
-  }
-  @media screen and (max-width: 1700px) {
-    width: 100%;
-    padding: 0 4%;
   }
 `;
 const DetailHeader = styled.div`
@@ -78,6 +76,9 @@ const DetailHeader = styled.div`
               fill: var(--bg-dark-gray);
             }
           }
+          &::before {
+            background: var(--bg-dark-gray);
+          }
           &:hover,
           &:active {
             background: var(--bg-dark-gray);
@@ -91,7 +92,7 @@ const DetailHeader = styled.div`
           a {
             width: 100%;
             flex: 1;
-            padding: 15px 20px;
+            padding: 12px 20px;
           }
         }
       }
@@ -111,7 +112,7 @@ const DetailImg = styled(motion.div)`
   background-color: var(--bg-light-gray);
   box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.1);
   background: url(/images/projects/${(props) => props.$bgimg || ""})
-    center/cover no-repeat fixed;
+    center/cover no-repeat;
 `;
 const DetailContent = styled.div`
   width: 100%;
@@ -134,12 +135,21 @@ const DetailContent = styled.div`
     transform: translateY(-100%);
     border-radius: 30px 30px 0 0;
   }
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 120px;
+    background: var(--bg-light-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+    border-radius: 0 0 30px 30px;
+  }
   .detail-content-text {
     width: 100%;
     text-align: ${({ $isMobile }) => ($isMobile ? "center" : "left")};
-    h3 {
-      font: 500 40px/1 "Poppins-Medium";
-    }
     p {
       font: ${({ $isMobile }) => ($isMobile ? "400 16px/1.5" : "400 18px/1.5")}
         "Pretendard";
@@ -147,7 +157,8 @@ const DetailContent = styled.div`
       word-break: keep-all;
     }
     .tech-group {
-      width: ${({ $isDesktop }) => ($isDesktop ? "60%" : "100%")};
+      width: ${({ $isDesktop }) => ($isDesktop ? "80%" : "100%")};
+      min-width: 350px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 30px;
@@ -157,7 +168,7 @@ const DetailContent = styled.div`
         padding: 20px 0;
         h4 {
           font: 500 14px/1 "Poppins-Regular";
-          letter-spacing: 0;
+          letter-spacing: 1px;
           text-transform: uppercase;
           color: var(--bg-dark-gray);
           margin-bottom: 15px;
@@ -190,9 +201,11 @@ const DetailContent = styled.div`
       width: 100%;
       height: ${({ $isMobile }) => ($isMobile ? "300px" : "500px")};
       background: var(--bg-light-gray);
-      border: 1px solid var(--bg-light-gray);
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
       border-radius: 30px;
       overflow: hidden;
+      position: relative;
+      z-index: 1;
       img {
         width: 100%;
         height: 100%;
@@ -227,7 +240,10 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
 
   return (
     <ModalContainer>
-      <DetailModal {...(!isAllView && { layoutId: `container-${layoutId}` })}>
+      <DetailModal
+        {...(!isAllView && { layoutId: `container-${layoutId}` })}
+        $isDesktop={isDesktop}
+      >
         <DetailHeader $isMobile={isMobile}>
           <DetailInner className="detail-header-inner" $isMobile={isMobile}>
             <div className="detail-header-text">

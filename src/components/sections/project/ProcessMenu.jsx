@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { responsiveContext } from "../../../App";
-import { accordionItems } from "../../../utlis";
+import { accordionItems } from "../../../utils";
 
 const Container = styled.div`
-  width: ${({ $isDesktop, $isTabletOrDesktop }) =>
-    $isDesktop ? "520px" : $isTabletOrDesktop ? "50%" : "100%"};
+  width: 100%;
+  max-width: 520px;
   height: ${({ $isDesktop }) => ($isDesktop ? "550px" : "auto")};
   display: flex;
   flex-direction: column;
@@ -22,6 +22,8 @@ const Accordion = styled.ul`
     margin: 0 auto;
     position: relative;
     border-top: 1px solid var(--bg-light-gray);
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
     transition: border-color 0.3s;
@@ -47,8 +49,21 @@ const Accordion = styled.ul`
           color: var(--bg-dark-gray);
         }
         h4 {
+          height: 30px;
+          position: relative;
           color: var(--bg-dark-color);
-          transition: color 0.3s;
+          transition: all 0.6s;
+          &::before {
+            content: attr(data-menu);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            color: var(--bg-accent-color);
+            overflow: hidden;
+            transition: all 0.6s;
+          }
         }
       }
       .title-arrow {
@@ -61,6 +76,16 @@ const Accordion = styled.ul`
           transition: transform 0.3s;
         }
       }
+      &:hover {
+        .title-inner {
+          h4 {
+            color: transparent;
+            &::before {
+              height: 100%;
+            }
+          }
+        }
+      }
     }
     .content {
       width: 100%;
@@ -71,6 +96,8 @@ const Accordion = styled.ul`
       transform-origin: top;
       opacity: 0;
       pointer-events: none;
+      border-radius: 0 0 20px 20px;
+      overflow: hidden;
       transition: all 0.3s;
       p {
         white-space: pre-wrap;
@@ -130,7 +157,7 @@ const ProcessMenu = ({ activeIndex, onClickMenu }) => {
   }, []);
 
   return (
-    <Container $isDesktop={isDesktop} $isTabletOrDesktop={isTabletOrDesktop}>
+    <Container $isDesktop={isDesktop}>
       <Accordion $isMobile={isMobile}>
         {accordionItems.map((item, index) => (
           <motion.li
@@ -144,7 +171,7 @@ const ProcessMenu = ({ activeIndex, onClickMenu }) => {
             <div className="title">
               <div className="title-inner">
                 <span>{index + 1} /</span>
-                <h4>{item.title}</h4>
+                <h4 data-menu={item.title}>{item.title}</h4>
               </div>
               <div className="title-arrow">
                 <svg

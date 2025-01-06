@@ -7,7 +7,7 @@ import "swiper/swiper-bundle.css";
 import { Autoplay, Pagination } from "swiper/modules";
 import { responsiveContext } from "../../../App";
 import { wrapper } from "../../../styledComponents";
-import { skills } from "../../../utlis";
+import { skills } from "../../../utils";
 
 // Styled
 const Container = styled.div`

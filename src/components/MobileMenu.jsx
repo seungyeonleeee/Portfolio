@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { motion, useCycle, useInView } from "framer-motion";
-import { navMenus } from "../utlis";
+import { navMenus } from "../utils";
 
 // Styled
 const Trigger = styled.button`
@@ -53,6 +53,7 @@ const Overlay = styled(motion.div)`
   box-shadow: 0 0 1000px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
 `;
 const Background = styled(motion.div)`
   position: absolute;
@@ -80,11 +81,12 @@ const Navigation = styled(motion.ul)`
       font: normal 2rem/1 "Poppins-Medium";
       text-transform: uppercase;
       position: relative;
+      transition: all 0.3s;
       &::before {
         content: "";
         width: 0;
         height: 0;
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(255, 72, 31, 0.4);
         border-radius: 50%;
         position: absolute;
         top: 50%;
@@ -94,6 +96,7 @@ const Navigation = styled(motion.ul)`
         transition: all 0.3s ease;
       }
       &:hover {
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         &::before {
           width: 50px;
           height: 50px;

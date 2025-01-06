@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { responsiveContext } from "../../../App";
 import Button from "../../Button";
 import { Inner, SectionTitle, Overlay } from "../../../styledComponents";
-import { projectCategory, projectLists } from "../../../utlis";
+import { projectLists } from "../../../utils";
 import ProjectItem from "./ProjectItem";
 import ProjectAllView from "./ProjectAllView";
 import ProjectDetail from "./ProjectDetail";
@@ -31,31 +31,6 @@ const ListInner = styled(Inner)`
   align-items: flex-start;
   gap: 20px;
 `;
-const ListTabMenu = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: ${({ $isMobile }) => ($isMobile ? "20px" : "40px")};
-  margin-bottom: 10px;
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    row-gap: 10px;
-    column-gap: ${({ $isMobile }) => ($isMobile ? "20px" : "40px")};
-    li {
-      font-family: "Poppins-Regular";
-      font-size: ${({ $isMobile }) => ($isMobile ? "16px" : "18px")};
-      cursor: pointer;
-      transition: color 0.3s;
-      &.active {
-        color: var(--bg-accent-color);
-      }
-    }
-  }
-`;
 const ProjectWrapper = styled.div`
   width: 100%;
   pointer-events: all;
@@ -72,7 +47,6 @@ const ProjectWrapper = styled.div`
 const ProjectList = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [isAllView, setIsAllView] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("Javascript");
   gsap.registerPlugin(ScrollTrigger);
   const slideRef = useRef(null);
   const triggerRef = useRef(null);
@@ -97,18 +71,7 @@ const ProjectList = () => {
             end: `+=${totalWidth - (isDesktop ? 1000 : 800)}px`,
             scrub: 1,
             pin: ".project-list-container",
-            pinSpacing: false,
-            onUpdate: (self) => {
-              const scrollProgress = self.progress;
-              const currentIndex = Math.floor(
-                (scrollProgress * totalWidth) / itemWidth
-              );
-              const currentProject = projectLists[currentIndex];
-
-              if (currentProject) {
-                setActiveCategory(currentProject.category);
-              }
-            },
+            pinSpacing: true,
           },
         }
       );
@@ -127,19 +90,7 @@ const ProjectList = () => {
       <Container className="project-list-container" ref={triggerRef}>
         <ListInner>
           <SectionTitle>Featured Projects</SectionTitle>
-          <ListTabMenu $isMobile={isMobile}>
-            <ul>
-              {projectCategory.map((category, index) => (
-                <li
-                  key={index}
-                  className={category === activeCategory ? "active" : null}
-                >
-                  {category}
-                </li>
-              ))}
-            </ul>
-            <Button text={"See All Projects"} setIsAllView={setIsAllView} />
-          </ListTabMenu>
+          <Button text={"See All Projects"} setIsAllView={setIsAllView} />
           <ProjectWrapper>
             <ul ref={slideRef}>
               {projectLists.map((project) => (

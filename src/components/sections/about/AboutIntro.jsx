@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { responsiveContext } from "../../../App";
 import { wrapper, ImgBoxLarge, SectionTitle } from "../../../styledComponents";
-import { introData } from "../../../utlis";
+import { introData } from "../../../utils";
 
 const Container = styled.div`
   ${wrapper}
@@ -11,9 +11,9 @@ const Container = styled.div`
   flex-direction: ${({ $isTablet, $isMobile }) =>
     $isTablet || $isMobile ? "column" : "row"};
   .intro-img {
-    width: ${({ $isDesktop, $isTabletOrDesktop, $isTablet }) =>
-      $isDesktop || $isTablet ? "420px" : $isTabletOrDesktop ? "40%" : "330px"};
-    height: ${({ $isMobile }) => ($isMobile ? "470px" : "550px")};
+    max-width: 420px;
+    width: 80%;
+    height: ${({ $isMobile }) => ($isMobile ? "420px" : "550px")};
   }
 `;
 const TextBox = styled(motion.ul)`
@@ -86,16 +86,10 @@ const textVariants = {
 };
 
 const AboutIntro = ({ isInView }) => {
-  const { isDesktop, isTabletOrDesktop, isTablet, isMobile } =
-    useContext(responsiveContext);
+  const { isDesktop, isTablet, isMobile } = useContext(responsiveContext);
 
   return (
-    <Container
-      $isDesktop={isDesktop}
-      $isTabletOrDesktop={isTabletOrDesktop}
-      $isTablet={isTablet}
-      $isMobile={isMobile}
-    >
+    <Container $isDesktop={isDesktop} $isTablet={isTablet} $isMobile={isMobile}>
       <ImgBoxLarge
         className="intro-img"
         initial="start"

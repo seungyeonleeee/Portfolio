@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { motion, useAnimation, useScroll } from "framer-motion";
 import { responsiveContext } from "../App";
-import { navMenus } from "../utlis";
+import { navMenus } from "../utils";
 import { Inner } from "../styledComponents";
 import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";

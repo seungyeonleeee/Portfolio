@@ -9,7 +9,7 @@ import {
   Modal,
   SectionTitle,
 } from "../../../styledComponents";
-import { projectCategory, projectLists } from "../../../utlis";
+import { projectCategory, projectLists } from "../../../utils";
 import ProjectItem from "./ProjectItem";
 import Button from "../../Button";
 import ProjectDetail from "./ProjectDetail";
@@ -17,25 +17,42 @@ import ProjectDetail from "./ProjectDetail";
 const AllViewInner = styled(Inner)`
   flex-direction: column;
   align-items: flex-start;
-  gap: 40px;
+  gap: 30px;
   @media screen and (max-width: 1700px) {
     width: 100%;
     padding: 0 4%;
+    gap: 20px;
   }
 `;
 const ProjectTabMenu = styled.ul`
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: ${({ $isMobile }) => ($isMobile ? "20px" : "40px")};
+  column-gap: 10px;
+  row-gap: 5px;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  background: var(--bg-light-color);
+  z-index: 1;
   li {
-    font: normal 18px/1em "Poppins-Regular";
+    font-family: "Poppins-Regular";
+    font-size: ${({ $isMobile }) => ($isMobile ? "15px" : "18px")};
     color: var(--bg-dark-gray);
     cursor: pointer;
     transition: color 0.3s ease;
     &.active,
     &:hover {
       color: var(--bg-accent-color);
+    }
+    &::after {
+      content: "|";
+      margin-left: 10px;
+      color: var(--bg-light-gray);
+    }
+    &:last-child::after {
+      content: "";
     }
   }
 `;

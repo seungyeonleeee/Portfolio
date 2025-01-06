@@ -27,7 +27,8 @@ const Container = styled(motion.li)`
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: ${({ $isMobile }) => ($isMobile ? "20px 0 10px" : "40px 0 20px")};
+    margin: ${({ $isDesktop, $isMobile }) =>
+      $isDesktop ? "40px 0 20px" : $isMobile ? "20px 0 10px" : "30px 0 10px"};
     span {
       ${BadgeStyle}
     }
@@ -80,7 +81,7 @@ const ProjectItem = ({
   id,
   title,
   description,
-  tech_group,
+  category,
   main_img,
   onClick,
   isAllView,
@@ -103,13 +104,7 @@ const ProjectItem = ({
         <img src={`/images/projects/${main_img}`} alt={title} />
       </div>
       <div className="tools-group">
-        {isDesktop
-          ? tech_group[0].content.map((tool, index) => (
-              <span key={index}>{tool}</span>
-            ))
-          : tech_group[0].content
-              .slice(0, 2)
-              .map((tool, index) => <span key={index}>{tool}</span>)}
+        <span>{category}</span>
       </div>
       <h3>{title}</h3>
       <p>{description}</p>

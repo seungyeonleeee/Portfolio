@@ -38,10 +38,12 @@ export const ButtonStyle = `
   letter-spacing: 0;
   border: 1px solid var(--bg-accent-color);
   border-radius: 54px;
-  padding: 15px 40px;
+  padding: 12px 40px;
   color: var(--bg-accent-color);
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
+  position: relative;
+  overflow: hidden;
   transition: all 0.3s;
   svg {
     width: 12px;
@@ -51,15 +53,28 @@ export const ButtonStyle = `
       transition: all 0.3s;
     }
   }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--bg-accent-color);
+    z-index: -1;
+    transition: all 0.3s;
+  }
   &:hover,
   &:active {
-    background: var(--bg-accent-color);
     color: var(--bg-light-color);
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
     svg {
       path {
         fill: var(--bg-light-color);
       }
+    }
+    &::before {
+      width: 100%;
     }
   }
 `;
@@ -97,14 +112,13 @@ export const ModalContainer = styled(motion.section)`
 `;
 export const Modal = styled(motion.div)`
   ${wrapper}
-  width: ${({ $isDesktop }) => ($isDesktop ? "80vw" : "92vw")};
+  width: ${({ $isDesktop }) => ($isDesktop ? "60vw" : "92vw")};
   height: auto;
   position: relative;
   padding: 120px 0;
   margin: 5vw auto;
   background: var(--bg-light-color);
   border-radius: 20px;
-  overflow: hidden;
   z-index: 3;
   button {
     position: absolute;
@@ -141,11 +155,9 @@ export const SectionTitle = styled.h2`
   font-family: "Poppins-Medium";
   font-size: 44px;
   font-weight: 500;
-  margin-bottom: 20px;
   letter-spacing: 0;
   @media screen and (max-width: 840px) {
     font-size: 30px;
-    margin-bottom: 0;
   }
 `;
 export const MainElement = styled(motion.div)`

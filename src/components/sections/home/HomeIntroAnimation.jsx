@@ -28,7 +28,10 @@ const LineElement = styled.div`
 // Variants
 const WrapperVariants = {
   start: { opacity: 0 },
-  end: { opacity: 1, transition: { duration: 4.8 } },
+  end: {
+    opacity: [0, 1, 1],
+    transition: { duration: 4.5, times: [0, 0.1, 1] },
+  },
   exit: { opacity: 0, filter: "blur(10px)", transition: { duration: 0.8 } },
 };
 const pathVariants = {

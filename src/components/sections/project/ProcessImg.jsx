@@ -2,20 +2,14 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { responsiveContext } from "../../../App";
-import { accordionItems } from "../../../utlis";
+import { accordionItems } from "../../../utils";
 import { ImgBoxLarge } from "../../../styledComponents";
 
 // Styled
 const Container = styled.div`
   position: relative;
-  width: ${({ $isDesktop, $isTabletOrDesktop, $isTablet }) =>
-    $isDesktop
-      ? "597px"
-      : $isTabletOrDesktop
-      ? "40%"
-      : $isTablet
-      ? "60%"
-      : "95%"};
+  width: 95%;
+  max-width: 597px;
   height: ${({ $isDesktop }) => ($isDesktop ? "550px" : "500px")};
   div {
     position: absolute;
@@ -37,8 +31,10 @@ const Container = styled.div`
   }
 `;
 const ImgBox = styled(ImgBoxLarge)`
-  width: ${({ $isDesktop }) => ($isDesktop ? "420px" : "100%")};
+  width: 100%;
+  max-width: 420px;
   height: 100%;
+  max-height: 492px;
   left: ${({ $isDesktop }) => ($isDesktop ? "53%" : "50%")};
   top: 50%;
   transform: translate(-50%, -50%);
@@ -48,15 +44,15 @@ const ImgBox = styled(ImgBoxLarge)`
 `;
 const ParallaxImgBoxLeft = styled(motion.div)`
   top: 20%;
-  left: ${({ $isDesktop, $isTablet, $isMobile }) =>
-    $isDesktop ? "0" : $isTablet ? "-30%" : $isMobile ? "-5%" : "-10%"};
+  left: ${({ $isDesktop, $isMobile }) =>
+    $isDesktop ? "0" : $isMobile ? "-5%" : "-10%"};
   background: url(/images/${(props) => props.$bgimg || ""}) center/cover
     no-repeat;
 `;
 const ParallaxImgBoxRight = styled(motion.div)`
   top: 0;
-  right: ${({ $isDesktop, $isTablet, $isMobile }) =>
-    $isDesktop ? "0" : $isTablet ? "-20%" : $isMobile ? "-5%" : "-10%"};
+  right: ${({ $isDesktop, $isMobile }) =>
+    $isDesktop ? "0" : $isMobile ? "-5%" : "-10%"};
   background: url(/images/${(props) => props.$bgimg || ""}) center/cover
     no-repeat;
 `;
@@ -105,7 +101,6 @@ const ProcessImg = ({ currentIndex }) => {
         style={{
           y: springLeftY,
         }}
-        $isTablet={isTablet}
         $isMobile={isMobile}
         $bgimg={accordionItems[currentIndex]?.subImg01}
       />
@@ -114,7 +109,6 @@ const ProcessImg = ({ currentIndex }) => {
         style={{
           y: springRightY,
         }}
-        $isTablet={isTablet}
         $isMobile={isMobile}
         $bgimg={accordionItems[currentIndex]?.subImg02}
       />
