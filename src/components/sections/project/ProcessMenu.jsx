@@ -21,12 +21,28 @@ const Accordion = styled.ul`
     align-items: center;
     margin: 0 auto;
     position: relative;
-    border-top: 1px solid var(--bg-light-gray);
     border-radius: 0 0 20px 20px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
     transition: border-color 0.3s;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1px;
+    }
+    &::before {
+      width: 100%;
+      background: var(--bg-light-gray);
+    }
+    &::after {
+      width: 0;
+      background: var(--bg-dark-gray);
+      transition: all 0.6s;
+    }
     .title {
       width: 100%;
       height: 100px;
@@ -107,7 +123,9 @@ const Accordion = styled.ul`
       }
     }
     &.active {
-      border-top: 1px solid var(--bg-dark-gray);
+      &::after {
+        width: 100%;
+      }
       .title {
         .title-inner {
           h4 {

@@ -12,8 +12,7 @@ const Container = styled.div`
     $isTablet || $isMobile ? "column" : "row"};
   .intro-img {
     max-width: 420px;
-    width: 80%;
-    height: ${({ $isMobile }) => ($isMobile ? "420px" : "550px")};
+    height: ${({ $isMobile }) => ($isMobile ? "400px" : "520px")};
   }
 `;
 const TextBox = styled(motion.ul)`

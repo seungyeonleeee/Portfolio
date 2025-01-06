@@ -25,34 +25,57 @@ const AllViewInner = styled(Inner)`
   }
 `;
 const ProjectTabMenu = styled.ul`
-  width: 100%;
+  width: 92vw;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  column-gap: 10px;
-  row-gap: 5px;
-  padding: 15px 0;
+  justify-content: ${({ $isMobile }) => ($isMobile ? "center" : "flex-start")};
+  column-gap: 20px;
+  row-gap: 0px;
+  padding: 0 4%;
   position: sticky;
   top: 0;
+  transform: translateX(-4%);
   background: var(--bg-light-color);
   z-index: 1;
   li {
+    position: relative;
+    padding: 10px 0;
     font-family: "Poppins-Regular";
-    font-size: ${({ $isMobile }) => ($isMobile ? "15px" : "18px")};
+    font-size: ${({ $isMobile }) => ($isMobile ? "14px" : "16px")};
+    letter-spacing: 0;
     color: var(--bg-dark-gray);
     cursor: pointer;
-    transition: color 0.3s ease;
-    &.active,
-    &:hover {
-      color: var(--bg-accent-color);
+    transition: all 0.3s ease;
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--bg-accent-color);
+      opacity: 0;
+      transform: scaleX(0);
+      transition: 0.4s ease-in-out;
+    }
+    &::before {
+      top: 0;
     }
     &::after {
-      content: "|";
-      margin-left: 10px;
-      color: var(--bg-light-gray);
+      bottom: 0;
     }
-    &:last-child::after {
-      content: "";
+    &:hover,
+    &.active {
+      letter-spacing: 3px;
+      color: var(--bg-accent-color);
+    }
+    &.active {
+      &::before,
+      &::after {
+        opacity: 1;
+        transform: scaleX(1.2);
+      }
     }
   }
 `;

@@ -30,6 +30,63 @@ const ListInner = styled(Inner)`
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
+  button {
+  }
+`;
+const SeeAllButton = styled.div`
+  position: relative;
+  border-radius: 54px;
+  background: var(--bg-accent-color);
+  overflow: hidden;
+  &::before {
+    position: absolute;
+    content: "";
+    display: inline-block;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background: var(--bg-light-color);
+    animation: shiny 5s 3s linear infinite;
+  }
+  button {
+    color: var(--bg-light-color);
+    svg {
+      path {
+        fill: var(--bg-light-color);
+      }
+    }
+    &::before,
+    &::after {
+      background: var(--bg-light-color);
+    }
+    &:hover {
+      color: var(--bg-accent-color);
+      svg {
+        path {
+          fill: var(--bg-accent-color);
+        }
+      }
+    }
+  }
+  @keyframes shiny {
+    0% {
+      -webkit-transform: scale(0) rotate(45deg);
+      opacity: 0;
+    }
+    80% {
+      -webkit-transform: scale(0) rotate(45deg);
+      opacity: 0.5;
+    }
+    81% {
+      -webkit-transform: scale(4) rotate(45deg);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(30) rotate(45deg);
+      opacity: 0;
+    }
+  }
 `;
 const ProjectWrapper = styled.div`
   width: 100%;
@@ -90,7 +147,9 @@ const ProjectList = () => {
       <Container className="project-list-container" ref={triggerRef}>
         <ListInner>
           <SectionTitle>Featured Projects</SectionTitle>
-          <Button text={"See All Projects"} setIsAllView={setIsAllView} />
+          <SeeAllButton>
+            <Button text={"See All Projects"} setIsAllView={setIsAllView} />
+          </SeeAllButton>
           <ProjectWrapper>
             <ul ref={slideRef}>
               {projectLists.map((project) => (

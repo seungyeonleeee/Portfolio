@@ -40,29 +40,37 @@ export const ButtonStyle = `
   border-radius: 54px;
   padding: 12px 40px;
   color: var(--bg-accent-color);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
   position: relative;
+  transform: rotate(0);
   overflow: hidden;
-  transition: all 0.3s;
+  transition: all 0.5s;
   svg {
     width: 12px;
     height: 12px;
     path {
       fill: var(--bg-accent-color);
-      transition: all 0.3s;
+      transition: all 0.5s;
     }
   }
-  &::before {
-    content: "";
+  &::before,
+  &::after {
     position: absolute;
-    top: 0;
+    content: "";
     left: 0;
-    width: 0;
-    height: 100%;
-    background: var(--bg-accent-color);
     z-index: -1;
-    transition: all 0.3s;
+    width: 100%;
+    height: 50%;
+    background: var(--bg-accent-color);
+    transform: scaleX(0);
+    transition: transform 0.5s;
+  }
+  &::before {
+    top: 0;
+    transform-origin: left;
+  }
+  &::after {
+    top: 50%;
+    transform-origin: right;
   }
   &:hover,
   &:active {
@@ -73,8 +81,15 @@ export const ButtonStyle = `
         fill: var(--bg-light-color);
       }
     }
+    &::before,
+    &::after {
+      transform: scaleX(1);
+    }
     &::before {
-      width: 100%;
+      transform-origin: right;
+    }
+    &::after {
+      transform-origin: left;
     }
   }
 `;

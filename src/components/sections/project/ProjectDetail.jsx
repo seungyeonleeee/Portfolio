@@ -65,23 +65,21 @@ const DetailHeader = styled.div`
       gap: 5px;
       li {
         width: 100%;
-        transition: all 0.3s;
         a {
           ${ButtonStyle}
           color: var(--bg-dark-gray);
           border-color: var(--bg-dark-gray);
           svg {
-            transition: fill 0.3s;
             path {
               fill: var(--bg-dark-gray);
             }
           }
-          &::before {
+          &::before,
+          &::after {
             background: var(--bg-dark-gray);
           }
           &:hover,
           &:active {
-            background: var(--bg-dark-gray);
             color: var(--bg-light-color);
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
           }
