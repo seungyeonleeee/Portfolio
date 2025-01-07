@@ -75,7 +75,6 @@ export const ButtonStyle = `
   &:hover,
   &:active {
     color: var(--bg-light-color);
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
     svg {
       path {
         fill: var(--bg-light-color);

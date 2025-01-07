@@ -11,6 +11,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 120px 0;
+  overflow: hidden;
   h2 {
     text-align: center;
   }

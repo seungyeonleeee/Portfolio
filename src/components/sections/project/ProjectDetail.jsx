@@ -105,12 +105,11 @@ const DetailHeader = styled.div`
 const DetailImg = styled(motion.div)`
   width: 100%;
   height: ${({ $isTablet, $isMobile }) =>
-    $isTablet ? "500px" : $isMobile ? "300px" : "700px"};
+    $isTablet ? "500px" : $isMobile ? "300px" : "800px"};
   border-radius: 30px 30px 0 0;
-  background-color: var(--bg-light-gray);
   box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.1);
-  background: url(/images/projects/${(props) => props.$bgimg || ""})
-    center/cover no-repeat;
+  background: url(/images/projects/${(props) => props.$bgimg || ""}) center
+    top/cover no-repeat;
 `;
 const DetailContent = styled.div`
   width: 100%;
@@ -148,6 +147,9 @@ const DetailContent = styled.div`
   .detail-content-text {
     width: 100%;
     text-align: ${({ $isMobile }) => ($isMobile ? "center" : "left")};
+    h2 {
+      color: var(--bg-light-gray);
+    }
     p {
       font: ${({ $isMobile }) => ($isMobile ? "400 16px/1.5" : "400 18px/1.5")}
         "Pretendard";
@@ -158,9 +160,9 @@ const DetailContent = styled.div`
       width: ${({ $isDesktop }) => ($isDesktop ? "80%" : "100%")};
       min-width: 350px;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-      margin: ${({ $isMobile }) => ($isMobile ? "0 auto" : "0")};
+      grid-template-columns: ${({ $isMobile }) =>
+        $isMobile ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+      column-gap: 30px;
       text-align: left;
       li {
         padding: 20px 0;
@@ -185,7 +187,7 @@ const DetailContent = styled.div`
           }
         }
         span {
-          font: 400 18px/1 "Poppins-Regular";
+          font: 400 16px/1 "Poppins-Regular";
         }
       }
     }
@@ -281,7 +283,7 @@ const ProjectDetail = ({ layoutId, isAllView }) => {
           $isTablet={isTablet}
           $isMobile={isMobile}
           $bgimg={main_img}
-        ></DetailImg>
+        />
         <DetailContent $isDesktop={isDesktop} $isMobile={isMobile}>
           <DetailInner className="detail-content-inner">
             <div className="detail-content-text">

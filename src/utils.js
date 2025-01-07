@@ -160,6 +160,76 @@ export const projectCategory = ["Javascript", "React", "Typescript", "Node.js"];
 export const projectLists = [
   {
     id: 1,
+    category: "Typescript",
+    title: "Netflix",
+    description:
+      "Typescript와 TMDB API를 활용하여 Netflix의 주요 UI와 기능을 커스터마이징한 프로젝트입니다.",
+    detail_description:
+      "Typescript를 기반으로 코드의 안정성을 높이고, TMDB API로 데이터를 제공하여 검색과 동영상 재생 기능을 구현했습니다. 또, React Router DOM을 활용해 페이지 라우팅을 구성하고, Recoil로 상태 관리를 효율적으로 처리했습니다.",
+    tech_group: [
+      {
+        title: "Tools",
+        content: [
+          "React-Router-DOM",
+          "Recoil",
+          "React-Hook-Form",
+          "React-YouTube",
+        ],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Personal Project",
+      },
+      {
+        title: "Pages",
+        content: ["Main", "Detail", "Login", "Signup"],
+      },
+    ],
+    link: "https://syyflix.netlify.app/",
+    github_url: "https://github.com/seungyeonleeee/netflix",
+    main_img: "netflix_main.png",
+    sub_img01: "netflix_sub01.png",
+    sub_img02: "netflix_sub02.png",
+  },
+  {
+    id: 4,
+    category: "React",
+    title: "Facebook",
+    description:
+      "Facebook의 일부 기능을 커스텀한 프로젝트로, 로그인 및 회원가입 페이지 개발을 담당했습니다.",
+    detail_description:
+      "IA를 계획하고 Figma를 활용하여 와이어프레임 및 디자인을 진행했으며, Vite와 Firebase Storage를 사용하여 페이지를 구현했습니다. React Hook Form으로 폼 데이터를 관리하고, 팀 프로젝트로서 페이지 분기 및 상태 관리에 중점을 두었습니다.",
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Vite", "Firebase Storage", "React-Hook-Form", "Github"],
+      },
+      {
+        title: "Process",
+        content: ["IA Planning", "Wireframing", "UI Design", "Implementation"],
+      },
+      {
+        title: "Type",
+        content: "Team Project",
+      },
+      {
+        title: "Pages",
+        content: ["Login Page", "Signup Page"],
+      },
+    ],
+    link: "https://facebook-ez.web.app/",
+    github_url: "GitHub 저장소 링크",
+    figma_url: "Figma 디자인 링크",
+    main_img: "FacebookCustom_main.jpg",
+    sub_img01: "FacebookCustom_sub01.jpg",
+    sub_img02: "FacebookCustom_sub02.jpg",
+  },
+  {
+    id: 2,
     category: "Javascript",
     title: "Joonggonara",
     description:
@@ -181,19 +251,19 @@ export const projectLists = [
       },
       {
         title: "Pages",
-        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
+        content: ["Main", "Auction", "FAQ", "Quick Menu"],
       },
     ],
     link: "https://junggonara-8874f.web.app/",
     github_url: "https://github.com/park-ria/teamproject-corea",
     figma_url:
       "https://www.figma.com/design/cCLe6dVPpVkbsNCGpv8pLU/COREA-Team-project?node-id=12-22&t=459UhM4CVa4lG1wJ-1",
-    main_img: "Joonggonara_main01.jpg",
-    sub_img01: "Joonggonara_sub01.jpg",
-    sub_img02: "Joonggonara_sub02.jpg",
+    main_img: "joonggonara_main.jpg",
+    sub_img01: "joonggonara_sub01.jpg",
+    sub_img02: "joonggonara_sub02.jpg",
   },
   {
-    id: 2,
+    id: 3,
     category: "Javascript",
     title: "Hyndai E&C",
     description:
@@ -223,7 +293,7 @@ export const projectLists = [
       "https://github.com/seungyeonleeee/Frontend-Class/tree/main/custom_project/hyundaiec",
   },
   {
-    id: 3,
+    id: 4,
     category: "Javascript",
     title: "INNISFREE",
     description:
@@ -241,32 +311,6 @@ export const projectLists = [
       {
         title: "Type",
         content: "Team Project",
-      },
-      {
-        title: "Pages",
-        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
-      },
-    ],
-  },
-  {
-    id: 4,
-    category: "Javascript",
-    title: "Hyndai E&C",
-    description:
-      "현대건설의 홈페이지를 애니메이션 효과로 생동감을 더하고, 페이지 전환을 통해 콘텐츠를 자연스럽게 이어가며 커스터마이징 했습니다.",
-    tools: ["Anime.js", "Fullpage"],
-    tech_group: [
-      {
-        title: "Tools",
-        content: ["Local Storage", "SCSS", "Github"],
-      },
-      {
-        title: "Layout",
-        content: "Responsive",
-      },
-      {
-        title: "Type",
-        content: "Team",
       },
       {
         title: "Pages",
@@ -302,29 +346,34 @@ export const projectLists = [
   },
   {
     id: 6,
-    category: "Typescript",
-    title: "To Do List",
+    category: "React",
+    title: "To-Do List",
     description:
-      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
-    tools: ["Vite", "Styled-components"],
+      "React를 기반으로 간단하고 직관적인 UI의 To-Do List를 제작했습니다.",
+    detail_description:
+      "상태 관리 최적화를 위해 필요한 부분만 렌더링하도록 설계했습니다. 스타일링은 styled-components를 사용하여 컴포넌트별로 유지보수를 쉽게 했고, 라이트 모드와 다크 모드 테마를 제공하여 사용자 경험을 강화했습니다.",
     tech_group: [
       {
         title: "Tools",
-        content: ["Local Storage", "SCSS", "Github"],
+        content: ["Vite", "styled-components", "Github"],
       },
       {
         title: "Layout",
-        content: "Responsive",
+        content: "mobile",
       },
       {
         title: "Type",
-        content: "Team",
+        content: "Personal Project",
       },
       {
         title: "Pages",
-        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
+        content: ["Main"],
       },
     ],
+    link: "https://todolistappsy.netlify.app/",
+    github_url: "https://github.com/seungyeonleeee/todolistapp",
+    main_img: "todolist_main.jpg",
+    sub_img01: "todolist_sub01.jpg",
   },
   {
     id: 7,
@@ -355,9 +404,9 @@ export const projectLists = [
     link: "https://seungyeon-emotion-diary0923.web.app/",
     github_url:
       "https://github.com/seungyeonleeee/Frontend-Class/tree/main/custom_project/emotiondiaryapp",
-    main_img: "emotionDiary_main01.jpg",
-    sub_img01: "emotionDiary_sub01.jpg",
-    sub_img02: "emotionDiary_sub02.jpg",
+    main_img: "emotiondiary_main.jpg",
+    sub_img01: "emotiondiary_sub01.jpg",
+    sub_img02: "emotiondiary_sub02.jpg",
   },
   {
     id: 8,
@@ -387,6 +436,32 @@ export const projectLists = [
   },
   {
     id: 9,
+    category: "Node.js",
+    title: "Emotion Diary",
+    description:
+      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
+    tools: ["Motion", "Styled-components"],
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Local Storage", "SCSS", "Github"],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Team",
+      },
+      {
+        title: "Pages",
+        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
+      },
+    ],
+  },
+  {
+    id: 10,
     category: "Node.js",
     title: "Emotion Diary",
     description:

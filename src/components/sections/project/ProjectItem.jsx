@@ -14,6 +14,18 @@ const Container = styled(motion.li)`
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
     background-color: var(--bg-light-gray);
     overflow: hidden;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      transition: all 0.3s;
+    }
     img {
       width: 100%;
       height: 100%;
@@ -36,6 +48,7 @@ const Container = styled(motion.li)`
   h3 {
     font-size: ${({ $isDesktop }) => ($isDesktop ? "35px" : "25px")};
     font-weight: 500;
+    letter-spacing: 0;
     margin-bottom: 10px;
     color: var(--bg-dark-color);
     transition: color 0.3s;
@@ -47,6 +60,9 @@ const Container = styled(motion.li)`
   }
   &:hover {
     .img-box {
+      &::after {
+        height: 0;
+      }
       img {
         filter: grayscale(0);
       }

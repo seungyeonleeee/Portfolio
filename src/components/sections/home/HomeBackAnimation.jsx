@@ -17,7 +17,7 @@ const Circle = styled(motion.span)`
   top: 50%;
   left: 50%;
   display: inline-block;
-  border: 1px solid #d4d3d1;
+  border: 1px solid #dbdad8;
   border-radius: 50%;
   &:nth-child(1) {
     ${({ $isDesktop, $isMobile }) =>
