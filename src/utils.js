@@ -156,7 +156,7 @@ export const accordionItems = [
   },
 ];
 // Project List
-export const projectCategory = ["Javascript", "React", "Typescript", "Node.js"];
+export const projectCategory = ["Typescript", "React", "Javascript"];
 export const projectLists = [
   {
     id: 1,
@@ -196,7 +196,7 @@ export const projectLists = [
     sub_img02: "netflix_sub02.png",
   },
   {
-    id: 4,
+    id: 2,
     category: "React",
     title: "Facebook",
     description:
@@ -218,18 +218,81 @@ export const projectLists = [
       },
       {
         title: "Pages",
-        content: ["Login Page", "Signup Page"],
+        content: ["Login", "Signup"],
       },
     ],
     link: "https://facebook-ez.web.app/",
-    github_url: "GitHub 저장소 링크",
-    figma_url: "Figma 디자인 링크",
-    main_img: "FacebookCustom_main.jpg",
-    sub_img01: "FacebookCustom_sub01.jpg",
-    sub_img02: "FacebookCustom_sub02.jpg",
+    github_url: "https://github.com/yerixx/Teamproject_Facebook_EZ",
+    figma_url:
+      "https://www.figma.com/design/ErmMTDhk7falDqDEfZMB8O/%5B%EC%A0%95%EB%A9%B4%EB%8F%8C%ED%8C%8C%5DFacebook?node-id=136-867&t=DXXCyqU6Y0WTlQIF-1",
+    main_img: "facebook_main.jpg",
   },
   {
-    id: 2,
+    id: 3,
+    category: "React",
+    title: "Emotion Diary",
+    description:
+      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
+    tools: ["Motion", "Styled-components"],
+    link: "https://seungyeon-emotion-diary0923.web.app/",
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Local Storage", "SCSS", "Github"],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Team",
+      },
+      {
+        title: "Pages",
+        content: ["Main", "Auction", "FAQ", "Quick Menu"],
+      },
+    ],
+    link: "https://seungyeon-emotion-diary0923.web.app/",
+    github_url:
+      "https://github.com/seungyeonleeee/Frontend-Class/tree/main/custom_project/emotiondiaryapp",
+    main_img: "emotiondiary_main.jpg",
+    sub_img01: "emotiondiary_sub01.jpg",
+    sub_img02: "emotiondiary_sub02.jpg",
+  },
+  {
+    id: 4,
+    category: "React",
+    title: "To-Do List",
+    description:
+      "React를 기반으로 간단하고 직관적인 UI의 To-Do List를 제작했습니다.",
+    detail_description:
+      "상태 관리 최적화를 위해 필요한 부분만 렌더링하도록 설계했으며, 사용자가 할 일을 추가(Create), 조회(Read), 수정(Update), 삭제(Delete)할 수 있는 CRUD 기능을 구현했습니다. 라이트 모드와 다크 모드 테마를 제공하여 사용자 경험을 강화했습니다.",
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Vite", "styled-components", "Github"],
+      },
+      {
+        title: "Layout",
+        content: "mobile",
+      },
+      {
+        title: "Features",
+        content: ["CRUD", "Light/Dark Theme"],
+      },
+      {
+        title: "Pages",
+        content: ["Main"],
+      },
+    ],
+    link: "https://todolistappsy.netlify.app/",
+    github_url: "https://github.com/seungyeonleeee/todolistapp",
+    main_img: "todolist_main.jpg",
+    sub_img01: "todolist_sub01.jpg",
+  },
+  {
+    id: 5,
     category: "Javascript",
     title: "Joonggonara",
     description:
@@ -251,7 +314,7 @@ export const projectLists = [
       },
       {
         title: "Pages",
-        content: ["Main", "Auction", "FAQ", "Quick Menu"],
+        content: ["Main", "Auction", "FAQ"],
       },
     ],
     link: "https://junggonara-8874f.web.app/",
@@ -263,7 +326,7 @@ export const projectLists = [
     sub_img02: "joonggonara_sub02.jpg",
   },
   {
-    id: 3,
+    id: 6,
     category: "Javascript",
     title: "Hyndai E&C",
     description:
@@ -277,7 +340,7 @@ export const projectLists = [
       },
       {
         title: "Layout",
-        content: "Responsive",
+        content: "Desktop",
       },
       {
         title: "Type",
@@ -285,20 +348,54 @@ export const projectLists = [
       },
       {
         title: "Pages",
-        content: ["Main Page", "Modal"],
+        content: ["Main", "Modal"],
       },
     ],
-    link: "https://seungyeon-emotion-diary0923.web.app/",
-    github_url:
-      "https://github.com/seungyeonleeee/Frontend-Class/tree/main/custom_project/hyundaiec",
+    link: "https://hyundaienc.netlify.app/",
+    github_url: "https://github.com/seungyeonleeee/HyundaiE-C",
+    main_img: "hyundaienc_main.png",
+    sub_img01: "hyundaienc_sub01.png",
+    sub_img02: "hyundaienc_sub02.png",
   },
   {
-    id: 4,
+    id: 7,
     category: "Javascript",
     title: "INNISFREE",
     description:
       "브랜드의 자연 친화적인 이미지를 돋보이게 하는 부드러운 슬라이드와 인터랙션을 구현했습니다.",
-    tools: ["Slick"],
+    detail_description:
+      "Kakao API와 Slick Slider를 사용하여 매장찾기와 매끄러운 슬라이드를 구현했으며, 브랜드의 이미지와 조화롭게 동작하는 사용자 중심의 인터랙션을 설계했습니다.",
+    tech_group: [
+      {
+        title: "Tools",
+        content: ["Kakao API", "Slick Slider"],
+      },
+      {
+        title: "Layout",
+        content: "Responsive",
+      },
+      {
+        title: "Type",
+        content: "Personal Project",
+      },
+      {
+        title: "Pages",
+        content: ["Main", "Login"],
+      },
+    ],
+    link: "https://innisfreecustom.netlify.app/",
+    github_url: "https://github.com/seungyeonleeee/Innisfree",
+    main_img: "innisfree_main.png",
+    sub_img01: "innisfree_sub01.png",
+    sub_img02: "innisfree_sub02.png",
+  },
+  {
+    id: 8,
+    category: "Javascript",
+    title: "Cyworld Custom",
+    description: "싸이월드의 감성을 현대적으로 재해석한 커스텀 프로젝트입니다.",
+    detail_description:
+      "로컬 스토리지를 활용해 사용자들이 작성한 일촌평을 저장 및 관리할 수 있도록 개발했습니다. SCSS를 사용해 싸이월드 특유의 아기자기한 감성을 반영한 스타일링을 적용했습니다.",
     tech_group: [
       {
         title: "Tools",
@@ -306,60 +403,7 @@ export const projectLists = [
       },
       {
         title: "Layout",
-        content: "Responsive",
-      },
-      {
-        title: "Type",
-        content: "Team Project",
-      },
-      {
-        title: "Pages",
-        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
-      },
-    ],
-  },
-  {
-    id: 5,
-    category: "React",
-    title: "INNISFREE",
-    description:
-      "브랜드의 자연 친화적인 이미지를 돋보이게 하는 부드러운 슬라이드와 인터랙션을 구현했습니다.",
-    tools: ["Slick"],
-    tech_group: [
-      {
-        title: "Tools",
-        content: ["SCSS", "Github"],
-      },
-      {
-        title: "Layout",
-        content: "Responsive",
-      },
-      {
-        title: "Type",
-        content: "Team",
-      },
-      {
-        title: "Pages",
-        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
-      },
-    ],
-  },
-  {
-    id: 6,
-    category: "React",
-    title: "To-Do List",
-    description:
-      "React를 기반으로 간단하고 직관적인 UI의 To-Do List를 제작했습니다.",
-    detail_description:
-      "상태 관리 최적화를 위해 필요한 부분만 렌더링하도록 설계했습니다. 스타일링은 styled-components를 사용하여 컴포넌트별로 유지보수를 쉽게 했고, 라이트 모드와 다크 모드 테마를 제공하여 사용자 경험을 강화했습니다.",
-    tech_group: [
-      {
-        title: "Tools",
-        content: ["Vite", "styled-components", "Github"],
-      },
-      {
-        title: "Layout",
-        content: "mobile",
+        content: "Desktop",
       },
       {
         title: "Type",
@@ -370,120 +414,8 @@ export const projectLists = [
         content: ["Main"],
       },
     ],
-    link: "https://todolistappsy.netlify.app/",
-    github_url: "https://github.com/seungyeonleeee/todolistapp",
-    main_img: "todolist_main.jpg",
-    sub_img01: "todolist_sub01.jpg",
-  },
-  {
-    id: 7,
-    category: "Typescript",
-    title: "Emotion Diary",
-    description:
-      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
-    tools: ["Motion", "Styled-components"],
-    link: "https://seungyeon-emotion-diary0923.web.app/",
-    tech_group: [
-      {
-        title: "Tools",
-        content: ["Local Storage", "SCSS", "Github"],
-      },
-      {
-        title: "Layout",
-        content: "Responsive",
-      },
-      {
-        title: "Type",
-        content: "Team",
-      },
-      {
-        title: "Pages",
-        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
-      },
-    ],
-    link: "https://seungyeon-emotion-diary0923.web.app/",
-    github_url:
-      "https://github.com/seungyeonleeee/Frontend-Class/tree/main/custom_project/emotiondiaryapp",
-    main_img: "emotiondiary_main.jpg",
-    sub_img01: "emotiondiary_sub01.jpg",
-    sub_img02: "emotiondiary_sub02.jpg",
-  },
-  {
-    id: 8,
-    category: "Node.js",
-    title: "To Do List",
-    description:
-      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
-    tools: ["Vite", "Styled-components"],
-    tech_group: [
-      {
-        title: "Tools",
-        content: ["Local Storage", "SCSS", "Github"],
-      },
-      {
-        title: "Layout",
-        content: "Responsive",
-      },
-      {
-        title: "Type",
-        content: "Team",
-      },
-      {
-        title: "Pages",
-        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
-      },
-    ],
-  },
-  {
-    id: 9,
-    category: "Node.js",
-    title: "Emotion Diary",
-    description:
-      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
-    tools: ["Motion", "Styled-components"],
-    tech_group: [
-      {
-        title: "Tools",
-        content: ["Local Storage", "SCSS", "Github"],
-      },
-      {
-        title: "Layout",
-        content: "Responsive",
-      },
-      {
-        title: "Type",
-        content: "Team",
-      },
-      {
-        title: "Pages",
-        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
-      },
-    ],
-  },
-  {
-    id: 10,
-    category: "Node.js",
-    title: "Emotion Diary",
-    description:
-      "Vite의 빠른 빌드 속도와 styled-components의 모듈화된 스타일링을 통해 간결하면서도 직관적인 UI를 구현했습니다.",
-    tools: ["Motion", "Styled-components"],
-    tech_group: [
-      {
-        title: "Tools",
-        content: ["Local Storage", "SCSS", "Github"],
-      },
-      {
-        title: "Layout",
-        content: "Responsive",
-      },
-      {
-        title: "Type",
-        content: "Team",
-      },
-      {
-        title: "Pages",
-        content: ["Main Page", "Auction", "FAQ", "Quick Menu"],
-      },
-    ],
+    link: "https://syworld.netlify.app/",
+    github_url: "https://github.com/seungyeonleeee/Cyworld",
+    main_img: "cyworld_main.png",
   },
 ];

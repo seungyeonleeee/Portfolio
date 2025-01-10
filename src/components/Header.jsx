@@ -27,7 +27,7 @@ const Logo = styled.div`
   a {
     display: flex;
     align-items: center;
-    gap: 2.5px;
+    gap: 3px;
     svg {
       width: 16px;
       height: 16px;

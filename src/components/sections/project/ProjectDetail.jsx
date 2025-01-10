@@ -107,7 +107,7 @@ const DetailImg = styled(motion.div)`
   height: ${({ $isTablet, $isMobile }) =>
     $isTablet ? "500px" : $isMobile ? "300px" : "800px"};
   border-radius: 30px 30px 0 0;
-  box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.04);
   background: url(/images/projects/${(props) => props.$bgimg || ""}) center
     top/cover no-repeat;
 `;
@@ -117,7 +117,7 @@ const DetailContent = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  padding-top: ${({ $isMobile }) => ($isMobile ? "50px" : "100px")};
+  padding-top: 50px;
   background: var(--bg-light-color);
   box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.2);
   &::before {
